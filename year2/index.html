@@ -1,0 +1,2501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Year 2 Learning Hub</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<style>
+  @font-face{
+    font-family:"Lexend"; font-style:normal; font-weight:400 800; font-display:swap;
+    src:url("fonts/Lexend.woff2") format("woff2");
+  }
+  :root{
+    --blue:#2563eb; --blue-dark:#1d4ed8; --green:#16a34a; --green-dark:#15803d;
+    --red:#ef4444; --yellow:#facc15; --orange:#fb923c; --pink:#ec4899;
+    --teal:#0d9488; --teal-dark:#0f766e; --purple:#8b5cf6; --purple-dark:#7c3aed;
+    --bg:#f0fdfa; --card:#ffffff; --ink:#1f2937; --ink-soft:#475569;
+    --radius:18px; --radius-sm:12px;
+    --shadow:0 6px 18px rgba(31,41,55,.08);
+    --shadow-hover:0 10px 24px rgba(31,41,55,.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Lexend","Trebuchet MS",sans-serif;
+    background:
+      radial-gradient(circle at 8% 12%, rgba(13,148,136,.16) 0, transparent 40%),
+      radial-gradient(circle at 92% 18%, rgba(37,99,235,.14) 0, transparent 40%),
+      radial-gradient(circle at 15% 90%, rgba(250,204,21,.16) 0, transparent 40%),
+      radial-gradient(circle at 90% 85%, rgba(236,72,153,.12) 0, transparent 40%),
+      linear-gradient(160deg,#f0fdfa,#eaf3ff 55%,#fdf9f0 100%);
+    background-attachment:fixed;
+    margin:0; padding:0; color:var(--ink);
+    overflow-x:hidden;
+  }
+  header{
+    background: linear-gradient(120deg,var(--teal) 0%,var(--blue) 55%,var(--purple) 100%);
+    background-size:200% 200%;
+    animation:gradientShift 10s ease 3;
+    color:white; padding:34px 16px 30px; text-align:center;
+    box-shadow:0 6px 20px rgba(13,60,90,.25);
+    border-bottom-left-radius:28px; border-bottom-right-radius:28px;
+    position:relative; overflow:hidden;
+  }
+  @keyframes gradientShift{
+    0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;}
+  }
+  header h1{
+    margin:0; font-size:2em; text-shadow:0 3px 8px rgba(0,0,0,.2); letter-spacing:.5px;
+  }
+  header p{margin:8px 0 0; opacity:.95; font-size:1.05em;}
+  nav{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    padding:16px 12px; background:rgba(255,255,255,.85);
+    position:sticky; top:0; z-index:10;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+  }
+  nav button{
+    display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;
+    border:none; border-radius:999px; padding:12px 20px; min-height:48px; min-width:112px;
+    font-family:inherit; font-weight:bold; font-size:1em; color:white;
+    box-shadow:0 3px 8px rgba(31,41,55,.18); transition:.18s ease;
+  }
+  nav button .nav-icon{ font-size:1.3em; line-height:1; }
+  nav button:hover{ transform:translateY(-2px) scale(1.03); }
+  nav button.active{
+    transform:translateY(-1px) scale(1.05);
+    box-shadow:0 0 0 3px white, 0 0 0 6px rgba(31,41,55,.25), 0 6px 14px rgba(31,41,55,.3);
+  }
+  @media (max-width:600px){
+    nav button{ padding:9px 14px; min-width:90px; font-size:.85em; }
+  }
+  .section{display:none; animation:fade .35s ease; max-width:820px; margin:24px auto; padding:0 14px 90px;}
+  .section.active{display:block;}
+  @keyframes fade{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+  .card{
+    background:var(--card); border-radius:var(--radius); padding:20px 22px; margin-bottom:18px;
+    box-shadow:var(--shadow); border:2px solid #e0f2ea;
+    animation:popIn .3s ease;
+  }
+  @keyframes popIn{from{opacity:0; transform:scale(.97) translateY(6px);} to{opacity:1; transform:scale(1) translateY(0);}}
+  .card h3{
+    margin-top:0; color:var(--teal-dark); font-size:1.3em;
+    padding-bottom:10px; margin-bottom:14px; border-bottom:3px dashed #d3f3ec;
+  }
+  .card.subsection{display:none;}
+  .card.subsection.active{display:block;}
+  .subnav{
+    display:flex; flex-wrap:wrap; gap:9px; margin-bottom:20px;
+  }
+  .subnav button{
+    background:#f1f5f9; border:2px solid #e2e8f0; color:#475569;
+    border-radius:18px; padding:8px 16px; font-weight:bold; cursor:pointer;
+    font-family:inherit; font-size:.9em; transition:.18s ease;
+  }
+  .subnav button:hover{ transform:translateY(-2px); box-shadow:0 4px 10px rgba(100,116,139,.25); border-color:#cbd5e1; }
+  .subnav button.active{
+    background:linear-gradient(135deg,var(--teal),var(--blue)); color:white; border-color:transparent;
+    box-shadow:0 4px 10px rgba(37,99,235,.4);
+  }
+  .q{margin-bottom:16px; padding:12px 14px; border-radius:var(--radius-sm); background:#fbfdfd; border:1px solid #eef4f2;}
+  .q:hover{background:#f5fbfa;}
+  .q label{display:block; margin-bottom:8px; font-weight:bold;}
+  input[type=text]{
+    padding:9px 12px; border:2px solid #cbd5e1; border-radius:var(--radius-sm); font-size:1em;
+    font-family:inherit; width:220px; max-width:100%; transition:.15s;
+    background:white;
+  }
+  input[type=text]:focus, textarea:focus, select:focus{
+    outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(37,99,235,.2);
+  }
+  textarea{
+    width:100%; min-height:64px; padding:10px 12px; border:2px solid #cbd5e1;
+    border-radius:var(--radius-sm); font-family:inherit; font-size:1em; transition:.15s;
+  }
+  select{padding:7px 10px; border-radius:var(--radius-sm); border:2px solid #cbd5e1; font-family:inherit; background:white;}
+  .options label{
+    display:inline-block; font-weight:normal; margin-right:16px; cursor:pointer;
+    padding:4px 6px; border-radius:8px; transition:.15s;
+  }
+  .options label:hover{ background:#e6fffa; }
+  .feedback{margin-top:8px; font-weight:bold; min-height:20px; border-radius:10px;}
+  .feedback:not(:empty){padding:8px 12px; animation:pop .25s ease;}
+  @keyframes pop{0%{transform:scale(.85); opacity:0;} 60%{transform:scale(1.04);} 100%{transform:scale(1); opacity:1;}}
+  .correct{color:var(--green-dark); background:#eafff1; border:1.5px solid #bbf7d0;}
+  .incorrect{color:#9a5b00; background:#fff7ec; border:1.5px solid #fed7aa;}
+  .btn{
+    background:linear-gradient(135deg,var(--teal),var(--blue)); color:white; border:none;
+    border-radius:var(--radius-sm); padding:11px 20px; font-weight:bold; cursor:pointer; font-family:inherit;
+    font-size:1em; margin-top:8px; box-shadow:0 3px 8px rgba(37,99,235,.3); transition:.15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 6px 14px rgba(37,99,235,.4); }
+  .btn:active{ transform:translateY(0); box-shadow:0 2px 4px rgba(37,99,235,.3); }
+  .btn.reveal{background:linear-gradient(135deg,var(--yellow),var(--orange)); color:#5c3d00; box-shadow:0 3px 8px rgba(251,146,60,.35);}
+  .btn.small{padding:7px 14px; font-size:.85em; margin-top:4px;}
+  .score-bar{
+    position:fixed; bottom:0; left:0; width:100%; z-index:15; background:#fbfdf7;
+    padding:10px 18px; text-align:center; box-shadow:0 -4px 14px rgba(0,0,0,.1);
+    font-weight:bold; font-size:1.1em;
+  }
+  .score-track{
+    width:100%; max-width:480px; margin:8px auto 0; height:10px; background:#e5e7eb;
+    border-radius:20px; overflow:hidden;
+  }
+  .score-fill{
+    height:100%; width:0%; border-radius:20px;
+    background:linear-gradient(90deg,var(--green),var(--teal));
+    transition:width .4s ease;
+  }
+  .hint{font-weight:normal; color:var(--ink-soft); font-size:.9em;}
+  .answer-reveal{
+    display:none; margin-top:8px; background:#fff7e6; border-left:4px solid var(--yellow);
+    padding:10px 12px; border-radius:var(--radius-sm); animation:pop .25s ease;
+  }
+  .modal-overlay{
+    display:none; position:fixed; inset:0; background:rgba(15,41,45,.55);
+    z-index:100; align-items:center; justify-content:center; padding:20px;
+  }
+  .modal-overlay.active{display:flex;}
+  .modal-box{
+    background:var(--card); border-radius:var(--radius); padding:26px 24px; max-width:440px;
+    box-shadow:0 20px 50px rgba(0,0,0,.35); animation:popIn .3s ease; border:2px solid #e0f2ea;
+  }
+  .modal-box h3{margin-top:0; color:var(--teal-dark);}
+  .modal-box ul{padding-left:20px; line-height:1.7; margin-bottom:18px;}
+  html.text-large{ font-size:115%; }
+  html.text-xlarge{ font-size:130%; }
+  header.banner-header{
+    padding:0; text-align:center; overflow:hidden; background:#0d2b3a;
+    border-bottom-left-radius:28px; border-bottom-right-radius:28px;
+    box-shadow:0 6px 20px rgba(13,60,90,.25);
+  }
+  header.banner-header .banner-img{ display:block; width:100%; height:auto; }
+  header.banner-header .credit-line{
+    color:white; background:#0d2b3a; margin:0; padding:6px 10px; font-size:.7em; opacity:.85;
+  }
+  .whatsnew-btn{
+    background:none; border:none; color:white; font-family:inherit; font-size:1em;
+    text-decoration:underline; cursor:pointer; padding:0; opacity:.95;
+  }
+  .textsize-bar{
+    display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:6px;
+    padding:8px 12px; background:rgba(255,255,255,.75);
+  }
+  .text-size-btn{
+    background:#e6fffa; border:1.5px solid var(--teal); color:var(--teal-dark);
+    border-radius:8px; padding:4px 11px; font-weight:bold; cursor:pointer; font-family:inherit;
+    font-size:.8em; transition:.15s;
+  }
+  .text-size-btn.active{ background:linear-gradient(135deg,var(--teal),var(--blue)); color:white; border-color:transparent; }
+  .a11y-info{
+    position:relative; display:inline-block; margin-left:6px;
+    font-size:.8em; font-weight:bold; color:var(--purple-dark);
+    border-bottom:1px dotted var(--purple-dark); cursor:help;
+  }
+  .a11y-tooltip{
+    display:none; position:absolute; bottom:135%; left:50%; transform:translateX(-50%);
+    background:white; color:var(--ink); border:2px solid var(--purple); border-radius:10px;
+    padding:10px 14px; width:230px; text-align:left; font-weight:normal; font-size:1em;
+    box-shadow:0 8px 20px rgba(0,0,0,.18); z-index:20;
+  }
+  .a11y-tooltip:after{
+    content:""; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+    border:7px solid transparent; border-top-color:var(--purple);
+  }
+  .a11y-tooltip ul{ margin:6px 0 0; padding-left:18px; }
+  .a11y-info:hover .a11y-tooltip, .a11y-info:focus .a11y-tooltip{ display:block; }
+  .nav-badge{ margin-left:2px; font-size:.85em; }
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+    outline:3px solid var(--purple); outline-offset:2px;
+  }
+  @media print{
+    body *{ visibility:hidden; }
+    #certificateBox, #certificateBox *{ visibility:visible; }
+    #certificateBox{ position:absolute; top:40px; left:50%; transform:translateX(-50%); width:90%; max-width:700px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    @page{ size:A4; margin:20mm; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:0.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.001ms !important;
+    }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="banner-header">
+  <img class="banner-img" src="banner.jpg" alt="Year 2 Learning Hub — Spelling, Maths, Grammar, Reading, Science">
+  <p class="credit-line">Made by @stentm · <span id="versionTag"></span> · <button class="whatsnew-btn" onclick="openWhatsNew()">What's new</button></p>
+</header>
+
+<div class="modal-overlay" id="welcomeModal">
+  <div class="modal-box" style="max-width:480px; text-align:center;">
+    <img src="welcome-kids.jpg" alt="" style="max-width:260px; width:100%; margin:0 auto 6px; display:block;">
+    <h3 style="border:none; margin-top:0;">Welcome to Year 2 Learning Hub! 👋</h3>
+    <p style="margin-top:0;">Spelling, Maths, Grammar, Reading, Science, and Games — a little practice every day!</p>
+    <label style="display:block; font-weight:bold; margin:14px 0 6px;">What's your name?</label>
+    <input type="text" id="welcomeNameInput" placeholder="Type your name here" style="width:80%; text-align:center; margin-bottom:14px;">
+    <button class="btn" onclick="closeWelcomeScreen()">Let's start! 🚀</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="whatsNewModal">
+  <div class="modal-box">
+    <h3>🎉 What's new!</h3>
+    <div id="whatsNewList" style="max-height:50vh; overflow-y:auto; text-align:left;"></div>
+    <button class="btn" onclick="closeWhatsNew()">Got it, let's start!</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="sectionCompleteModal">
+  <div class="modal-box" style="text-align:center;">
+    <p style="font-size:2.5em; margin:0 0 6px;">🎉🌟🎊</p>
+    <h3 style="border:none;">Well done!</h3>
+    <p id="sectionCompleteText" style="font-size:1.1em;"></p>
+    <button class="btn" onclick="closeSectionComplete()">Keep going!</button>
+  </div>
+</div>
+
+<nav id="nav"></nav>
+
+<div class="textsize-bar">
+  <span class="hint" style="margin-right:2px;">Text size:</span>
+  <button class="text-size-btn" id="textsize-normal" onclick="setTextSize('normal')">A</button>
+  <button class="text-size-btn" id="textsize-large" onclick="setTextSize('large')">A+</button>
+  <button class="text-size-btn" id="textsize-xlarge" onclick="setTextSize('xlarge')">A++</button>
+  <span class="a11y-info" tabindex="0">♿ Accessible design
+    <div class="a11y-tooltip">
+      <strong>This app supports:</strong>
+      <ul>
+        <li>Adjustable text size (A / A+ / A++)</li>
+        <li>Icons as well as colour for feedback (not colour alone)</li>
+        <li>Dyslexia-friendly Lexend font, chosen for young readers</li>
+        <li>Softer, encouraging colours for "try again" feedback</li>
+        <li>Stronger text contrast throughout</li>
+        <li>Your device's reduced-motion setting, and animations that settle down on their own</li>
+      </ul>
+    </div>
+  </span>
+  <span class="a11y-info" tabindex="0">🔒 Privacy-friendly
+    <div class="a11y-tooltip">
+      <strong>This app:</strong>
+      <ul>
+        <li>Has no account, no sign-up, no login</li>
+        <li>Does not track your child or use analytics/ads</li>
+        <li>Saves progress only on this device (never sent anywhere)</li>
+        <li>Works fully offline once loaded — no external requests</li>
+      </ul>
+      <span class="hint">See the Parents tab for the full plain-English notice.</span>
+    </div>
+  </span>
+</div>
+
+<div class="score-bar">
+  <span id="scoreBar">Score: 0 / 0 ✅</span>
+  <div class="score-track"><div class="score-fill" id="scoreFill"></div></div>
+  <div style="margin-top:6px;"><button onclick="resetProgress()" style="margin-top:0; background:none; border:none; color:var(--ink-soft); font-family:inherit; font-size:.75em; text-decoration:underline; cursor:pointer; padding:4px;">Start over</button></div>
+</div>
+
+<script>
+const APP_VERSION = "1.0";
+document.getElementById('versionTag').textContent = "v" + APP_VERSION;
+
+let score = 0, total = 0;
+
+function updateScore(){
+  document.getElementById('scoreBar').textContent = `Score: ${score} / ${total} ✅`;
+  const pct = total > 0 ? Math.round((score/total)*100) : 0;
+  document.getElementById('scoreFill').style.width = pct + '%';
+  saveProgress();
+  renderProgressDashboard();
+}
+
+// ---------- Local progress saving ----------
+function saveProgress(){
+  const state = { score, total, inputs:{}, radios:{}, selects:{}, feedback:{}, shaded:{} };
+  document.querySelectorAll('input[type=text], textarea').forEach(el=>{ if(el.id) state.inputs[el.id] = el.value; });
+  document.querySelectorAll('input[type=radio]:checked').forEach(el=>{ state.radios[el.name] = el.value; });
+  document.querySelectorAll('select[id]').forEach(el=>{ state.selects[el.id] = {value: el.value, border: el.style.borderColor}; });
+  document.querySelectorAll('.feedback[id]').forEach(el=>{ if(el.textContent) state.feedback[el.id] = {text: el.textContent, cls: el.className}; });
+  document.querySelectorAll('[data-shade-id]').forEach(el=>{ state.shaded[el.dataset.shadeId] = el.dataset.shaded; });
+  localStorage.setItem('y2Progress', JSON.stringify(state));
+}
+
+function restoreProgress(){
+  const raw = localStorage.getItem('y2Progress');
+  if(raw){
+    let state = null;
+    try { state = JSON.parse(raw); } catch(e){ state = null; }
+    if(state){
+      score = state.score || 0;
+      total = state.total || 0;
+      Object.keys(state.inputs || {}).forEach(id=>{
+        const el = document.getElementById(id);
+        if(el) el.value = state.inputs[id];
+      });
+      Object.keys(state.radios || {}).forEach(name=>{
+        document.querySelectorAll(`input[name="${name}"]`).forEach(el=>{ el.checked = (el.value === state.radios[name]); });
+      });
+      Object.keys(state.selects || {}).forEach(id=>{
+        const el = document.getElementById(id);
+        if(el && state.selects[id]){ el.value = state.selects[id].value; el.style.borderColor = state.selects[id].border || ''; }
+      });
+      Object.keys(state.feedback || {}).forEach(id=>{
+        const el = document.getElementById(id);
+        if(el){ el.textContent = state.feedback[id].text; el.className = state.feedback[id].cls; }
+      });
+      Object.keys(state.shaded || {}).forEach(shadeId=>{
+        const el = document.querySelector(`[data-shade-id="${shadeId}"]`);
+        if(el && state.shaded[shadeId] === "1"){
+          el.dataset.shaded = "1";
+          el.style.background = "linear-gradient(135deg,#0d9488,#2563eb)";
+          el.style.transform = "scale(1.05)";
+        }
+      });
+    }
+  }
+  initSplashTracking();
+  updateScore();
+}
+
+function resetProgress(){
+  if(confirm("Do you really want to delete all progress saved on this device?")){
+    localStorage.removeItem('y2Progress');
+    localStorage.removeItem('y2SplashShown');
+    localStorage.removeItem('y2SplashInit');
+    location.reload();
+  }
+}
+
+// ---------- Text size ----------
+function setTextSize(size){
+  document.documentElement.classList.remove('text-large','text-xlarge');
+  if(size === 'large') document.documentElement.classList.add('text-large');
+  if(size === 'xlarge') document.documentElement.classList.add('text-xlarge');
+  localStorage.setItem('y2TextSize', size);
+  document.querySelectorAll('.text-size-btn').forEach(b=>b.classList.remove('active'));
+  const btn = document.getElementById('textsize-' + size);
+  if(btn) btn.classList.add('active');
+}
+function initTextSize(){
+  setTextSize(localStorage.getItem('y2TextSize') || 'normal');
+}
+
+function checkText(inputId, correctAnswers, fbId, caseSensitive=false){
+  const val = document.getElementById(inputId).value.trim();
+  const norm = s => caseSensitive ? s.trim() : s.trim().toLowerCase();
+  const answers = Array.isArray(correctAnswers) ? correctAnswers : [correctAnswers];
+  const ok = answers.some(a => norm(a) === norm(val));
+  const fb = document.getElementById(fbId);
+  total++;
+  if(ok){
+    score++;
+    fb.textContent = "✅ Correct! Well done!";
+    fb.className = "feedback correct";
+  } else {
+    fb.textContent = "❌ Not quite — try again! (Hint: check the answer key)";
+    fb.className = "feedback incorrect";
+  }
+  updateScore();
+}
+
+function checkTextLoose(inputId, correctAnswer, fbId){
+  const norm = s => s.trim().replace(/\s+/g,' ').toLowerCase();
+  const val = norm(document.getElementById(inputId).value);
+  const ans = norm(correctAnswer);
+  const fb = document.getElementById(fbId);
+  total++;
+  if(val === ans){
+    score++;
+    fb.textContent = "✅ Perfect! Words and punctuation match!";
+    fb.className = "feedback correct";
+  } else {
+    fb.textContent = "❌ Not quite right — check the words and punctuation carefully, or reveal the answer below.";
+    fb.className = "feedback incorrect";
+  }
+  updateScore();
+}
+
+function diffWords(userText, correctText){
+  const splitWords = t => t.trim().split(/\s+/).filter(w=>w.length>0);
+  const userWords = splitWords(userText);
+  const correctWords = splitWords(correctText);
+  const len = Math.max(userWords.length, correctWords.length);
+  let html = '';
+  for(let i=0;i<len;i++){
+    const uw = userWords[i] || '';
+    const cw = correctWords[i] || '';
+    if(uw.length>0 && uw.toLowerCase() === cw.toLowerCase()){
+      html += `<span style="color:var(--green-dark); font-weight:bold;">${escapeHtml(uw)}</span> `;
+    } else if(uw.length>0){
+      html += `<span style="color:#b91c1c; text-decoration:line-through;">${escapeHtml(uw)}</span><span style="color:var(--ink-soft);"> (${escapeHtml(cw)})</span> `;
+    } else {
+      html += `<span style="color:var(--ink-soft); font-style:italic;">(missing: ${escapeHtml(cw)})</span> `;
+    }
+  }
+  return html;
+}
+
+function checkTextLooseDiff(inputId, correctAnswer, fbId, diffId){
+  const val = document.getElementById(inputId).value;
+  checkTextLoose(inputId, correctAnswer, fbId);
+  const diffEl = document.getElementById(diffId);
+  if(diffEl) diffEl.innerHTML = diffWords(val, correctAnswer);
+}
+
+function checkContainsWord(inputId, wordList, fbId){
+  const val = document.getElementById(inputId).value.trim().toLowerCase();
+  const fb = document.getElementById(fbId);
+  total++;
+  const matches = wordList.some(w => new RegExp(`\\b${w}\\b`).test(val));
+  if(matches){
+    score++; fb.textContent = "✅ Correct!"; fb.className = "feedback correct";
+  } else {
+    fb.textContent = `❌ Not quite — think again, or check the hint.`;
+    fb.className = "feedback incorrect";
+  }
+  updateScore();
+}
+
+function checkRadio(name, correct, fbId){
+  const sel = document.querySelector(`input[name="${name}"]:checked`);
+  const fb = document.getElementById(fbId);
+  total++;
+  if(sel && sel.value.toLowerCase() === correct.toLowerCase()){
+    score++;
+    fb.textContent = "✅ Correct!";
+    fb.className = "feedback correct";
+  } else {
+    fb.textContent = `❌ Not quite. The correct answer is "${correct}".`;
+    fb.className = "feedback incorrect";
+  }
+  updateScore();
+}
+
+function checkSelects(ids, correctMap, fbId){
+  let allOk = true;
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if(el.value !== correctMap[id]) allOk = false;
+    el.style.borderColor = el.value === correctMap[id] ? "var(--green)" : "var(--red)";
+  });
+  const fb = document.getElementById(fbId);
+  total++;
+  if(allOk){ score++; fb.textContent="✅ All correct!"; fb.className="feedback correct"; }
+  else{ fb.textContent="❌ Some are wrong — look at the coloured boxes and try again."; fb.className="feedback incorrect"; }
+  updateScore();
+}
+
+function reveal(id){
+  document.getElementById(id).style.display = "block";
+}
+
+function speakText(text){
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+    const clean = text.replace(/_+/g, ' ').replace(/\s+/g, ' ').trim();
+    const utter = new SpeechSynthesisUtterance(clean);
+    utter.lang = 'en-GB';
+    utter.rate = 0.85;
+    window.speechSynthesis.speak(utter);
+  } else {
+    alert("Sorry, this browser can't read text aloud. Ask an adult to read it instead, or use the reveal button.");
+  }
+}
+
+function peekWord(id, word, duration=2500){
+  const el = document.getElementById(id);
+  el.style.visibility = "visible";
+  clearTimeout(el._hideTimer);
+  el._hideTimer = setTimeout(()=>{ el.style.visibility = "hidden"; }, duration);
+  speakText(word);
+}
+
+// ---------- Section navigation ----------
+const sections = [
+  {id:"s1", icon:"✏️", label:"Spelling", color:"var(--purple)"},
+  {id:"s2", icon:"🔢", label:"Maths", color:"var(--blue)"},
+  {id:"s3", icon:"📖", label:"Grammar", color:"var(--green)"},
+  {id:"s4", icon:"🌍", label:"Reading", color:"var(--teal)"},
+  {id:"s7", icon:"🔬", label:"Science", color:"var(--pink)"},
+  {id:"s8", icon:"🎮", label:"Games", color:"var(--orange)"},
+  {id:"s6", icon:"📊", label:"Progress", color:"var(--teal-dark)"},
+  {id:"s5", icon:"💬", label:"Parents", color:"var(--purple-dark)"},
+];
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+const nav = document.getElementById('nav');
+sections.forEach((s,i)=>{
+  const b = document.createElement('button');
+  b.style.background = s.color;
+  b.innerHTML = `<span class="nav-icon">${s.icon}</span><span>${s.label}</span><span class="nav-badge" id="navbadge-${s.id}" aria-hidden="true"></span>`;
+  b.onclick = ()=> showSection(s.id, b);
+  if(i===0) b.classList.add('active');
+  nav.appendChild(b);
+});
+function updateNavBadges(){
+  sections.forEach(s=>{
+    if(s.id === 's5' || s.id === 's6') return;
+    const subs = computeSectionProgress(s.id);
+    const sectionTotal = subs.reduce((a,b)=>a+b.total,0);
+    const sectionDone = subs.reduce((a,b)=>a+b.done,0);
+    const badge = document.getElementById(`navbadge-${s.id}`);
+    if(badge) badge.textContent = (sectionTotal>0 && sectionDone===sectionTotal) ? '✓' : '';
+  });
+}
+
+// ---------- Gentle feedback sounds ----------
+function playTone(freq, duration=150){
+  try{
+    const ctx = playTone._ctx || (playTone._ctx = new (window.AudioContext||window.webkitAudioContext)());
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    osc.type = 'sine'; osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.07, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration/1000);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(); osc.stop(ctx.currentTime + duration/1000);
+  }catch(e){}
+}
+function playFeedbackSound(ok){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(ok){ playTone(660,120); setTimeout(()=>playTone(880,150),100); }
+  else { playTone(220,180); }
+}
+function watchFeedback(el){
+  new MutationObserver(()=>{
+    if(el.classList.contains('correct')) playFeedbackSound(true);
+    else if(el.classList.contains('incorrect')) playFeedbackSound(false);
+  }).observe(el, {attributes:true, attributeFilter:['class']});
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.feedback').forEach(watchFeedback);
+  document.querySelectorAll('input[type=text], textarea').forEach(el=> el.setAttribute('spellcheck','true'));
+});
+
+// ---------- Enter key submits the nearest Check button ----------
+document.addEventListener('keydown', function(e){
+  if(e.key !== 'Enter') return;
+  const el = e.target;
+  const isText = el.tagName === 'INPUT' && el.type === 'text';
+  const isTextarea = el.tagName === 'TEXTAREA';
+  if(!isText && !isTextarea) return;
+  if(isTextarea && !(e.ctrlKey || e.metaKey)) return;
+  const container = el.closest('.q') || el.parentElement;
+  if(!container) return;
+  const candidate = [...container.querySelectorAll('button')].find(b=>{
+    if(b.classList.contains('reveal')) return false;
+    const oc = (b.getAttribute('onclick')||'').toLowerCase();
+    if(oc.startsWith('speaktext')) return false;
+    if(oc.startsWith('peekword')) return false;
+    return true;
+  });
+  if(candidate){ e.preventDefault(); candidate.click(); }
+});
+
+function scrollToNav(){
+  const nav = document.getElementById('nav');
+  const y = nav.getBoundingClientRect().top + window.scrollY;
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(window.scrollY > y){
+    window.scrollTo({top: y, behavior: reduceMotion ? 'auto' : 'smooth'});
+  }
+}
+
+function showSection(id, btn){
+  document.querySelectorAll('.section').forEach(el=>el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  scrollToNav();
+}
+
+function showSub(sectionId, cardId, btn){
+  document.querySelectorAll(`#${sectionId} .card.subsection`).forEach(c=>c.classList.remove('active'));
+  document.getElementById(cardId).classList.add('active');
+  document.querySelectorAll(`#${sectionId} .subnav button`).forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  scrollToNav();
+}
+
+// ---------- Progress dashboard, celebration splash & certificate ----------
+function computeSectionProgress(sectionId){
+  const cards = document.querySelectorAll(`#${sectionId} .card.subsection`);
+  return [...cards].map(card=>{
+    const label = card.querySelector('h3')?.textContent || card.id;
+    const fbs = card.querySelectorAll('.feedback[id]');
+    const totalQ = fbs.length;
+    const doneQ = [...fbs].filter(f=>f.classList.contains('correct')).length;
+    return {id: card.id, label, done: doneQ, total: totalQ};
+  });
+}
+
+function initSplashTracking(){
+  if(localStorage.getItem('y2SplashInit')) return;
+  const shown = new Set();
+  sections.forEach(s=>{
+    if(s.id === 's5' || s.id === 's6') return;
+    computeSectionProgress(s.id).forEach(sub=>{
+      if(sub.total > 0 && sub.done === sub.total) shown.add(sub.id);
+    });
+  });
+  localStorage.setItem('y2SplashShown', JSON.stringify([...shown]));
+  localStorage.setItem('y2SplashInit', '1');
+}
+
+function showSectionComplete(label){
+  const name = (localStorage.getItem('y2CertName') || '').trim();
+  const greeting = name ? `Well done, ${name}! ` : '';
+  document.getElementById('sectionCompleteText').textContent = `${greeting}You finished "${label}" — awesome work!`;
+  document.getElementById('sectionCompleteModal').classList.add('active');
+}
+function closeSectionComplete(){
+  document.getElementById('sectionCompleteModal').classList.remove('active');
+}
+
+function renderProgressDashboard(){
+  const container = document.getElementById('progressDashboard');
+  if(!container) return;
+  const shown = new Set(JSON.parse(localStorage.getItem('y2SplashShown') || '[]'));
+  let newlyCompleted = null;
+  let html = '';
+  let grandDone = 0, grandTotal = 0;
+  sections.forEach(s=>{
+    if(s.id === 's5' || s.id === 's6') return;
+    const subs = computeSectionProgress(s.id);
+    const sectionTotal = subs.reduce((a,b)=>a+b.total,0);
+    const sectionDone = subs.reduce((a,b)=>a+b.done,0);
+    grandDone += sectionDone; grandTotal += sectionTotal;
+    subs.forEach(sub=>{
+      if(sub.total > 0 && sub.done === sub.total && !shown.has(sub.id)){
+        shown.add(sub.id);
+        if(!newlyCompleted) newlyCompleted = sub.label;
+      }
+    });
+    const pct = sectionTotal ? Math.round(sectionDone/sectionTotal*100) : 0;
+    html += `<div class="q" style="background:#f8fafc;">
+      <label style="display:flex; justify-content:space-between; margin-bottom:6px;"><span>${s.label}</span><span>${sectionDone}/${sectionTotal}</span></label>
+      <div class="score-track"><div class="score-fill" style="width:${pct}%"></div></div>
+      <div style="margin-top:8px;">${subs.map(sub=>`<div style="display:flex; justify-content:space-between; gap:8px; font-size:.85em; color:var(--ink-soft); padding:2px 4px;"><span style="word-break:break-word;">${escapeHtml(sub.label)}</span><span style="white-space:nowrap;">${sub.done}/${sub.total}</span></div>`).join('')}</div>
+    </div>`;
+  });
+  container.innerHTML = html;
+  updateNavBadges();
+  localStorage.setItem('y2SplashShown', JSON.stringify([...shown]));
+  if(newlyCompleted && localStorage.getItem('y2SplashInit')){
+    showSectionComplete(newlyCompleted);
+  }
+
+  const certCard = document.getElementById('certificateCard');
+  if(certCard){
+    if(grandTotal > 0 && grandDone === grandTotal){
+      certCard.style.display = 'block';
+      document.getElementById('certDate').textContent = "Completed on " + new Date().toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+    } else {
+      certCard.style.display = 'none';
+    }
+  }
+}
+
+function initCertName(){
+  const saved = localStorage.getItem('y2CertName') || '';
+  const input = document.getElementById('certNameInput');
+  const nameEl = document.getElementById('certName');
+  if(input) input.value = saved;
+  if(nameEl) nameEl.textContent = saved || '___________';
+}
+function updateCertName(){
+  const val = document.getElementById('certNameInput').value.trim();
+  localStorage.setItem('y2CertName', val);
+  document.getElementById('certName').textContent = val || '___________';
+}
+</script>
+
+<div id="s1" class="section active">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s1','card-1a', this)">📝 Word List</button>
+    <button onclick="showSub('s1','card-1b', this)">🔀 Homophones</button>
+    <button onclick="showSub('s1','card-1c', this)">➕ Prefixes</button>
+    <button onclick="showSub('s1','card-1d', this)">➕ Suffixes</button>
+    <button onclick="showSub('s1','card-1e', this)">🔑 Possessive Apostrophes</button>
+    <button onclick="showSub('s1','card-1f', this)">🔤 Plurals</button>
+    <button onclick="showSub('s1','card-1g', this)">🎧 Dictation</button>
+    <button onclick="showSub('s1','card-1h', this)">✌️ Doubling Consonants</button>
+  </div>
+
+  <div class="card subsection active" id="card-1a">
+    <h3>Year 1/2 Common Exception Words</h3>
+    <p class="hint">Press "👁️ Show word" to peek and hear it, then cover it up and write it from memory — that's how real spellers practise!</p>
+    <div class="q" style="background:#f8fafc; display:flex; align-items:center; gap:10px;">
+      <span style="font-weight:bold; white-space:nowrap;">Progress:</span>
+      <div class="score-track" style="margin:0; flex:1;"><div class="score-fill" id="wordListProgressFill"></div></div>
+      <span id="wordListProgressText" style="font-weight:bold; white-space:nowrap; font-size:.9em;"></span>
+    </div>
+    <div id="wordChecklist"></div>
+    <script>
+      const words1a = ["because","should","would","could","people","water","again","every",
+        "everybody","beautiful","children","floor","door","poor","find","kind","behind","climb",
+        "most","only","both","great","break","pretty","half","money","busy","sugar","whole","many"];
+      const wc = document.getElementById('wordChecklist');
+      words1a.forEach((w,i)=>{
+        const div = document.createElement('div');
+        div.className = "q";
+        div.innerHTML = `
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:6px;">
+            <button class="btn small" onclick="peekWord('word1a-${i}','${w}')">👁️ Show word</button>
+            <span id="word1a-${i}" style="visibility:hidden; font-weight:bold; font-size:1.2em; color:var(--teal-dark); background:linear-gradient(135deg,#e0f2ea,#e0ecff); padding:5px 14px; border-radius:12px; border:2px solid #bfe3d6;">${w}</span>
+          </div>
+          <input type="text" id="w1a-${i}" placeholder="type it 3 times, separated by commas" style="width:280px;">
+          <button class="btn small" onclick="checkRepeat('w1a-${i}','${w}','w1afb-${i}')">Check</button>
+          <div class="feedback" id="w1afb-${i}"></div>
+          <input type="text" id="w1as-${i}" placeholder="use it in a sentence" style="width:100%; margin-top:4px;">
+          <button class="btn small" onclick="checkSentenceWord('w1as-${i}','${w}','w1asfb-${i}')">Check sentence</button>
+          <div class="feedback" id="w1asfb-${i}"></div>
+        `;
+        wc.appendChild(div);
+      });
+      function updateWordListProgress(){
+        const fill = document.getElementById('wordListProgressFill');
+        const text = document.getElementById('wordListProgressText');
+        if(!fill) return;
+        const totalItems = words1a.length * 2;
+        let done = 0;
+        words1a.forEach((w,i)=>{
+          if(document.getElementById(`w1afb-${i}`).classList.contains('correct')) done++;
+          if(document.getElementById(`w1asfb-${i}`).classList.contains('correct')) done++;
+        });
+        fill.style.width = Math.round(done/totalItems*100) + '%';
+        text.textContent = `${done}/${totalItems}`;
+      }
+      function checkSentenceWord(inputId, word, fbId){
+        const val = document.getElementById(inputId).value.trim();
+        const fb = document.getElementById(fbId);
+        total++;
+        const hasWord = new RegExp(`\\b${word}\\b`, 'i').test(val);
+        const startsCapital = /^[A-Z]/.test(val);
+        const endsPunct = /[.!?]$/.test(val);
+        const enoughWords = val.split(/\s+/).filter(w=>w.length>0).length >= 3;
+        const noDoubleSpace = !/ {2,}/.test(val);
+        const noRepeatWord = !/\b(\w+)\s+\1\b/i.test(val);
+        if(hasWord && startsCapital && endsPunct && enoughWords && noDoubleSpace && noRepeatWord){
+          score++; fb.textContent="✅ Great sentence!"; fb.className="feedback correct";
+        } else {
+          const missing = [];
+          if(!hasWord) missing.push(`include the word "${word}"`);
+          if(!startsCapital) missing.push("start with a capital letter");
+          if(!endsPunct) missing.push("end with . ! or ?");
+          if(!enoughWords) missing.push("be at least 3 words long");
+          if(!noDoubleSpace) missing.push("not have extra spaces between words");
+          if(!noRepeatWord) missing.push("not repeat the same word twice in a row");
+          fb.textContent = `❌ Your sentence should ${missing.join(", ")}.`;
+          fb.className = "feedback incorrect";
+        }
+        updateScore();
+        updateWordListProgress();
+      }
+      function checkRepeat(inputId, word, fbId){
+        const raw = document.getElementById(inputId).value.trim();
+        const parts = raw.split(/[,\n]+/).map(p=>p.trim().toLowerCase()).filter(p=>p.length>0);
+        const fb = document.getElementById(fbId);
+        total++;
+        if(parts.length >= 3 && parts.slice(0,3).every(p=>p === word.toLowerCase())){
+          score++; fb.textContent="✅ Well done!"; fb.className="feedback correct";
+        } else {
+          fb.textContent=`❌ Type "${word}" three times, separated by commas.`;
+          fb.className="feedback incorrect";
+        }
+        updateScore();
+        updateWordListProgress();
+      }
+      updateWordListProgress();
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-1b">
+    <h3>Homophones</h3>
+    <p class="hint">Choose the word that correctly completes each sentence.</p>
+    <div class="q">
+      <label>1. They live over ___ house.</label>
+      <div class="options">
+        <label><input type="radio" name="hp1" value="there"> there</label>
+        <label><input type="radio" name="hp1" value="their"> their</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('hp1','their','fbhp1')">Check</button>
+      <div class="feedback" id="fbhp1"></div>
+    </div>
+    <div class="q">
+      <label>2. I can ___ the birds singing.</label>
+      <div class="options">
+        <label><input type="radio" name="hp2" value="here"> here</label>
+        <label><input type="radio" name="hp2" value="hear"> hear</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('hp2','hear','fbhp2')">Check</button>
+      <div class="feedback" id="fbhp2"></div>
+    </div>
+    <div class="q">
+      <label>3. She ___ the race yesterday.</label>
+      <div class="options">
+        <label><input type="radio" name="hp3" value="one"> one</label>
+        <label><input type="radio" name="hp3" value="won"> won</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('hp3','won','fbhp3')">Check</button>
+      <div class="feedback" id="fbhp3"></div>
+    </div>
+    <div class="q">
+      <label>4. I have ___ dogs.</label>
+      <div class="options">
+        <label><input type="radio" name="hp4" value="to"> to</label>
+        <label><input type="radio" name="hp4" value="too"> too</label>
+        <label><input type="radio" name="hp4" value="two"> two</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('hp4','two','fbhp4')">Check</button>
+      <div class="feedback" id="fbhp4"></div>
+    </div>
+    <div class="q">
+      <label>5. A ___ makes honey.</label>
+      <div class="options">
+        <label><input type="radio" name="hp5" value="be"> be</label>
+        <label><input type="radio" name="hp5" value="bee"> bee</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('hp5','bee','fbhp5')">Check</button>
+      <div class="feedback" id="fbhp5"></div>
+    </div>
+    <div class="q">
+      <label>6. My ___ is very tall.</label>
+      <div class="options">
+        <label><input type="radio" name="hp6" value="sun"> sun</label>
+        <label><input type="radio" name="hp6" value="son"> son</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('hp6','son','fbhp6')">Check</button>
+      <div class="feedback" id="fbhp6"></div>
+    </div>
+    <div class="q">
+      <label>7. Look at the big blue ___.</label>
+      <div class="options">
+        <label><input type="radio" name="hp7" value="see"> see</label>
+        <label><input type="radio" name="hp7" value="sea"> sea</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('hp7','sea','fbhp7')">Check</button>
+      <div class="feedback" id="fbhp7"></div>
+    </div>
+    <div class="q">
+      <label>8. The wind ___ my hat away.</label>
+      <div class="options">
+        <label><input type="radio" name="hp8" value="blue"> blue</label>
+        <label><input type="radio" name="hp8" value="blew"> blew</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('hp8','blew','fbhp8')">Check</button>
+      <div class="feedback" id="fbhp8"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-1c">
+    <h3>Prefix un-</h3>
+    <p class="hint">Add "un-" to the front of the word to make it mean the opposite.</p>
+    <div id="prefixQs"></div>
+    <script>
+      const prefixes = [
+        {base:"happy", ans:"unhappy"}, {base:"kind", ans:"unkind"},
+        {base:"fair", ans:"unfair"}, {base:"well", ans:"unwell"},
+        {base:"lock", ans:"unlock"}, {base:"tidy", ans:"untidy"}
+      ];
+      const pq = document.getElementById('prefixQs');
+      prefixes.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ___${p.base} = <input type="text" id="pre-${i}" placeholder="new word"></label>
+          <button class="btn small" onclick="checkText('pre-${i}','${p.ans}','prefb-${i}')">Check</button>
+          <div class="feedback" id="prefb-${i}"></div>`;
+        pq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-1d">
+    <h3>Suffixes (-ing, -ed, -ful, -ness, -ment, -ly)</h3>
+    <div id="suffixQs"></div>
+    <script>
+      const suffixes = [
+        {base:"jump", ans:"jumping"}, {base:"look", ans:"looked"},
+        {base:"care", ans:"careful"}, {base:"pain", ans:"painless"},
+        {base:"sad", ans:"sadness"}, {base:"enjoy", ans:"enjoyment"},
+        {base:"quick", ans:"quickly"}, {base:"help", ans:"helpful"}
+      ];
+      const sfq = document.getElementById('suffixQs');
+      suffixes.forEach((s,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${s.base} + suffix = <input type="text" id="suf-${i}" placeholder="new word"></label>
+          <button class="btn small" onclick="checkText('suf-${i}','${s.ans}','suffb-${i}')">Check</button>
+          <div class="feedback" id="suffb-${i}"></div>`;
+        sfq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-1e">
+    <h3>Possessive Apostrophes (singular)</h3>
+    <p class="hint">Year 2 key skill: to show something belongs to one person or animal, add 's. Example: "the girl's book".</p>
+    <div id="apoQs"></div>
+    <script>
+      const apostrophes = [
+        {q:"the ball belonging to one boy", ans:"the boy's ball"},
+        {q:"the tail belonging to one dog", ans:"the dog's tail"},
+        {q:"the bag belonging to one girl", ans:"the girl's bag"},
+        {q:"the nest belonging to one bird", ans:"the bird's nest"},
+        {q:"the book belonging to the teacher", ans:"the teacher's book"},
+        {q:"the hat belonging to my mum", ans:"my mum's hat"}
+      ];
+      const apq = document.getElementById('apoQs');
+      apostrophes.forEach((a,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${a.q}: <input type="text" id="apo-${i}" style="width:260px"></label>
+          <button class="btn small" onclick="checkText('apo-${i}','${a.ans.replace(/'/g,"\\'")}','apofb-${i}')">Check</button>
+          <div class="feedback" id="apofb-${i}"></div>`;
+        apq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-1f">
+    <h3>Plurals (-s, -es)</h3>
+    <div id="pluralQs"></div>
+    <script>
+      const plurals = [
+        {base:"cat", ans:"cats"}, {base:"box", ans:"boxes"}, {base:"dog", ans:"dogs"},
+        {base:"bus", ans:"buses"}, {base:"brush", ans:"brushes"}, {base:"chair", ans:"chairs"}
+      ];
+      const plq = document.getElementById('pluralQs');
+      plurals.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${p.base} → <input type="text" id="pl-${i}" style="width:140px"></label>
+          <button class="btn small" onclick="checkText('pl-${i}','${p.ans}','plfb-${i}')">Check</button>
+          <div class="feedback" id="plfb-${i}"></div>`;
+        plq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-1g">
+    <h3>Spelling Dictation</h3>
+    <p class="hint">Press "🔊 Listen" to hear the sentence read aloud, then write what you hear. No adult needed!</p>
+    <div id="dictQs"></div>
+    <script>
+      const dict = [
+        "The cat sat on the soft mat.",
+        "We played in the park after school.",
+        "My friend has a pretty red bike.",
+        "It was cold, so I wore my coat.",
+        "The children were happy at the party."
+      ];
+      const dq = document.getElementById('dictQs');
+      dict.forEach((s,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>Sentence ${i+1}: <button class="btn small" onclick="speakText('${s.replace(/'/g,"\\'")}')">🔊 Listen</button></label>
+          <textarea id="dict-${i}" placeholder="Write what you hear..."></textarea>
+          <button class="btn small" onclick="checkTextLooseDiff('dict-${i}','${s.replace(/'/g,"\\'")}','dictfb-${i}','dictdiff-${i}')">Check</button>
+          <button class="btn reveal small" onclick="reveal('dictans-${i}')">Show answer</button>
+          <div class="feedback" id="dictfb-${i}"></div>
+          <div class="word-diff" id="dictdiff-${i}" style="margin-top:6px; line-height:2;"></div>
+          <div class="answer-reveal" id="dictans-${i}">${s}</div>`;
+        dq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-1h">
+    <h3>Doubling the Final Consonant</h3>
+    <p class="hint">When a short word ends in one vowel + one consonant, double the last letter before adding -ing or -ed. Example: hop → hopping.</p>
+    <div id="doubleQs"></div>
+    <script>
+      const doubling = [
+        {base:"hop", suffix:"ing", ans:"hopping"},
+        {base:"run", suffix:"ing", ans:"running"},
+        {base:"stop", suffix:"ing", ans:"stopping"},
+        {base:"clap", suffix:"ed", ans:"clapped"},
+        {base:"tap", suffix:"ed", ans:"tapped"},
+        {base:"swim", suffix:"ing", ans:"swimming"}
+      ];
+      const dblq = document.getElementById('doubleQs');
+      doubling.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${p.base} + ${p.suffix} = <input type="text" id="dbl-${i}" style="width:160px"></label>
+          <button class="btn small" onclick="checkText('dbl-${i}','${p.ans}','dblfb-${i}')">Check</button>
+          <div class="feedback" id="dblfb-${i}"></div>`;
+        dblq.appendChild(div);
+      });
+    </script>
+  </div>
+
+</div>
+
+<div id="s2" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s2','card-2a', this)">🔢 Place Value</button>
+    <button onclick="showSub('s2','card-2b', this)">✖️ Times Tables</button>
+    <button onclick="showSub('s2','card-2c', this)">➗ Multiplication &amp; Division</button>
+    <button onclick="showSub('s2','card-2d', this)">🍰 Fractions</button>
+    <button onclick="showSub('s2','card-2e', this)">💰 Money &amp; Time</button>
+    <button onclick="showSub('s2','card-2f', this)">📐 Shapes</button>
+    <button onclick="showSub('s2','card-2g', this)">📊 Statistics</button>
+    <button onclick="showSub('s2','card-2h', this)">🧮 Word Problems</button>
+  </div>
+
+  <div class="card subsection active" id="card-2a">
+    <h3>Place Value — numbers to 100</h3>
+    <p class="hint">Write what the underlined digit is really worth.</p>
+    <div id="pvQs"></div>
+    <script>
+      const pv = [
+        {digits:"47", pos:0, ans:"40"}, {digits:"82", pos:1, ans:"2"},
+        {digits:"56", pos:0, ans:"50"}, {digits:"93", pos:1, ans:"3"},
+        {digits:"38", pos:0, ans:"30"}, {digits:"71", pos:1, ans:"1"}
+      ];
+      const pvq = document.getElementById('pvQs');
+      pv.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        const numHtml = p.digits.split('').map((d,idx)=> idx===p.pos
+          ? `<span style="text-decoration:underline; text-decoration-color:var(--pink); text-decoration-thickness:3px; text-underline-offset:4px; font-weight:bold; color:var(--teal-dark);">${d}</span>`
+          : d).join('');
+        div.innerHTML = `
+          <label>${i+1}. ${numHtml} → <input type="text" id="pv-${i}" style="width:100px"></label>
+          <button class="btn small" onclick="checkText('pv-${i}','${p.ans}','pvfb-${i}')">Check</button>
+          <div class="feedback" id="pvfb-${i}"></div>`;
+        pvq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2b">
+    <h3>Times Tables (2, 5, 10)</h3>
+    <p class="hint">Year 2 children learn the 2, 5 and 10 times tables really well.</p>
+    <div id="ttQs"></div>
+    <script>
+      const tt = [
+        {q:"2 × 4", ans:"8"}, {q:"5 × 3", ans:"15"}, {q:"10 × 6", ans:"60"},
+        {q:"2 × 9", ans:"18"}, {q:"5 × 7", ans:"35"}, {q:"10 × 8", ans:"80"},
+        {q:"2 × 6", ans:"12"}, {q:"5 × 10", ans:"50"}
+      ];
+      const ttq = document.getElementById('ttQs');
+      tt.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${p.q} = <input type="text" id="tt-${i}" style="width:100px"></label>
+          <button class="btn small" onclick="checkText('tt-${i}','${p.ans}','ttfb-${i}')">Check</button>
+          <div class="feedback" id="ttfb-${i}"></div>`;
+        ttq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2c">
+    <h3>Multiplication &amp; Division</h3>
+    <div id="mdQs"></div>
+    <script>
+      const md = [
+        {q:"23 × 2", ans:"46"}, {q:"14 × 5", ans:"70"}, {q:"32 × 2", ans:"64"},
+        {q:"40 ÷ 5", ans:"8"}, {q:"60 ÷ 10", ans:"6"}, {q:"18 ÷ 2", ans:"9"}
+      ];
+      const mdq = document.getElementById('mdQs');
+      md.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${p.q} = <input type="text" id="md-${i}" style="width:100px"></label>
+          <button class="btn small" onclick="checkText('md-${i}','${p.ans}','mdfb-${i}')">Check</button>
+          <div class="feedback" id="mdfb-${i}"></div>`;
+        mdq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2d">
+    <h3>Fractions</h3>
+    <div class="q">
+      <label>1. What is 1/2 of 20? <input type="text" id="fr1" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('fr1','10','frfb1')">Check</button>
+      <div class="feedback" id="frfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. What is 1/4 of 12? <input type="text" id="fr2" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('fr2','3','frfb2')">Check</button>
+      <div class="feedback" id="frfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. What is 3/4 of 8? <input type="text" id="fr3" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('fr3','6','frfb3')">Check</button>
+      <div class="feedback" id="frfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. Which is bigger: 1/2 or 1/4?</label>
+      <div class="options">
+        <label><input type="radio" name="fr4" value="1/2"> 1/2</label>
+        <label><input type="radio" name="fr4" value="1/4"> 1/4</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('fr4','1/2','frfb4')">Check</button>
+      <div class="feedback" id="frfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. What is 1/2 of 16? <input type="text" id="fr5" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('fr5','8','frfb5')">Check</button>
+      <div class="feedback" id="frfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. If 2 out of 4 equal parts are shaded, what fraction is that the same as? <input type="text" id="fr6" style="width:100px" placeholder="e.g. 3/4"></label>
+      <button class="btn small" onclick="checkText('fr6','1/2','frfb6')">Check</button>
+      <div class="feedback" id="frfb6"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-2e">
+    <h3>Money &amp; Time</h3>
+    <div class="q">
+      <label>1. 45p + 30p = <input type="text" id="mt1" style="width:100px" placeholder="e.g. 60p"></label>
+      <button class="btn small" onclick="checkText('mt1',['75p','£0.75'],'mtfb1')">Check</button>
+      <div class="feedback" id="mtfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. You have £5 and spend £2. How much is left? <input type="text" id="mt2" style="width:100px" placeholder="e.g. £1"></label>
+      <button class="btn small" onclick="checkText('mt2',['£3','3'],'mtfb2')">Check</button>
+      <div class="feedback" id="mtfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. The clock shows quarter past 4. Write the time: <input type="text" id="mt3" style="width:100px" placeholder="e.g. 4:00"></label>
+      <button class="btn small" onclick="checkText('mt3',['4:15'],'mtfb3')">Check</button>
+      <div class="feedback" id="mtfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. The clock shows half past 9. Write the time: <input type="text" id="mt4" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('mt4',['9:30'],'mtfb4')">Check</button>
+      <div class="feedback" id="mtfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. How many minutes are there in half an hour? <input type="text" id="mt5" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('mt5','30','mtfb5')">Check</button>
+      <div class="feedback" id="mtfb5"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-2f">
+    <h3>Shapes</h3>
+    <div class="q">
+      <label>1. How many sides does a triangle have? <input type="text" id="sh1" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('sh1','3','shfb1')">Check</button>
+      <div class="feedback" id="shfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. How many corners (vertices) does a square have? <input type="text" id="sh2" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('sh2','4','shfb2')">Check</button>
+      <div class="feedback" id="shfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. How many sides does a pentagon have? <input type="text" id="sh3" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('sh3','5','shfb3')">Check</button>
+      <div class="feedback" id="shfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. How many flat faces does a cube have? <input type="text" id="sh4" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('sh4','6','shfb4')">Check</button>
+      <div class="feedback" id="shfb4"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-2g">
+    <h3>Statistics</h3>
+    <div class="q">
+      <label>1. Each 🍎 stands for 2 apples. There are 4 🍎🍎🍎🍎 on the pictogram. How many apples in total? <input type="text" id="st1" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('st1','8','stfb1')">Check</button>
+      <div class="feedback" id="stfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. In a tally chart, |||| means how many? <input type="text" id="st2" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('st2','4','stfb2')">Check</button>
+      <div class="feedback" id="stfb2"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-2h">
+    <h3>Word Problems</h3>
+    <div class="q">
+      <label>1. A packet has 10 stickers. How many stickers in 3 packets? <input type="text" id="wp1" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('wp1','30','wpfb1')">Check</button>
+      <div class="feedback" id="wpfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. 24 children are put into 4 equal groups. How many in each group? <input type="text" id="wp2" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('wp2','6','wpfb2')">Check</button>
+      <div class="feedback" id="wpfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. Sam has 15 sweets and eats 6. How many are left? <input type="text" id="wp3" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('wp3','9','wpfb3')">Check</button>
+      <div class="feedback" id="wpfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. A pencil costs 20p. How much do 5 pencils cost? <input type="text" id="wp4" style="width:100px" placeholder="e.g. £2"></label>
+      <button class="btn small" onclick="checkText('wp4',['£1','100p','£1.00'],'wpfb4')">Check</button>
+      <div class="feedback" id="wpfb4"></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="s3" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s3','card-3a', this)">💬 Sentence Types</button>
+    <button onclick="showSub('s3','card-3b', this)">🔑 Apostrophes</button>
+    <button onclick="showSub('s3','card-3c', this)">📏 Expanded Noun Phrases</button>
+    <button onclick="showSub('s3','card-3d', this)">🔗 Conjunctions</button>
+    <button onclick="showSub('s3','card-3e', this)">🏷️ Word Sort</button>
+    <button onclick="showSub('s3','card-3f', this)">❓ Punctuation</button>
+  </div>
+
+  <div class="card subsection active" id="card-3a">
+    <h3>Sentence Types</h3>
+    <p class="hint">Is each sentence a statement, question, exclamation, or command?</p>
+    <div id="styQs"></div>
+    <script>
+      const sentTypes = [
+        {q:"The sun is shining.", ans:"Statement"},
+        {q:"Please close the door.", ans:"Command"},
+        {q:"What is your favourite colour?", ans:"Question"},
+        {q:"What a fantastic goal!", ans:"Exclamation"},
+        {q:"Put your coat on.", ans:"Command"}
+      ];
+      const styq = document.getElementById('styQs');
+      sentTypes.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. "${p.q}"</label>
+          <div class="options">
+            <label><input type="radio" name="sty${i}" value="Statement"> Statement</label>
+            <label><input type="radio" name="sty${i}" value="Question"> Question</label>
+            <label><input type="radio" name="sty${i}" value="Exclamation"> Exclamation</label>
+            <label><input type="radio" name="sty${i}" value="Command"> Command</label>
+          </div>
+          <button class="btn small" onclick="checkRadio('sty${i}','${p.ans}','styfb-${i}')">Check</button>
+          <div class="feedback" id="styfb-${i}"></div>`;
+        styq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-3b">
+    <h3>Apostrophes for Contraction &amp; Possession</h3>
+    <div class="q">
+      <label>1. "do not" as a contraction: <input type="text" id="ap1" style="width:120px"></label>
+      <button class="btn small" id="apbtn1">Check</button>
+      <div class="feedback" id="apfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. "is not" as a contraction: <input type="text" id="ap2" style="width:120px"></label>
+      <button class="btn small" id="apbtn2">Check</button>
+      <div class="feedback" id="apfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. The tail belonging to the cat: <input type="text" id="ap3" style="width:180px"></label>
+      <button class="btn small" id="apbtn3">Check</button>
+      <div class="feedback" id="apfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. "can not" as a contraction: <input type="text" id="ap4" style="width:120px"></label>
+      <button class="btn small" id="apbtn4">Check</button>
+      <div class="feedback" id="apfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. The toy belonging to the boy: <input type="text" id="ap5" style="width:180px"></label>
+      <button class="btn small" id="apbtn5">Check</button>
+      <div class="feedback" id="apfb5"></div>
+    </div>
+    <script>
+      document.getElementById('apbtn1').addEventListener('click', ()=> checkText('ap1',"don't",'apfb1'));
+      document.getElementById('apbtn2').addEventListener('click', ()=> checkText('ap2',"isn't",'apfb2'));
+      document.getElementById('apbtn3').addEventListener('click', ()=> checkText('ap3',["the cat's tail"],'apfb3'));
+      document.getElementById('apbtn4').addEventListener('click', ()=> checkText('ap4',"can't",'apfb4'));
+      document.getElementById('apbtn5').addEventListener('click', ()=> checkText('ap5',["the boy's toy"],'apfb5'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-3c">
+    <h3>Expanded Noun Phrases</h3>
+    <p class="hint">Add describing words to make the noun phrase more interesting.</p>
+    <div class="q">
+      <label>1. Expand "the dog" by adding one adjective: <input type="text" id="np1" style="width:100%" placeholder="e.g. the fluffy dog"></label>
+    </div>
+    <div class="q">
+      <label>2. Expand "the castle" by adding one adjective: <input type="text" id="np2" style="width:100%" placeholder="e.g. the old castle"></label>
+    </div>
+    <div class="q">
+      <label>3. Which is the expanded noun phrase?</label>
+      <div class="options">
+        <label><input type="radio" name="np3" value="the enormous, roaring lion"> the enormous, roaring lion</label>
+        <label><input type="radio" name="np3" value="lion"> lion</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('np3','the enormous, roaring lion','npfb3')">Check</button>
+      <div class="feedback" id="npfb3"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-3d">
+    <h3>Conjunctions</h3>
+    <p class="hint">Choose from: and, but, or, because, when, if</p>
+    <div class="q">
+      <label>1. I like apples ___ bananas.</label>
+      <input type="text" id="cj1">
+      <button class="btn small" onclick="checkText('cj1','and','cjfb1')">Check</button>
+      <div class="feedback" id="cjfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. Is it raining ___ sunny today?</label>
+      <input type="text" id="cj2">
+      <button class="btn small" onclick="checkText('cj2','or','cjfb2')">Check</button>
+      <div class="feedback" id="cjfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. I felt happy ___ I felt tired too.</label>
+      <input type="text" id="cj3">
+      <button class="btn small" onclick="checkText('cj3','but','cjfb3')">Check</button>
+      <div class="feedback" id="cjfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. We stayed inside ___ it was raining.</label>
+      <input type="text" id="cj4">
+      <button class="btn small" onclick="checkText('cj4','because','cjfb4')">Check</button>
+      <div class="feedback" id="cjfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. ___ the bell rang, everyone lined up.</label>
+      <input type="text" id="cj5">
+      <button class="btn small" onclick="checkText('cj5','when','cjfb5')">Check</button>
+      <div class="feedback" id="cjfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. ___ you are good, you can have a treat.</label>
+      <input type="text" id="cj6">
+      <button class="btn small" onclick="checkText('cj6','if','cjfb6')">Check</button>
+      <div class="feedback" id="cjfb6"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-3e">
+    <h3>Word Sort: Noun, Adjective, or Verb?</h3>
+    <div id="sortQs"></div>
+    <script>
+      const sortWords = {
+        "dog":"Noun", "jumped":"Verb", "happy":"Adjective", "garden":"Noun",
+        "ran":"Verb", "tiny":"Adjective", "school":"Noun", "played":"Verb"
+      };
+      const soq = document.getElementById('sortQs');
+      const ids = [];
+      Object.keys(sortWords).forEach((w,i)=>{
+        const id = `sort-${i}`;
+        ids.push(id);
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label style="display:inline-block; width:120px;">${w}</label>
+          <select id="${id}">
+            <option value="">-- choose --</option>
+            <option value="Noun">Noun</option>
+            <option value="Adjective">Adjective</option>
+            <option value="Verb">Verb</option>
+          </select>`;
+        soq.appendChild(div);
+      });
+      const correctMap = {};
+      Object.keys(sortWords).forEach((w,i)=> correctMap[`sort-${i}`] = sortWords[w]);
+      const btnDiv = document.createElement('div');
+      btnDiv.innerHTML = `<button class="btn" id="sortCheckBtn">Check all</button>
+        <div class="feedback" id="sortfb"></div>`;
+      soq.appendChild(btnDiv);
+      document.getElementById('sortCheckBtn').addEventListener('click', ()=> checkSelects(ids, correctMap, 'sortfb'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-3f">
+    <h3>Punctuate the Sentence Correctly</h3>
+    <p class="hint">Type the full corrected sentence with capital letters and punctuation.</p>
+    <div id="punctQs"></div>
+    <script>
+      const punct = [
+        {q:"the dog is happy", ans:"The dog is happy."},
+        {q:"can you see the bird", ans:"Can you see the bird?"},
+        {q:"what a big surprise", ans:"What a big surprise!"},
+        {q:"i like apples oranges and pears", ans:"I like apples, oranges, and pears."}
+      ];
+      const puq = document.getElementById('punctQs');
+      punct.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. "${p.q}"</label>
+          <textarea id="pu-${i}" placeholder="Type the corrected sentence..."></textarea>
+          <button class="btn small" onclick="checkTextLooseDiff('pu-${i}','${p.ans.replace(/'/g,"\\'")}','pufb-${i}','pudiff-${i}')">Check</button>
+          <button class="btn reveal small" onclick="reveal('puans-${i}')">Show answer</button>
+          <div class="feedback" id="pufb-${i}"></div>
+          <div class="word-diff" id="pudiff-${i}" style="margin-top:6px; line-height:2;"></div>
+          <div class="answer-reveal" id="puans-${i}">${p.ans}</div>`;
+        puq.appendChild(div);
+      });
+    </script>
+  </div>
+
+</div>
+
+<div id="s4" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s4','card-4a', this)">📖 Reading Comprehension</button>
+    <button onclick="showSub('s4','card-4b', this)">🔎 Vocabulary in Context</button>
+    <button onclick="showSub('s4','card-4c', this)">✅ True or False</button>
+    <button onclick="showSub('s4','card-4d', this)">🗝️ Fiction Story</button>
+  </div>
+
+  <div class="card subsection active" id="card-4a">
+    <h3>Reading Comprehension</h3>
+    <div class="q" style="background:#f8fafc;">
+      <button class="btn small" id="listenSeasideBtn" style="margin-bottom:10px;">🔊 Listen to this text</button>
+      <p style="line-height:1.7; font-weight:normal;">On Saturday, Ben went to the seaside with his family. The sun was shining and the sea was a beautiful blue colour. Ben built a big sandcastle with a tall tower and a deep moat around it. His little sister collected shiny shells in a yellow bucket. After lunch, they flew a red kite high in the sky. Ben was very tired but happy when they got home that evening.</p>
+    </div>
+    <div class="q">
+      <label>1. Where did Ben go on Saturday?</label>
+      <input type="text" id="rc1" style="width:100%">
+      <button class="btn small" onclick="checkText('rc1',['the seaside','seaside'],'rc1fb')">Check</button>
+      <div class="feedback" id="rc1fb"></div>
+    </div>
+    <div class="q">
+      <label>2. What colour was the kite?</label>
+      <div class="options">
+        <label><input type="radio" name="rc2" value="red"> Red</label>
+        <label><input type="radio" name="rc2" value="blue"> Blue</label>
+        <label><input type="radio" name="rc2" value="yellow"> Yellow</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('rc2','red','rc2fb')">Check</button>
+      <div class="feedback" id="rc2fb"></div>
+    </div>
+    <div class="q">
+      <label>3. What did Ben build?</label>
+      <input type="text" id="rc3" style="width:100%">
+      <button class="btn small" onclick="checkText('rc3',['a sandcastle','sandcastle'],'rc3fb')">Check</button>
+      <div class="feedback" id="rc3fb"></div>
+    </div>
+    <div class="q">
+      <label>4. How did Ben feel when he got home?</label>
+      <input type="text" id="rc4" style="width:100%" placeholder="e.g. excited and hungry">
+      <button class="btn small" onclick="checkText('rc4',['tired but happy','tired and happy'],'rc4fb')">Check</button>
+      <div class="feedback" id="rc4fb"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-4b">
+    <h3>Vocabulary in Context</h3>
+    <p class="hint">Use the passage above to work out what these words mean.</p>
+    <div class="q">
+      <label>1. In the passage, "shiny" is closest in meaning to:</label>
+      <div class="options">
+        <label><input type="radio" name="vc1" value="sparkly"> sparkly</label>
+        <label><input type="radio" name="vc1" value="dull"> dull</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('vc1','sparkly','vcfb1')">Check</button>
+      <div class="feedback" id="vcfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. "Collected" means:</label>
+      <div class="options">
+        <label><input type="radio" name="vc2" value="gathered together"> gathered together</label>
+        <label><input type="radio" name="vc2" value="threw away"> threw away</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('vc2','gathered together','vcfb2')">Check</button>
+      <div class="feedback" id="vcfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. Write a sentence of your own using the word "beautiful":</label>
+      <textarea id="vc3" placeholder="Write here..."></textarea>
+      <button class="btn small" onclick="checkSentenceWordVC('vc3','beautiful','vcfb3')">Check</button>
+      <div class="feedback" id="vcfb3"></div>
+    </div>
+    <script>
+      function checkSentenceWordVC(inputId, word, fbId){
+        const val = document.getElementById(inputId).value.trim();
+        const fb = document.getElementById(fbId);
+        total++;
+        const hasWord = new RegExp(`\\b${word}\\b`, 'i').test(val);
+        const startsCapital = /^[A-Z]/.test(val);
+        const endsPunct = /[.!?]$/.test(val);
+        const noDoubleSpace = !/ {2,}/.test(val);
+        const noRepeatWord = !/\b(\w+)\s+\1\b/i.test(val);
+        if(hasWord && startsCapital && endsPunct && noDoubleSpace && noRepeatWord){
+          score++; fb.textContent="✅ Great sentence!"; fb.className="feedback correct";
+        } else {
+          fb.textContent="❌ Make sure it includes the word, starts with a capital letter, ends with . ! or ?, and has no extra spaces or repeated words.";
+          fb.className="feedback incorrect";
+        }
+        updateScore();
+      }
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-4c">
+    <h3>True or False?</h3>
+    <div id="tfQs"></div>
+    <script>
+      const tf = [
+        {q:"A week has seven days.", ans:"True"},
+        {q:"Fish can breathe air like humans.", ans:"False"},
+        {q:"Ice is frozen water.", ans:"True"},
+        {q:"A triangle has four sides.", ans:"False"},
+        {q:"The sun rises in the morning.", ans:"True"},
+        {q:"Spiders have six legs.", ans:"False"}
+      ];
+      const tfq = document.getElementById('tfQs');
+      tf.forEach((t,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${t.q}</label>
+          <div class="options">
+            <label><input type="radio" name="tf${i}" value="True"> True</label>
+            <label><input type="radio" name="tf${i}" value="False"> False</label>
+          </div>
+          <button class="btn small" onclick="checkRadio('tf${i}','${t.ans}','tffb-${i}')">Check</button>
+          <div class="feedback" id="tffb-${i}"></div>`;
+        tfq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-4d">
+    <h3>Fiction Story: The Lost Kitten</h3>
+    <div class="q" style="background:#f8fafc;">
+      <button class="btn small" id="listenKittenBtn" style="margin-bottom:10px;">🔊 Listen to this text</button>
+      <p style="line-height:1.7; font-weight:normal;">Ruby looked under the bed for the third time that morning. Her kitten, Whiskers, was nowhere to be found. She checked behind the sofa, inside the toy box, and even in the garden, but there was still no sign of him. Just as Ruby began to feel very worried, she heard a tiny, soft meow coming from the kitchen. She followed the sound and found Whiskers curled up fast asleep inside her welly boot! Ruby laughed with relief and gave him a gentle stroke.</p>
+    </div>
+    <div class="q">
+      <label>1. What is the name of Ruby's kitten?</label>
+      <input type="text" id="fic1" style="width:100%">
+      <button class="btn small" onclick="checkText('fic1',['Whiskers'],'ficfb1')">Check</button>
+      <div class="feedback" id="ficfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. Where did Ruby finally find Whiskers?</label>
+      <input type="text" id="fic2" style="width:100%">
+      <button class="btn small" onclick="checkText('fic2',['inside her welly boot','in her welly boot','her welly boot'],'ficfb2')">Check</button>
+      <div class="feedback" id="ficfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. INFERENCE: How do you think Ruby felt when she heard the meow?</label>
+      <div class="options">
+        <label><input type="radio" name="fic3" value="Relieved and happy"> Relieved and happy</label>
+        <label><input type="radio" name="fic3" value="Angry"> Angry</label>
+        <label><input type="radio" name="fic3" value="Bored"> Bored</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('fic3','Relieved and happy','ficfb3')">Check</button>
+      <div class="feedback" id="ficfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. VOCABULARY: What does "curled up" mean?</label>
+      <div class="options">
+        <label><input type="radio" name="fic4" value="Folded into a small, round shape"> Folded into a small, round shape</label>
+        <label><input type="radio" name="fic4" value="Standing up straight"> Standing up straight</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('fic4','Folded into a small, round shape','ficfb4')">Check</button>
+      <div class="feedback" id="ficfb4"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('listenSeasideBtn').addEventListener('click', ()=> speakText(document.getElementById('listenSeasideBtn').nextElementSibling.textContent));
+    document.getElementById('listenKittenBtn').addEventListener('click', ()=> speakText(document.getElementById('listenKittenBtn').nextElementSibling.textContent));
+  </script>
+
+  <div class="card">
+    <h3>🎉 Keep going!</h3>
+    <p>Try a little bit every day — mixing spelling, maths, grammar and reading works better than doing it all at once. Check your Progress tab any time to see how you're doing!</p>
+  </div>
+
+</div>
+
+<div id="s7" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s7','card-7a', this)">🧱 Everyday Materials</button>
+    <button onclick="showSub('s7','card-7b', this)">🐾 Animals</button>
+    <button onclick="showSub('s7','card-7c', this)">🌱 Plants</button>
+    <button onclick="showSub('s7','card-7d', this)">🍂 Seasons &amp; Weather</button>
+  </div>
+
+  <div class="card subsection active" id="card-7a">
+    <h3>Everyday Materials</h3>
+    <p class="hint">Objects are made from different materials, like wood, plastic, glass, metal, and rubber.</p>
+    <div class="q">
+      <label>1. What material is a window usually made from? <input type="text" id="mat1" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('mat1','glass','matfb1')">Check</button>
+      <div class="feedback" id="matfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. What material is a wellington boot usually made from? <input type="text" id="mat2" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('mat2',['rubber','plastic'],'matfb2')">Check</button>
+      <div class="feedback" id="matfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. Which material is best for a raincoat?</label>
+      <div class="options">
+        <label><input type="radio" name="mat3" value="Waterproof material"> Waterproof material</label>
+        <label><input type="radio" name="mat3" value="Absorbent material"> Absorbent material</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('mat3','Waterproof material','matfb3')">Check</button>
+      <div class="feedback" id="matfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. True or False: metal is usually see-through.</label>
+      <div class="options">
+        <label><input type="radio" name="mat4" value="True"> True</label>
+        <label><input type="radio" name="mat4" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('mat4','False','matfb4')">Check</button>
+      <div class="feedback" id="matfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. Name a material that can bend or stretch easily: <input type="text" id="mat5" style="width:150px" placeholder="e.g. cardboard"></label>
+      <button class="btn small" id="matbtn5">Check</button>
+      <div class="feedback" id="matfb5"></div>
+    </div>
+    <script>
+      const bendyMaterials = ["rubber","paper","fabric","wool","elastic","plastic","cloth","string"];
+      document.getElementById('matbtn5').addEventListener('click', ()=> checkContainsWord('mat5', bendyMaterials, 'matfb5'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7b">
+    <h3>Animals</h3>
+    <div class="q">
+      <label>1. An animal that only eats plants is called a ___. <input type="text" id="an1" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('an1','herbivore','anfb1')">Check</button>
+      <div class="feedback" id="anfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. An animal that only eats meat is called a ___. <input type="text" id="an2" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('an2','carnivore','anfb2')">Check</button>
+      <div class="feedback" id="anfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. An animal that eats both plants and meat is called an ___. <input type="text" id="an3" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('an3','omnivore','anfb3')">Check</button>
+      <div class="feedback" id="anfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. Name one thing that all animals need to survive: <input type="text" id="an4" style="width:150px" placeholder="e.g. a safe place to live"></label>
+      <button class="btn small" id="anbtn4">Check</button>
+      <div class="feedback" id="anfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. How many legs does a spider have? <input type="text" id="an5" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('an5','8','anfb5')">Check</button>
+      <div class="feedback" id="anfb5"></div>
+    </div>
+    <script>
+      const animalNeeds = ["water","food","air","oxygen","shelter"];
+      document.getElementById('anbtn4').addEventListener('click', ()=> checkContainsWord('an4', animalNeeds, 'anfb4'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7c">
+    <h3>Plants</h3>
+    <div class="q">
+      <label>1. Name two things a plant needs to grow well: <input type="text" id="pl1" style="width:100%" placeholder="e.g. care and attention"></label>
+      <button class="btn small" id="plbtn1">Check</button>
+      <div class="feedback" id="plfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. What part of the plant takes in water from the soil? <input type="text" id="pl2" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('pl2','roots','plfb2')">Check</button>
+      <div class="feedback" id="plfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. What is the colourful part of a plant that attracts insects? <input type="text" id="pl3" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('pl3',['flower','petals','flowers'],'plfb3')">Check</button>
+      <div class="feedback" id="plfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. True or False: plants need sunlight to grow well.</label>
+      <div class="options">
+        <label><input type="radio" name="pl4" value="True"> True</label>
+        <label><input type="radio" name="pl4" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('pl4','True','plfb4')">Check</button>
+      <div class="feedback" id="plfb4"></div>
+    </div>
+    <script>
+      const plantNeeds = ["water","light","sunlight","soil","air","warmth"];
+      document.getElementById('plbtn1').addEventListener('click', ()=> checkContainsWord('pl1', plantNeeds, 'plfb1'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7d">
+    <h3>Seasons &amp; Weather</h3>
+    <div class="q">
+      <label>1. Name the four seasons in order, starting from spring: <input type="text" id="se1" style="width:100%"></label>
+      <button class="btn small" onclick="checkText('se1',['spring, summer, autumn, winter','spring summer autumn winter'],'sefb1')">Check</button>
+      <div class="feedback" id="sefb1"></div>
+    </div>
+    <div class="q">
+      <label>2. In which season do leaves usually fall from the trees? <input type="text" id="se2" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('se2','autumn','sefb2')">Check</button>
+      <div class="feedback" id="sefb2"></div>
+    </div>
+    <div class="q">
+      <label>3. Is it usually hotter or colder in winter?</label>
+      <div class="options">
+        <label><input type="radio" name="se3" value="Hotter"> Hotter</label>
+        <label><input type="radio" name="se3" value="Colder"> Colder</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('se3','Colder','sefb3')">Check</button>
+      <div class="feedback" id="sefb3"></div>
+    </div>
+    <div class="q">
+      <label>4. Name one type of weather: <input type="text" id="se4" style="width:150px" placeholder="e.g. hot"></label>
+      <button class="btn small" id="sebtn4">Check</button>
+      <div class="feedback" id="sefb4"></div>
+    </div>
+    <script>
+      const weatherWords = ["sunny","rainy","rain","windy","snowy","snow","cloudy","stormy","foggy","icy","frosty"];
+      document.getElementById('sebtn4').addEventListener('click', ()=> checkContainsWord('se4', weatherWords, 'sefb4'));
+    </script>
+  </div>
+
+</div>
+
+<div id="s8" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s8','card-8a', this)">🧩 Sudoku</button>
+    <button onclick="showSub('s8','card-8b', this)">📝 Crossword</button>
+    <button onclick="showSub('s8','card-8c', this)">🔍 Word Search</button>
+  </div>
+
+  <div class="card subsection active" id="card-8a">
+    <h3>Sudoku</h3>
+    <p class="hint">Fill in the empty boxes so that every row, every column, and every bold-bordered box contains each number exactly once.</p>
+    <div class="q">
+      <label>4×4 Sudoku (numbers 1–4)</label>
+      <div id="sudoku4"></div>
+      <button class="btn small" id="sudoku4btn" style="display:block; margin:10px auto 0;">Check</button>
+      <div class="feedback" id="sudoku4fb" style="text-align:center;"></div>
+    </div>
+    <div class="q" style="margin-top:24px;">
+      <label>New puzzle: another 4×4 Sudoku</label>
+      <div id="sudoku4b"></div>
+      <button class="btn small" id="sudoku4bbtn" style="display:block; margin:10px auto 0;">Check</button>
+      <div class="feedback" id="sudoku4bfb" style="text-align:center;"></div>
+    </div>
+    <script>
+      function buildSudoku(containerId, size, boxW, boxH, puzzle, solution){
+        const container = document.getElementById(containerId);
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        container.style.gap = '0';
+        container.style.maxWidth = (size*44)+'px';
+        container.style.margin = '10px auto';
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const val = puzzle[r][c];
+            const isGiven = val !== 0;
+            const borderRight = ((c+1)%boxW===0 && c!==size-1) ? '3px solid var(--teal-dark)' : '1px solid #cbd5e1';
+            const borderBottom = ((r+1)%boxH===0 && r!==size-1) ? '3px solid var(--teal-dark)' : '1px solid #cbd5e1';
+            const wrap = document.createElement('div');
+            wrap.style.cssText = `position:relative; width:100%; aspect-ratio:1; box-sizing:border-box; border-right:${borderRight}; border-bottom:${borderBottom}; border-left:1px solid #cbd5e1; border-top:1px solid #cbd5e1;`;
+            if(isGiven){
+              wrap.style.background = '#e6fffa';
+              wrap.style.color = 'var(--teal-dark)';
+              wrap.style.display = 'flex';
+              wrap.style.alignItems = 'center';
+              wrap.style.justifyContent = 'center';
+              wrap.style.fontWeight = 'bold';
+              wrap.style.fontSize = '1.15em';
+              wrap.textContent = val;
+            } else {
+              const inp = document.createElement('input');
+              inp.type = 'text';
+              inp.maxLength = 1;
+              inp.id = `${containerId}-${r}-${c}`;
+              inp.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:none; box-sizing:border-box; text-align:center; font-weight:bold; font-size:1.15em; font-family:inherit; padding:0; background:white;';
+              inp.addEventListener('input', ()=>{
+                inp.value = inp.value.replace(new RegExp('[^1-'+size+']','g'), '').slice(0,1);
+              });
+              wrap.appendChild(inp);
+            }
+            container.appendChild(wrap);
+          }
+        }
+        return function checkSudoku(fbId){
+          let allOk = true;
+          for(let r=0;r<size;r++){
+            for(let c=0;c<size;c++){
+              if(puzzle[r][c]===0){
+                const cell = document.getElementById(`${containerId}-${r}-${c}`);
+                const wrap = cell.parentElement;
+                const ok = cell.value.trim() === String(solution[r][c]);
+                wrap.style.background = ok ? '#eafff1' : '#fff1f1';
+                let mark = wrap.querySelector('.sudoku-mark');
+                if(!mark){
+                  mark = document.createElement('span');
+                  mark.className = 'sudoku-mark';
+                  mark.setAttribute('aria-hidden', 'true');
+                  mark.style.cssText = 'position:absolute; top:0px; right:2px; font-size:.65em; line-height:1; pointer-events:none; font-weight:bold;';
+                  wrap.appendChild(mark);
+                }
+                mark.textContent = ok ? '✓' : '✗';
+                mark.style.color = ok ? 'var(--green-dark)' : '#b91c1c';
+                if(!ok) allOk = false;
+              }
+            }
+          }
+          const fb = document.getElementById(fbId);
+          total++;
+          if(allOk){ score++; fb.textContent="✅ Well done — Sudoku solved correctly!"; fb.className="feedback correct"; }
+          else{ fb.textContent="❌ Some numbers aren't right yet — check the highlighted boxes."; fb.className="feedback incorrect"; }
+          updateScore();
+        };
+      }
+
+      const sudoku4Puzzle = [
+        [1,0,3,4],
+        [3,4,0,0],
+        [0,0,4,3],
+        [4,3,2,0]
+      ];
+      const sudoku4Solution = [
+        [1,2,3,4],
+        [3,4,1,2],
+        [2,1,4,3],
+        [4,3,2,1]
+      ];
+      const check4 = buildSudoku('sudoku4', 4, 2, 2, sudoku4Puzzle, sudoku4Solution);
+      document.getElementById('sudoku4btn').addEventListener('click', ()=> check4('sudoku4fb'));
+
+      const sudoku4bPuzzle = [
+        [2,0,4,0],
+        [0,3,0,1],
+        [1,0,3,0],
+        [0,4,0,2]
+      ];
+      const sudoku4bSolution = [
+        [2,1,4,3],
+        [4,3,2,1],
+        [1,2,3,4],
+        [3,4,1,2]
+      ];
+      const check4b = buildSudoku('sudoku4b', 4, 2, 2, sudoku4bPuzzle, sudoku4bSolution);
+      document.getElementById('sudoku4bbtn').addEventListener('click', ()=> check4b('sudoku4bfb'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-8b">
+    <h3>Mini Crossword</h3>
+    <p class="hint">Read each clue, then type one letter per box. Numbers show where each word starts.</p>
+    <div id="crosswordGrid"></div>
+    <div id="crosswordClues" style="margin-top:14px;"></div>
+    <button class="btn small" id="crosswordBtn" style="display:block; margin:14px auto 0;">Check</button>
+    <div class="feedback" id="crosswordfb" style="text-align:center;"></div>
+    <script>
+      const crosswordSolution = [
+        [null,'C',null,null],
+        [null,'A',null,null],
+        ['S','T','A','R'],
+        [null,'S',null,null]
+      ];
+      const crosswordNumbers = {"2,0":1, "0,1":2};
+      const crosswordClues = [
+        {num:1, dir:'Across', text:'A shape that twinkles in the night sky'},
+        {num:2, dir:'Down', text:'More than one furry pet that says meow'}
+      ];
+
+      function buildCrossword(){
+        const grid = document.getElementById('crosswordGrid');
+        const size = crosswordSolution.length;
+        grid.style.display = 'grid';
+        grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        grid.style.gap = '2px';
+        grid.style.maxWidth = (size*46)+'px';
+        grid.style.margin = '10px auto';
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crosswordSolution[r][c];
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'position:relative; width:100%; aspect-ratio:1; box-sizing:border-box;';
+            if(letter === null){
+              wrap.style.background = '#1f2937';
+              wrap.style.borderRadius = '4px';
+            } else {
+              wrap.style.border = '2px solid var(--teal)';
+              wrap.style.borderRadius = '4px';
+              const key = `${r},${c}`;
+              if(crosswordNumbers[key]){
+                const num = document.createElement('span');
+                num.textContent = crosswordNumbers[key];
+                num.style.cssText = 'position:absolute; top:1px; left:2px; font-size:.6em; font-weight:bold; color:var(--teal-dark); pointer-events:none;';
+                wrap.appendChild(num);
+              }
+              const inp = document.createElement('input');
+              inp.type = 'text';
+              inp.maxLength = 1;
+              inp.id = `cw-${r}-${c}`;
+              inp.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:none; box-sizing:border-box; text-align:center; text-transform:uppercase; font-weight:bold; font-size:1.1em; font-family:inherit; padding:0; background:white;';
+              inp.addEventListener('input', ()=>{
+                inp.value = inp.value.replace(/[^a-zA-Z]/g,'').slice(0,1).toUpperCase();
+              });
+              wrap.appendChild(inp);
+            }
+            grid.appendChild(wrap);
+          }
+        }
+        const cluesEl = document.getElementById('crosswordClues');
+        const across = crosswordClues.filter(c=>c.dir==='Across');
+        const down = crosswordClues.filter(c=>c.dir==='Down');
+        function clueListHtml(list){
+          return list.map(c=>`<div>${c.num}. ${c.text}</div>`).join('');
+        }
+        cluesEl.innerHTML = `
+          <div style="display:flex; gap:24px; flex-wrap:wrap;">
+            <div><strong>Across</strong>${clueListHtml(across)}</div>
+            <div><strong>Down</strong>${clueListHtml(down)}</div>
+          </div>`;
+      }
+      buildCrossword();
+
+      function checkCrossword(){
+        let allOk = true;
+        const size = crosswordSolution.length;
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crosswordSolution[r][c];
+            if(letter !== null){
+              const cell = document.getElementById(`cw-${r}-${c}`);
+              const wrap = cell.parentElement;
+              const ok = cell.value.trim().toUpperCase() === letter;
+              wrap.style.background = ok ? '#eafff1' : '#fff1f1';
+              let mark = wrap.querySelector('.cw-mark');
+              if(!mark){
+                mark = document.createElement('span');
+                mark.className = 'cw-mark';
+                mark.setAttribute('aria-hidden','true');
+                mark.style.cssText = 'position:absolute; bottom:0px; right:1px; font-size:.6em; line-height:1; pointer-events:none; font-weight:bold;';
+                wrap.appendChild(mark);
+              }
+              mark.textContent = ok ? '✓' : '✗';
+              mark.style.color = ok ? 'var(--green-dark)' : '#b91c1c';
+              if(!ok) allOk = false;
+            }
+          }
+        }
+        const fb = document.getElementById('crosswordfb');
+        total++;
+        if(allOk){ score++; fb.textContent="✅ Well done — crossword complete!"; fb.className="feedback correct"; }
+        else{ fb.textContent="❌ Some letters aren't right yet — check the highlighted boxes."; fb.className="feedback incorrect"; }
+        updateScore();
+      }
+      document.getElementById('crosswordBtn').addEventListener('click', checkCrossword);
+    </script>
+
+    <h3 style="margin-top:28px;">Challenge Crossword</h3>
+    <p class="hint">A slightly bigger one — two crossing words.</p>
+    <div id="crossword2Grid"></div>
+    <div id="crossword2Clues" style="margin-top:14px;"></div>
+    <button class="btn small" id="crossword2Btn" style="display:block; margin:14px auto 0;">Check</button>
+    <div class="feedback" id="crossword2fb" style="text-align:center;"></div>
+    <script>
+      const crossword2Solution = [
+        [null,null,'T',null],
+        ['F','R','O','G'],
+        [null,null,'A',null],
+        [null,null,'D',null]
+      ];
+      const crossword2Numbers = {"1,0":1, "0,2":2};
+      const crossword2Clues = [
+        {num:1, dir:'Across', text:'A small green animal that jumps and says ribbit'},
+        {num:2, dir:'Down', text:'An amphibian a bit like a frog, often found in gardens'}
+      ];
+      function buildCrossword2(){
+        const grid = document.getElementById('crossword2Grid');
+        const size = crossword2Solution.length;
+        grid.style.display = 'grid';
+        grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        grid.style.gap = '2px';
+        grid.style.maxWidth = (size*46)+'px';
+        grid.style.margin = '10px auto';
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crossword2Solution[r][c];
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'position:relative; width:100%; aspect-ratio:1; box-sizing:border-box;';
+            if(letter === null){
+              wrap.style.background = '#1f2937';
+              wrap.style.borderRadius = '4px';
+            } else {
+              wrap.style.border = '2px solid var(--teal)';
+              wrap.style.borderRadius = '4px';
+              const key = `${r},${c}`;
+              if(crossword2Numbers[key]){
+                const num = document.createElement('span');
+                num.textContent = crossword2Numbers[key];
+                num.style.cssText = 'position:absolute; top:1px; left:2px; font-size:.6em; font-weight:bold; color:var(--teal-dark); pointer-events:none;';
+                wrap.appendChild(num);
+              }
+              const inp = document.createElement('input');
+              inp.type = 'text';
+              inp.maxLength = 1;
+              inp.id = `cw2-${r}-${c}`;
+              inp.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:none; box-sizing:border-box; text-align:center; text-transform:uppercase; font-weight:bold; font-size:1.1em; font-family:inherit; padding:0; background:white;';
+              inp.addEventListener('input', ()=>{
+                inp.value = inp.value.replace(/[^a-zA-Z]/g,'').slice(0,1).toUpperCase();
+              });
+              wrap.appendChild(inp);
+            }
+            grid.appendChild(wrap);
+          }
+        }
+        const cluesEl = document.getElementById('crossword2Clues');
+        const across = crossword2Clues.filter(c=>c.dir==='Across');
+        const down = crossword2Clues.filter(c=>c.dir==='Down');
+        function clueListHtml(list){ return list.map(c=>`<div>${c.num}. ${c.text}</div>`).join(''); }
+        cluesEl.innerHTML = `
+          <div style="display:flex; gap:24px; flex-wrap:wrap;">
+            <div><strong>Across</strong>${clueListHtml(across)}</div>
+            <div><strong>Down</strong>${clueListHtml(down)}</div>
+          </div>`;
+      }
+      buildCrossword2();
+      function checkCrossword2(){
+        let allOk = true;
+        const size = crossword2Solution.length;
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crossword2Solution[r][c];
+            if(letter !== null){
+              const cell = document.getElementById(`cw2-${r}-${c}`);
+              const wrap = cell.parentElement;
+              const ok = cell.value.trim().toUpperCase() === letter;
+              wrap.style.background = ok ? '#eafff1' : '#fff1f1';
+              let mark = wrap.querySelector('.cw2-mark');
+              if(!mark){
+                mark = document.createElement('span');
+                mark.className = 'cw2-mark';
+                mark.setAttribute('aria-hidden','true');
+                mark.style.cssText = 'position:absolute; bottom:0px; right:1px; font-size:.6em; line-height:1; pointer-events:none; font-weight:bold;';
+                wrap.appendChild(mark);
+              }
+              mark.textContent = ok ? '✓' : '✗';
+              mark.style.color = ok ? 'var(--green-dark)' : '#b91c1c';
+              if(!ok) allOk = false;
+            }
+          }
+        }
+        const fb = document.getElementById('crossword2fb');
+        total++;
+        if(allOk){ score++; fb.textContent="✅ Well done — challenge crossword complete!"; fb.className="feedback correct"; }
+        else{ fb.textContent="❌ Some letters aren't right yet — check the highlighted boxes."; fb.className="feedback incorrect"; }
+        updateScore();
+      }
+      document.getElementById('crossword2Btn').addEventListener('click', checkCrossword2);
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-8c">
+    <h3>Word Search</h3>
+    <p class="hint">Click the first letter of a word, then click its last letter (words can go across, down, or diagonally). Find all 6 words!</p>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; justify-content:center;">
+      <div id="wordsearchGrid"></div>
+      <ul id="wordsearchList" style="list-style:none; padding:0; font-weight:bold; font-size:1.05em; line-height:1.9;"></ul>
+    </div>
+    <div class="feedback" id="wordsearchfb" style="text-align:center; margin-top:10px;"></div>
+    <script>
+      const wsGrid = [
+        ["Q","Y","P","P","A","H","X","I"],
+        ["R","J","A","R","Q","W","V","N"],
+        ["Z","F","D","D","E","N","Q","E"],
+        ["N","H","G","T","P","T","U","Q"],
+        ["I","I","L","I","L","Z","A","S"],
+        ["M","C","A","L","A","M","T","W"],
+        ["O","S","H","R","N","W","A","H"],
+        ["J","V","C","U","T","U","C","Y"]
+      ];
+      const wsWords = ["CAT","SUN","RAIN","PLANT","HAPPY","WATER"];
+
+      function buildWordSearch(){
+        const container = document.getElementById('wordsearchGrid');
+        const size = wsGrid.length;
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        container.style.gap = '2px';
+        container.style.maxWidth = (size*32)+'px';
+
+        const listEl = document.getElementById('wordsearchList');
+        wsWords.forEach(w=>{
+          const li = document.createElement('li');
+          li.id = `wsword-${w}`;
+          li.textContent = w;
+          listEl.appendChild(li);
+        });
+
+        const cells = [];
+        for(let r=0;r<size;r++){
+          cells.push([]);
+          for(let c=0;c<size;c++){
+            const cell = document.createElement('div');
+            cell.textContent = wsGrid[r][c];
+            cell.style.cssText = 'aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-weight:bold; border:1px solid #cbd5e1; border-radius:4px; background:white; cursor:pointer; user-select:none; font-size:.8em;';
+            cell.addEventListener('click', ()=> onWsCellClick(r,c,cell));
+            container.appendChild(cell);
+            cells[r].push(cell);
+          }
+        }
+
+        const foundWords = new Set();
+        let firstSel = null;
+
+        function onWsCellClick(r,c,cellEl){
+          if(!firstSel){
+            firstSel = {r,c,el:cellEl};
+            cellEl.style.background = '#fef9c3';
+            return;
+          }
+          const rDiff = r - firstSel.r, cDiff = c - firstSel.c;
+          const dr = Math.sign(rDiff), dc = Math.sign(cDiff);
+          let valid = (dr!==0 || dc!==0) && (rDiff===0 || cDiff===0 || Math.abs(rDiff)===Math.abs(cDiff));
+          let matchedWord = null;
+          let matchedCells = [];
+          if(valid){
+            const lineLen = Math.max(Math.abs(rDiff), Math.abs(cDiff)) + 1;
+            let letters = '';
+            for(let i=0;i<lineLen;i++){
+              const rr = firstSel.r + dr*i, cc = firstSel.c + dc*i;
+              letters += wsGrid[rr][cc];
+              matchedCells.push([rr,cc]);
+            }
+            const rev = letters.split('').reverse().join('');
+            for(const w of wsWords){
+              if(foundWords.has(w)) continue;
+              if(letters === w || rev === w){ matchedWord = w; break; }
+            }
+          }
+          const fb = document.getElementById('wordsearchfb');
+          if(matchedWord){
+            foundWords.add(matchedWord);
+            matchedCells.forEach(([rr,cc])=>{
+              cells[rr][cc].style.background = '#bbf7d0';
+              cells[rr][cc].style.color = 'var(--green-dark)';
+            });
+            const li = document.getElementById(`wsword-${matchedWord}`);
+            li.style.textDecoration = 'line-through';
+            li.style.opacity = '.5';
+            const check = document.createElement('span');
+            check.textContent = ' ✓';
+            check.setAttribute('aria-hidden','true');
+            li.appendChild(check);
+            firstSel.el.style.background = 'white';
+            firstSel = null;
+            if(foundWords.size === wsWords.length){
+              total++; score++;
+              fb.textContent = "✅ Amazing — you found all the words!";
+              fb.className = "feedback correct";
+              updateScore();
+            } else {
+              fb.textContent = `Found ${foundWords.size} of ${wsWords.length} words — keep going!`;
+              fb.className = "feedback";
+            }
+          } else {
+            firstSel.el.style.background = '#fecaca';
+            cellEl.style.background = '#fecaca';
+            const prevFirst = firstSel;
+            setTimeout(()=>{
+              prevFirst.el.style.background = 'white';
+              cellEl.style.background = 'white';
+            }, 400);
+            firstSel = null;
+          }
+        }
+      }
+      buildWordSearch();
+    </script>
+
+    <h3 style="margin-top:28px;">Challenge Word Search</h3>
+    <p class="hint">A bigger 10×10 grid — find all 6 words!</p>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; justify-content:center;">
+      <div id="wordsearch2Grid"></div>
+      <ul id="wordsearch2List" style="list-style:none; padding:0; font-weight:bold; font-size:1.05em; line-height:1.9;"></ul>
+    </div>
+    <div class="feedback" id="wordsearch2fb" style="text-align:center; margin-top:10px;"></div>
+    <script>
+      const ws2Grid = [
+        ["L","O","E","K","F","L","O","W","E","R"],
+        ["R","A","G","N","C","L","M","O","T","B"],
+        ["J","K","I","C","E","I","F","W","O","N"],
+        ["V","R","Z","R","H","D","D","G","V","U"],
+        ["B","M","F","M","E","I","R","K","E","N"],
+        ["L","F","H","L","T","T","M","A","J","O"],
+        ["P","K","Q","Z","T","G","A","F","G","S"],
+        ["M","Q","A","A","F","D","H","M","O","A"],
+        ["S","Z","W","E","A","T","H","E","R","E"],
+        ["T","C","E","S","N","I","V","I","X","S"]
+      ];
+      const ws2Words = ["FLOWER","GARDEN","SEASON","INSECT","WEATHER","MATERIAL"];
+
+      function buildWordSearch2(){
+        const container = document.getElementById('wordsearch2Grid');
+        const size = ws2Grid.length;
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        container.style.gap = '2px';
+        container.style.maxWidth = (size*32)+'px';
+
+        const listEl = document.getElementById('wordsearch2List');
+        ws2Words.forEach(w=>{
+          const li = document.createElement('li');
+          li.id = `ws2word-${w}`;
+          li.textContent = w;
+          listEl.appendChild(li);
+        });
+
+        const cells = [];
+        for(let r=0;r<size;r++){
+          cells.push([]);
+          for(let c=0;c<size;c++){
+            const cell = document.createElement('div');
+            cell.textContent = ws2Grid[r][c];
+            cell.style.cssText = 'aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-weight:bold; border:1px solid #cbd5e1; border-radius:4px; background:white; cursor:pointer; user-select:none; font-size:.8em;';
+            cell.addEventListener('click', ()=> onWs2CellClick(r,c,cell));
+            container.appendChild(cell);
+            cells[r].push(cell);
+          }
+        }
+
+        const foundWords = new Set();
+        let firstSel = null;
+
+        function onWs2CellClick(r,c,cellEl){
+          if(!firstSel){
+            firstSel = {r,c,el:cellEl};
+            cellEl.style.background = '#fef9c3';
+            return;
+          }
+          const rDiff = r - firstSel.r, cDiff = c - firstSel.c;
+          const dr = Math.sign(rDiff), dc = Math.sign(cDiff);
+          let valid = (dr!==0 || dc!==0) && (rDiff===0 || cDiff===0 || Math.abs(rDiff)===Math.abs(cDiff));
+          let matchedWord = null;
+          let matchedCells = [];
+          if(valid){
+            const lineLen = Math.max(Math.abs(rDiff), Math.abs(cDiff)) + 1;
+            let letters = '';
+            for(let i=0;i<lineLen;i++){
+              const rr = firstSel.r + dr*i, cc = firstSel.c + dc*i;
+              letters += ws2Grid[rr][cc];
+              matchedCells.push([rr,cc]);
+            }
+            const rev = letters.split('').reverse().join('');
+            for(const w of ws2Words){
+              if(foundWords.has(w)) continue;
+              if(letters === w || rev === w){ matchedWord = w; break; }
+            }
+          }
+          const fb = document.getElementById('wordsearch2fb');
+          if(matchedWord){
+            foundWords.add(matchedWord);
+            matchedCells.forEach(([rr,cc])=>{
+              cells[rr][cc].style.background = '#bbf7d0';
+              cells[rr][cc].style.color = 'var(--green-dark)';
+            });
+            const li = document.getElementById(`ws2word-${matchedWord}`);
+            li.style.textDecoration = 'line-through';
+            li.style.opacity = '.5';
+            const check = document.createElement('span');
+            check.textContent = ' ✓';
+            check.setAttribute('aria-hidden','true');
+            li.appendChild(check);
+            firstSel.el.style.background = 'white';
+            firstSel = null;
+            if(foundWords.size === ws2Words.length){
+              total++; score++;
+              fb.textContent = "✅ Amazing — you found all the words!";
+              fb.className = "feedback correct";
+              updateScore();
+            } else {
+              fb.textContent = `Found ${foundWords.size} of ${ws2Words.length} words — keep going!`;
+              fb.className = "feedback";
+            }
+          } else {
+            firstSel.el.style.background = '#fecaca';
+            cellEl.style.background = '#fecaca';
+            const prevFirst = firstSel;
+            setTimeout(()=>{
+              prevFirst.el.style.background = 'white';
+              cellEl.style.background = 'white';
+            }, 400);
+            firstSel = null;
+          }
+        }
+      }
+      buildWordSearch2();
+    </script>
+  </div>
+
+</div>
+
+<div id="s6" class="section">
+  <div class="card">
+    <h3>📊 Your Progress</h3>
+    <p class="hint">See how much of each section has been completed.</p>
+    <div id="progressDashboard"></div>
+  </div>
+
+  <div class="card" id="certificateCard" style="display:none;">
+    <h3>🏆 Certificate of Achievement</h3>
+    <div id="certificateBox" style="border:4px double var(--teal); border-radius:16px; padding:24px; text-align:center; background:linear-gradient(135deg,#f0fdfa,#fff7ed);">
+      <p style="font-size:1.4em; margin:0;">🌟🎉🌟</p>
+      <h3 style="border:none; margin:10px 0 4px; font-size:1.5em; color:var(--teal-dark);">Certificate of Achievement</h3>
+      <p style="margin:4px 0;">This certifies that</p>
+      <p id="certName" style="font-size:1.6em; font-weight:bold; color:var(--blue-dark); margin:6px 0;">___________</p>
+      <p style="margin:4px 0;">has completed every exercise in the</p>
+      <p style="font-weight:bold; margin:4px 0;">Year 2 Learning Hub!</p>
+      <p class="hint" id="certDate" style="margin-top:10px;"></p>
+    </div>
+    <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+      <label style="font-weight:normal;">Name for certificate: <input type="text" id="certNameInput" placeholder="Type your name" style="width:180px;"></label>
+      <button class="btn small" onclick="updateCertName()">Save name</button>
+      <button class="btn small reveal" onclick="window.print()">🖨️ Print certificate</button>
+    </div>
+  </div>
+</div>
+
+<div id="s5" class="section">
+  <div class="card">
+    <h3>💬 Suggestions for Parents</h3>
+    <p class="hint">Do you have ideas to improve this, requests, or spotted a mistake? Write it below and send it by email.</p>
+    <textarea id="parentSuggestion" placeholder="Write your suggestion or request here..."></textarea>
+    <button class="btn small" onclick="sendSuggestionEmail()">📧 Send by email</button>
+    <button class="btn small reveal" onclick="saveSuggestion()">💾 Save here only</button>
+    <div class="feedback" id="suggestionfb"></div>
+    <div id="suggestionList" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔒 Privacy — in plain English</h3>
+    <p>This app does not create an account for your child, does not track them, and does not send anything to us automatically.</p>
+    <ul style="line-height:1.8;">
+      <li>Everything your child types (answers, score, their first name) is saved only on this device, in the browser's local storage — never sent anywhere.</li>
+      <li>There are no analytics, no advertising, and no cookies.</li>
+      <li>The only time anything leaves this device is if <em>you</em> choose to press "📧 Send by email" above — that just opens your own email app with the message ready to send.</li>
+      <li>The app loads its font from a file bundled with it, not from an external service — so nothing is requested from anywhere else on the internet while it's open.</li>
+      <li>You can erase all saved progress at any time with the "Start over" link at the bottom of the screen.</li>
+    </ul>
+    <p class="hint">This is a plain-language summary, not a formal legal policy — happy to expand it if you need something more formal.</p>
+  </div>
+</div>
+
+<script>
+  function sendSuggestionEmail(){
+    const input = document.getElementById('parentSuggestion');
+    const val = input.value.trim();
+    const fb = document.getElementById('suggestionfb');
+    if(!val){
+      fb.textContent = "✏️ Write something before sending.";
+      fb.className = "feedback incorrect";
+      return;
+    }
+    const subject = encodeURIComponent("Suggestion for the Year 2 Learning Hub");
+    const body = encodeURIComponent(val);
+    const contactEmail = atob('c3RlbnRtQGdtYWlsLmNvbQ=='); // obfuscated to deter email-harvesting bots
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    saveSuggestion();
+    fb.textContent = "📧 Email app opened — press Send there to finish. (Also saved here as a backup.)";
+    fb.className = "feedback correct";
+  }
+
+  function saveSuggestion(){
+    const input = document.getElementById('parentSuggestion');
+    const val = input.value.trim();
+    const fb = document.getElementById('suggestionfb');
+    if(!val){
+      fb.textContent = "✏️ Write something before saving.";
+      fb.className = "feedback incorrect";
+      return;
+    }
+    const list = JSON.parse(localStorage.getItem('y2ParentSuggestions') || '[]');
+    list.push({text: val, date: new Date().toLocaleDateString('en-GB')});
+    localStorage.setItem('y2ParentSuggestions', JSON.stringify(list));
+    input.value = '';
+    fb.textContent = "✅ Suggestion saved, thank you!";
+    fb.className = "feedback correct";
+    renderSuggestions();
+  }
+  function renderSuggestions(){
+    const list = JSON.parse(localStorage.getItem('y2ParentSuggestions') || '[]');
+    const el = document.getElementById('suggestionList');
+    if(list.length === 0){ el.innerHTML = ''; return; }
+    el.innerHTML = '<p class="hint" style="margin-bottom:6px;">Saved suggestions:</p>' +
+      list.map(s => `<div class="q" style="background:#f8fafc;"><span class="hint">${escapeHtml(s.date)}</span><p style="margin:4px 0 0; font-weight:normal;">${escapeHtml(s.text)}</p></div>`).join('');
+  }
+  renderSuggestions();
+
+  const whatsNew = {
+    "1.0": [
+      "Welcome to the Year 2 Learning Hub — a brand new app to use all year round!",
+      "Spelling: common exception words, homophones, the un- prefix, suffixes, possessive apostrophes, plurals, dictation, doubling consonants",
+      "Maths: place value to 100, the 2/5/10 times tables, multiplication & division, fractions, money & time, shapes, statistics, word problems",
+      "Grammar: sentence types, apostrophes, expanded noun phrases, conjunctions, word sort, punctuation",
+      "Reading: a comprehension passage, vocabulary in context, and a true/false quiz",
+      "Science: everyday materials, animals, plants, and seasons & weather",
+      "Games: Sudoku, Crossword, and Word Search, sized for Year 2",
+      "Progress dashboard, certificate of achievement, celebration popups, text size controls, and automatic local saving — all with no account, no tracking, and nothing sent off this device"
+    ]
+  };
+  function openWhatsNew(){
+    const html = Object.keys(whatsNew).map(v =>
+      `<p style="font-weight:bold; color:var(--teal-dark); margin:14px 0 4px;">Version ${escapeHtml(v)}</p>` +
+      `<ul style="margin-top:0;">${whatsNew[v].map(i=>`<li>${escapeHtml(i)}</li>`).join('')}</ul>`
+    ).join('');
+    document.getElementById('whatsNewList').innerHTML = html;
+    document.getElementById('whatsNewModal').classList.add('active');
+  }
+  function closeWhatsNew(){
+    document.getElementById('whatsNewModal').classList.remove('active');
+    localStorage.setItem('y2SeenVersion', APP_VERSION);
+  }
+  function closeWelcomeScreen(){
+    const nameInput = document.getElementById('welcomeNameInput');
+    const name = nameInput ? nameInput.value.trim() : '';
+    if(name){
+      localStorage.setItem('y2CertName', name);
+      initCertName();
+    }
+    localStorage.setItem('y2WelcomeSeen', '1');
+    localStorage.setItem('y2SeenVersion', APP_VERSION);
+    document.getElementById('welcomeModal').classList.remove('active');
+  }
+  function checkFirstRun(){
+    if(!localStorage.getItem('y2WelcomeSeen')){
+      document.getElementById('welcomeModal').classList.add('active');
+    } else {
+      localStorage.setItem('y2SeenVersion', APP_VERSION);
+    }
+  }
+  initTextSize();
+  initCertName();
+  restoreProgress();
+  checkFirstRun();
+</script>
+
+</body>
+</html>

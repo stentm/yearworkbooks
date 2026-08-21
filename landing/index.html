@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Year Workbooks — UK Primary Learning Hubs</title>
+<meta name="description" content="Free learning hubs for UK primary school children. Learn, practise, play and grow.">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#09276f}
+a{text-decoration:none;color:inherit}
+.site{width:min(1536px,100%);margin:0 auto}
+.visual{display:block;width:100%;height:auto}
+.hero-wrap{position:relative}
+.hero-cta{position:absolute;left:9.2%;top:72.2%;width:28%;height:9%;border-radius:999px;cursor:pointer;background:transparent;border:0}
+
+.hubs{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:6px 1.3% 28px}
+.year-card{
+  position:relative;display:block;min-width:0;border-radius:22px;overflow:hidden;
+  box-shadow:0 12px 26px rgba(9,39,111,.16),0 3px 8px rgba(9,39,111,.08);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.year-card img{display:block;width:100%;height:auto}
+.year-card.live{cursor:pointer}
+.year-card.live:hover,.year-card.live:focus-visible{
+  transform:translateY(-7px);
+  box-shadow:0 22px 40px rgba(9,39,111,.24),0 6px 14px rgba(9,39,111,.12);
+}
+.year-card.disabled{cursor:not-allowed}
+.year-card.disabled img{filter:saturate(.5) brightness(1.03);opacity:.82}
+.soon-badge{
+  position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:5px;
+  background:rgba(9,39,111,.92);color:#fff;font-size:.72em;font-weight:bold;
+  padding:6px 12px;border-radius:999px;box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+.story{padding:8px 1.3% 6px}
+.story-head{text-align:center;max-width:640px;margin:0 auto 26px}
+.story-head h2{font-size:1.7em;margin:0 0 8px;color:#09276f}
+.story-head p{margin:0;color:#5c6b8a;font-weight:bold;font-size:.95em;line-height:1.5}
+.story-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.story-card{
+  background:#f7faff;border-radius:20px;padding:22px 20px;
+  box-shadow:0 8px 20px rgba(9,39,111,.08);
+}
+.story-card .icon{font-size:1.8em;display:block;margin-bottom:10px}
+.story-card h3{margin:0 0 8px;font-size:1.02em;color:#09276f}
+.story-card p{margin:0;font-size:.85em;line-height:1.55;color:#3d4d6e;font-weight:normal}
+
+footer{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  padding:18px 1.3% 30px;font-size:.8em;color:#5c6b8a;font-weight:bold;
+}
+footer .fbrand{color:#09276f;font-weight:900}
+
+.note{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);padding:8px 14px;border-radius:999px;background:rgba(9,39,111,.92);color:white;font-size:12px;opacity:0;pointer-events:none;transition:.2s}
+.note.show{opacity:1}
+
+@media(max-width:800px){
+  .hubs{gap:16px;grid-template-columns:repeat(2,1fr);padding:2%}
+  .hero-cta{left:8%;top:72%;width:37%;height:9%}
+  footer{justify-content:center;text-align:center}
+  .story-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:430px){
+  .hubs{grid-template-columns:1fr}
+  .hero-cta{left:8%;top:70%;width:50%;height:10%}
+  .story-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main class="site">
+  <section class="hero-wrap" aria-label="Year Workbooks introduction">
+    <img class="visual" src="assets/hero.jpg" width="1536" height="610" fetchpriority="high" alt="Year Workbooks — Learning is FUN! UK primary learning hubs">
+    <a class="hero-cta" href="#hubs" aria-label="Explore the learning hubs"></a>
+  </section>
+
+  <section id="hubs" class="hubs" aria-label="Choose a Year learning hub">
+    <div class="year-card disabled" aria-label="Year 2 Coming Soon" role="button" tabindex="0">
+      <img src="assets/year2.jpg" width="768" height="512" loading="lazy" alt="Year 2 Workbooks — Coming Soon">
+      <span class="soon-badge">🔒 Coming Soon</span>
+    </div>
+    <a class="year-card live" href="https://year3.yearworkbooks.co.uk/" aria-label="Start Year 3">
+      <img src="assets/year3.jpg" width="767" height="512" alt="Year 3 Workbooks — available now">
+    </a>
+    <a class="year-card live" href="https://year4.yearworkbooks.co.uk/" aria-label="Start Year 4">
+      <img src="assets/year4.jpg" width="769" height="512" alt="Year 4 Workbooks — available now">
+    </a>
+    <div class="year-card disabled" aria-label="Year 5 Coming Soon" role="button" tabindex="0">
+      <img src="assets/year5.jpg" width="767" height="512" loading="lazy" alt="Year 5 Workbooks — Coming Soon">
+      <span class="soon-badge">🔒 Coming Soon</span>
+    </div>
+    <div class="year-card disabled" aria-label="Year 6 Coming Soon" role="button" tabindex="0">
+      <img src="assets/year6.jpg" width="769" height="512" loading="lazy" alt="Year 6 Workbooks — Coming Soon">
+      <span class="soon-badge">🔒 Coming Soon</span>
+    </div>
+  </section>
+
+  <section class="story" aria-label="About this project">
+    <div class="story-head">
+      <h2>Why this exists</h2>
+      <p>A little project made by a grandad, one exercise at a time.</p>
+    </div>
+    <div class="story-grid">
+      <div class="story-card">
+        <span class="icon">👴</span>
+        <h3>Why I made this</h3>
+        <p>Hi, I'm Marco — grandad to a very determined little boy who was about to start Year 4 with no summer workbook in sight. I looked for something simple to practise with over the holidays, couldn't find anything that felt right, so I sat down and made one myself. That first workbook worked out so well I kept going.</p>
+      </div>
+      <div class="story-card">
+        <span class="icon">🧒</span>
+        <h3>Tested by an 8-year-old</h3>
+        <p>Every exercise here has been tried out by my grandson before it went anywhere near the internet. If he got bored, or a question didn't make sense to him, it got rewritten or cut. He's eight, so when he says something's fun, I trust his judgement more than mine.</p>
+      </div>
+      <div class="story-card">
+        <span class="icon">🎓</span>
+        <h3>Built on the real UK curriculum</h3>
+        <p>Nothing here is made up. Spelling, maths, grammar, reading — it all follows what children are actually taught in that year group, so it lines up with what's happening at school, not some generic "kids' learning" content.</p>
+      </div>
+      <div class="story-card">
+        <span class="icon">🔒</span>
+        <h3>Your child's privacy, plain and simple</h3>
+        <p>This is free, and it always will be. There's no account to create, no adverts, and no cookies. Nothing your child types is sent anywhere — it stays saved on their own device. The only way anything reaches me is if you choose to email me yourself.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>🇬🇧 Made for UK Primary School</span>
+    <span class="fbrand">© 2026 Year Workbooks · @stentm</span>
+    <span>Real learning. A brighter tomorrow.</span>
+  </footer>
+</main>
+<div class="note" id="soon">Coming soon — this learning hub is not available yet.</div>
+<script>
+document.querySelectorAll('.year-card.disabled').forEach(el=>{
+  const trigger=()=>{
+    const n=document.getElementById('soon');
+    n.classList.add('show');
+    setTimeout(()=>n.classList.remove('show'),1800);
+  };
+  el.addEventListener('click',trigger);
+  el.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); trigger(); } });
+});
+</script>
+</body>
+</html>
