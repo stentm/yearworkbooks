@@ -1,15 +1,73 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Year Workbooks — UK Primary Learning Hubs</title>
-<meta name="description" content="Free learning hubs for UK primary school children. Learn, practise, play and grow.">
+<title>Year Workbooks — Free UK Primary School Workbooks (Year 2–5)</title>
+<meta name="description" content="Free Year 2, 3, 4 and 5 workbooks for UK primary school children. Curriculum-based spelling, maths, grammar and reading practice — no account, no ads, nothing saved online.">
+<link rel="canonical" href="https://yearworkbooks.co.uk/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Year Workbooks">
+<meta property="og:title" content="Year Workbooks — Free UK Primary School Workbooks (Year 2–5)">
+<meta property="og:description" content="Free Year 2, 3, 4 and 5 workbooks for UK primary school children. Curriculum-based spelling, maths, grammar and reading practice — no account, no ads, nothing saved online.">
+<meta property="og:url" content="https://yearworkbooks.co.uk/">
+<meta property="og:image" content="https://yearworkbooks.co.uk/assets/hero.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Year Workbooks — Free UK Primary School Workbooks (Year 2–5)">
+<meta name="twitter:description" content="Free Year 2, 3, 4 and 5 workbooks for UK primary school children. Curriculum-based spelling, maths, grammar and reading practice — no account, no ads, nothing saved online.">
+<meta name="twitter:image" content="https://yearworkbooks.co.uk/assets/hero.jpg">
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Year Workbooks",
+  "url": "https://yearworkbooks.co.uk/",
+  "description": "Free curriculum-based workbooks for UK primary school children.",
+  "publisher": {
+    "@type": "Person",
+    "name": "Marco"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Year 2 Workbooks",
+      "url": "https://year2.yearworkbooks.co.uk/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Year 3 Workbooks",
+      "url": "https://year3.yearworkbooks.co.uk/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Year 4 Workbooks",
+      "url": "https://year4.yearworkbooks.co.uk/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Year 5 Workbooks",
+      "url": "https://year5.yearworkbooks.co.uk/"
+    }
+  ]
+}
+</script>
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -62,6 +120,8 @@ footer .fbrand{color:#09276f;font-weight:900}
 .note{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);padding:8px 14px;border-radius:999px;background:rgba(9,39,111,.92);color:white;font-size:12px;opacity:0;pointer-events:none;transition:.2s}
 .note.show{opacity:1}
 
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
 @media(max-width:800px){
   .hubs{gap:16px;grid-template-columns:repeat(2,1fr);padding:2%}
   .hero-cta{left:8%;top:72%;width:37%;height:9%}
@@ -78,25 +138,24 @@ footer .fbrand{color:#09276f;font-weight:900}
 <body>
 <main class="site">
   <section class="hero-wrap" aria-label="Year Workbooks introduction">
+    <h1 class="sr-only">Year Workbooks — Free UK Primary School Learning Hubs for Year 2, 3, 4 and 5</h1>
     <img class="visual" src="assets/hero.jpg" width="1536" height="610" fetchpriority="high" alt="Year Workbooks — Learning is FUN! UK primary learning hubs">
     <a class="hero-cta" href="#hubs" aria-label="Explore the learning hubs"></a>
   </section>
 
   <section id="hubs" class="hubs" aria-label="Choose a Year learning hub">
-    <div class="year-card disabled" aria-label="Year 2 Coming Soon" role="button" tabindex="0">
-      <img src="assets/year2.jpg" width="768" height="512" loading="lazy" alt="Year 2 Workbooks — Coming Soon">
-      <span class="soon-badge">🔒 Coming Soon</span>
-    </div>
+    <a class="year-card live" href="https://year2.yearworkbooks.co.uk/" aria-label="Start Year 2">
+      <img src="assets/year2.jpg" width="768" height="512" alt="Year 2 Workbooks — available now">
+    </a>
     <a class="year-card live" href="https://year3.yearworkbooks.co.uk/" aria-label="Start Year 3">
       <img src="assets/year3.jpg" width="767" height="512" alt="Year 3 Workbooks — available now">
     </a>
     <a class="year-card live" href="https://year4.yearworkbooks.co.uk/" aria-label="Start Year 4">
       <img src="assets/year4.jpg" width="769" height="512" alt="Year 4 Workbooks — available now">
     </a>
-    <div class="year-card disabled" aria-label="Year 5 Coming Soon" role="button" tabindex="0">
-      <img src="assets/year5.jpg" width="767" height="512" loading="lazy" alt="Year 5 Workbooks — Coming Soon">
-      <span class="soon-badge">🔒 Coming Soon</span>
-    </div>
+    <a class="year-card live" href="https://year5.yearworkbooks.co.uk/" aria-label="Start Year 5">
+      <img src="assets/year5.jpg" width="767" height="512" alt="Year 5 Workbooks — available now">
+    </a>
     <div class="year-card disabled" aria-label="Year 6 Coming Soon" role="button" tabindex="0">
       <img src="assets/year6.jpg" width="769" height="512" loading="lazy" alt="Year 6 Workbooks — Coming Soon">
       <span class="soon-badge">🔒 Coming Soon</span>
