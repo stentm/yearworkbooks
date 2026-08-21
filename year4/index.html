@@ -635,7 +635,7 @@ function computeSectionProgress(sectionId){
     const label = card.querySelector('h3')?.textContent || card.id;
     const fbs = card.querySelectorAll('.feedback[id]');
     const totalQ = fbs.length;
-    const doneQ = [...fbs].filter(f=>f.classList.contains('correct')).length;
+    const doneQ = [...fbs].filter(f=>f.textContent.trim().length>0).length;
     return {id: card.id, label, done: doneQ, total: totalQ};
   });
 }
@@ -775,8 +775,8 @@ function updateCertName(){
         const totalItems = words1a.length * 2;
         let done = 0;
         words1a.forEach((w,i)=>{
-          if(document.getElementById(`w1afb-${i}`).classList.contains('correct')) done++;
-          if(document.getElementById(`w1asfb-${i}`).classList.contains('correct')) done++;
+          if(document.getElementById(`w1afb-${i}`).textContent.trim()) done++;
+          if(document.getElementById(`w1asfb-${i}`).textContent.trim()) done++;
         });
         fill.style.width = Math.round(done/totalItems*100) + '%';
         text.textContent = `${done}/${totalItems}`;
