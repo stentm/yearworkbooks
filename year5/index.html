@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Year 5 Learning Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Year 5 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice</title>
+<meta name="description" content="Free Year 5 Learning Hub for UK primary school children: spelling, maths, grammar and reading practice aligned to the National Curriculum. No accounts, no ads, no tracking.">
+<link rel="canonical" href="https://year5.yearworkbooks.co.uk/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Year 5 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice">
+<meta property="og:description" content="Free Year 5 Learning Hub for UK primary school children: spelling, maths, grammar and reading practice aligned to the National Curriculum. No accounts, no ads, no tracking.">
+<meta property="og:url" content="https://year5.yearworkbooks.co.uk/">
+<meta property="og:image" content="https://year5.yearworkbooks.co.uk/banner.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Year 5 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice">
+<meta name="twitter:description" content="Free Year 5 Learning Hub for UK primary school children: spelling, maths, grammar and reading practice aligned to the National Curriculum.">
+<meta name="twitter:image" content="https://year5.yearworkbooks.co.uk/banner.jpg">
+<meta name="theme-color" content="#16a34a">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
@@ -1030,6 +1042,8 @@ function updateCertName(){
     <button onclick="showSub('s2','card-2f', this)">💯 Decimals &amp; Percentages</button>
     <button onclick="showSub('s2','card-2g', this)">📐 Perimeter, Area &amp; Volume</button>
     <button onclick="showSub('s2','card-2h', this)">🧩 Word Problems</button>
+    <button onclick="showSub('s2','card-2i', this)">🔷 Prime, Square &amp; Cube Numbers</button>
+    <button onclick="showSub('s2','card-2j', this)">🔟 Rounding</button>
   </div>
 
   <div class="card subsection active" id="card-2a">
@@ -1104,11 +1118,15 @@ function updateCertName(){
 
   <div class="card subsection" id="card-2d">
     <h3>Multiplication &amp; Division</h3>
+    <p class="hint">Use a formal written method (long multiplication or formal division) for the bigger numbers.</p>
     <div id="mdQs"></div>
     <script>
       const md = [
         {q:"234 × 6", ans:"1404"}, {q:"1,247 × 3", ans:"3741"}, {q:"456 ÷ 8", ans:"57"},
-        {q:"936 ÷ 6", ans:"156"}, {q:"27 × 34", ans:"918"}, {q:"725 ÷ 5", ans:"145"}
+        {q:"936 ÷ 6", ans:"156"}, {q:"27 × 34", ans:"918"}, {q:"725 ÷ 5", ans:"145"},
+        {q:"3,142 × 24 (long multiplication)", ans:"75,408"}, {q:"2,156 × 37 (long multiplication)", ans:"79,772"},
+        {q:"4,368 ÷ 4 (formal written division)", ans:"1,092"}, {q:"7,236 ÷ 6 (formal written division)", ans:"1,206"},
+        {q:"672 ÷ 24 (challenge: long division)", ans:"28"}
       ];
       const mdq = document.getElementById('mdQs');
       md.forEach((m,i)=>{
@@ -1129,7 +1147,12 @@ function updateCertName(){
       const frac = [
         {q:"Simplify 6/8", ans:["3/4"]}, {q:"1/4 + 2/4 =", ans:["3/4"]},
         {q:"1/3 + 1/6 =", ans:["1/2","3/6"]}, {q:"Which is bigger: 2/5 or 3/10?", ans:["2/5"]},
-        {q:"3/4 of 20 =", ans:["15"]}, {q:"Write 7/2 as a mixed number", ans:["3 1/2","3½"]}
+        {q:"3/4 of 20 =", ans:["15"]}, {q:"Write 7/2 as a mixed number", ans:["3 1/2","3½"]},
+        {q:"Write an equivalent fraction to 1/2 with a denominator of 8", ans:["4/8"]},
+        {q:"Simplify 10/15", ans:["2/3"]},
+        {q:"Write 2 3/4 as an improper fraction", ans:["11/4"]},
+        {q:"Write 9/4 as a mixed number", ans:["2 1/4","2¼"]},
+        {q:"Which is bigger: 3/4 or 5/8?", ans:["3/4"]}
       ];
       const fracq = document.getElementById('fracQs');
       frac.forEach((f,i)=>{
@@ -1153,7 +1176,10 @@ function updateCertName(){
       const dec = [
         {q:"Write 0.5 as a percentage", ans:["50%","50"]}, {q:"Write 25% as a decimal", ans:["0.25"]},
         {q:"0.3 + 0.45 =", ans:["0.75"]}, {q:"Which is bigger: 0.6 or 0.45?", ans:["0.6"]},
-        {q:"Write 3/4 as a decimal", ans:["0.75"]}, {q:"50% of 80 =", ans:["40"]}
+        {q:"Write 3/4 as a decimal", ans:["0.75"]}, {q:"50% of 80 =", ans:["40"]},
+        {q:"Order from smallest to largest: 0.245, 0.24, 0.25", ans:["0.24, 0.245, 0.25"]},
+        {q:"What is 0.125 rounded to 2 decimal places?", ans:["0.13"]},
+        {q:"Write 3/8 as a decimal (3 decimal places)", ans:["0.375"]}
       ];
       const decq = document.getElementById('decQs');
       dec.forEach((d,i)=>{
@@ -1215,6 +1241,69 @@ function updateCertName(){
           <div class="feedback" id="wpfb-${i}"></div>`;
         wpq.appendChild(div);
         document.getElementById(`wpbtn-${i}`).addEventListener('click', ()=> checkText(`wp-${i}`, w.ans, `wpfb-${i}`));
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2i">
+    <h3>Prime, Square &amp; Cube Numbers</h3>
+    <p class="hint">A prime number has exactly two factors: 1 and itself. A square number is what you get when you multiply a number by itself (5² = 5×5). A cube number is a number multiplied by itself three times (4³ = 4×4×4).</p>
+    <div id="psqQs"></div>
+    <script>
+      const psq = [
+        {q:"Is 7 a prime number? (type True or False)", ans:["True"]},
+        {q:"Is 15 a prime number? (type True or False)", ans:["False"]},
+        {q:"What is 5² (5 squared)?", ans:["25"]},
+        {q:"What is 4³ (4 cubed)?", ans:["64"]},
+        {q:"Which of these is a square number: 16 or 18?", ans:["16"]},
+        {q:"Which of these is a cube number: 27 or 30?", ans:["27"]}
+      ];
+      const psqq = document.getElementById('psqQs');
+      psq.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${p.q}</label>
+          <input type="text" id="psq-${i}" style="width:120px">
+          <button class="btn small" id="psqbtn-${i}">Check</button>
+          <div class="feedback" id="psqfb-${i}"></div>`;
+        psqq.appendChild(div);
+        document.getElementById(`psqbtn-${i}`).addEventListener('click', ()=> checkText(`psq-${i}`, p.ans, `psqfb-${i}`));
+      });
+      const primesTo20 = ["2","3","5","7","11","13","17","19"];
+      const primeListDiv = document.createElement('div'); primeListDiv.className="q";
+      primeListDiv.innerHTML = `
+        <label>7. List at least three prime numbers between 10 and 20:</label>
+        <input type="text" id="primeList" style="width:100%" placeholder="e.g. 11, 13, 17">
+        <button class="btn small" id="primeListBtn">Check</button>
+        <div class="feedback" id="primeListFb"></div>`;
+      psqq.appendChild(primeListDiv);
+      document.getElementById('primeListBtn').addEventListener('click', ()=> checkContainsWord('primeList', ["11","13","17","19"], 'primeListFb'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2j">
+    <h3>Rounding</h3>
+    <p class="hint">Look at the digit just after the place you're rounding to: 5 or more rounds up, less than 5 rounds down. Example: 3,847 to the nearest 100 → 3,800.</p>
+    <div id="roundQs"></div>
+    <script>
+      const round = [
+        {q:"Round 3,847 to the nearest 100", ans:["3,800","3800"]},
+        {q:"Round 62,300 to the nearest 1,000", ans:["62,000","62000"]},
+        {q:"Round 148,200 to the nearest 10,000", ans:["150,000","150000"]},
+        {q:"Round 725,400 to the nearest 100,000", ans:["700,000","700000"]},
+        {q:"Round 89 to the nearest 10", ans:["90"]},
+        {q:"Round 4,600 to the nearest 1,000", ans:["5,000","5000"]}
+      ];
+      const roundq = document.getElementById('roundQs');
+      round.forEach((r,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${r.q}</label>
+          <input type="text" id="round-${i}" style="width:120px">
+          <button class="btn small" id="roundbtn-${i}">Check</button>
+          <div class="feedback" id="roundfb-${i}"></div>`;
+        roundq.appendChild(div);
+        document.getElementById(`roundbtn-${i}`).addEventListener('click', ()=> checkText(`round-${i}`, r.ans, `roundfb-${i}`));
       });
     </script>
   </div>
@@ -1500,6 +1589,43 @@ function updateCertName(){
       <input type="text" id="rc8" style="width:100%">
       <button class="btn small" onclick="checkText('rc8','1066','rc8fb')">Check</button>
       <div class="feedback" id="rc8fb"></div>
+    </div>
+
+    <h3 style="margin-top:26px;">Passage 3: The Science Fair Disaster (fiction)</h3>
+    <div class="q" style="background:#f8fafc;">
+      <p style="line-height:1.7; font-weight:normal;">Priya had spent three weeks building a model volcano for the school science fair, carefully mixing vinegar and bicarbonate of soda to create the perfect eruption. On the morning of the fair, she practised one final time — but this time she'd used far too much vinegar. The volcano erupted with such force that red foam sprayed across the entire table, covering her project, her hands, and unfortunately, the judge's clipboard. Priya froze, certain she'd ruined everything. To her surprise, the judge burst out laughing and said it was the most memorable demonstration he'd seen all day. She didn't win first prize, but she did win a special award for "Most Enthusiastic Scientist" — and a good story to tell for years to come.</p>
+    </div>
+    <div class="q">
+      <label>1. What was Priya's science fair project?</label>
+      <input type="text" id="rc9" style="width:100%">
+      <button class="btn small" onclick="checkText('rc9',['a model volcano','model volcano','volcano','a volcano'],'rc9fb')">Check</button>
+      <div class="feedback" id="rc9fb"></div>
+    </div>
+    <div class="q">
+      <label>2. What mistake did Priya make?</label>
+      <div class="options">
+        <label><input type="radio" name="rc10" value="she used too much vinegar"> She used too much vinegar</label>
+        <label><input type="radio" name="rc10" value="she forgot the bicarbonate of soda"> She forgot the bicarbonate of soda</label>
+        <label><input type="radio" name="rc10" value="she arrived late"> She arrived late</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('rc10','she used too much vinegar','rc10fb')">Check</button>
+      <div class="feedback" id="rc10fb"></div>
+    </div>
+    <div class="q">
+      <label>3. What happened when the volcano erupted?</label>
+      <div class="options">
+        <label><input type="radio" name="rc11" value="foam sprayed everywhere, including the judge's clipboard"> Foam sprayed everywhere, including the judge's clipboard</label>
+        <label><input type="radio" name="rc11" value="nothing happened"> Nothing happened</label>
+        <label><input type="radio" name="rc11" value="it caught fire"> It caught fire</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('rc11','foam sprayed everywhere, including the judge\'s clipboard','rc11fb')">Check</button>
+      <div class="feedback" id="rc11fb"></div>
+    </div>
+    <div class="q">
+      <label>4. What award did Priya win?</label>
+      <input type="text" id="rc12" style="width:100%">
+      <button class="btn small" onclick="checkText('rc12',['Most Enthusiastic Scientist','most enthusiastic scientist'],'rc12fb')">Check</button>
+      <div class="feedback" id="rc12fb"></div>
     </div>
   </div>
 
