@@ -1,13 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Year 4 Learning Hub</title>
+<title>Year 4 Learning Hub — Free UK Primary Workbook</title>
+<meta name="description" content="Free Year 4 practice for UK primary school children — spelling, grammar, maths, reading and science. No sign-up, no ads, nothing tracked. Made by a grandad.">
+<link rel="canonical" href="https://year4.yearworkbooks.co.uk/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Year Workbooks">
+<meta property="og:title" content="Year 4 Learning Hub — Free UK Primary Workbook">
+<meta property="og:description" content="Free Year 4 practice for UK primary school children — spelling, grammar, maths, reading and science. No sign-up, no ads, nothing tracked.">
+<meta property="og:url" content="https://year4.yearworkbooks.co.uk/">
+<meta property="og:image" content="https://year4.yearworkbooks.co.uk/banner.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Year 4 Learning Hub — Free UK Primary Workbook">
+<meta name="twitter:description" content="Free Year 4 practice for UK primary school children — spelling, grammar, maths, reading and science. No sign-up, no ads, nothing tracked.">
+<meta name="twitter:image" content="https://year4.yearworkbooks.co.uk/banner.jpg">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Year 4 Learning Hub",
+  "description": "Free Year 4 practice for UK primary school children — spelling, grammar, maths, reading and science.",
+  "url": "https://year4.yearworkbooks.co.uk/",
+  "isAccessibleForFree": true,
+  "educationalLevel": "Year 4",
+  "inLanguage": "en-GB",
+  "learningResourceType": ["Exercise","Quiz"],
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "student"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Year Workbooks",
+    "url": "https://yearworkbooks.co.uk/"
+  }
+}
+</script>
 <style>
   @font-face{
     font-family:"Lexend"; font-style:normal; font-weight:400 800; font-display:swap;
@@ -231,6 +266,7 @@
 <body>
 
 <header class="banner-header">
+  <h1 style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">Year 4 Learning Hub — Free Spelling, Maths, Grammar and Reading Practice for UK Primary School</h1>
   <img class="banner-img" src="banner.jpg" alt="Year 4 Learning Hub — Spelling, Maths, Grammar, Reading, Science">
   <p class="credit-line">Made by @stentm · <span id="versionTag"></span> · <button class="whatsnew-btn" onclick="openWhatsNew()">What's new</button></p>
 </header>
@@ -635,7 +671,7 @@ function computeSectionProgress(sectionId){
     const label = card.querySelector('h3')?.textContent || card.id;
     const fbs = card.querySelectorAll('.feedback[id]');
     const totalQ = fbs.length;
-    const doneQ = [...fbs].filter(f=>f.textContent.trim().length>0).length;
+    const doneQ = [...fbs].filter(f=>f.classList.contains('correct')).length;
     return {id: card.id, label, done: doneQ, total: totalQ};
   });
 }
@@ -775,8 +811,8 @@ function updateCertName(){
         const totalItems = words1a.length * 2;
         let done = 0;
         words1a.forEach((w,i)=>{
-          if(document.getElementById(`w1afb-${i}`).textContent.trim()) done++;
-          if(document.getElementById(`w1asfb-${i}`).textContent.trim()) done++;
+          if(document.getElementById(`w1afb-${i}`).classList.contains('correct')) done++;
+          if(document.getElementById(`w1asfb-${i}`).classList.contains('correct')) done++;
         });
         fill.style.width = Math.round(done/totalItems*100) + '%';
         text.textContent = `${done}/${totalItems}`;
@@ -1620,7 +1656,55 @@ function updateCertName(){
         }
         updateScore();
       }
+      function checkRainforestThreat(inputId, fbId){
+        const val = document.getElementById(inputId).value.trim().toLowerCase();
+        const fb = document.getElementById(fbId);
+        total++;
+        const keywords = ['cut down', 'deforestation', 'farming', 'building'];
+        const matches = keywords.filter(w => new RegExp(`\\b${w}`).test(val));
+        if(matches.length >= 2){
+          score++; fb.textContent = "✅ Correct!"; fb.className = "feedback correct";
+        } else {
+          fb.textContent = "❌ Try to mention 2 of: cut down, farming, building.";
+          fb.className = "feedback incorrect";
+        }
+        updateScore();
+      }
     </script>
+
+    <h3 style="margin-top:30px; padding-top:20px; border-top:2px solid #e2e8f0;">📗 Passage 2: The Amazon Rainforest</h3>
+    <div class="q" style="background:#f8fafc;">
+      <button class="btn small" id="listenRainforestBtn" style="margin-bottom:10px;">🔊 Listen to this text</button>
+      <p style="line-height:1.7; font-weight:normal;">The Amazon Rainforest is the largest rainforest in the world, covering large parts of South America. It is home to millions of different plants and animals, including jaguars, toucans and poison dart frogs. Scientists believe it contains more types of trees than anywhere else on Earth. The rainforest produces a huge amount of the world's oxygen, which is why people sometimes call it the "lungs of the Earth". Sadly, large areas of rainforest are cut down every year for farming and building, which puts many animals' homes at risk.</p>
+    </div>
+    <div class="q">
+      <label>1. Which continent is most of the Amazon Rainforest found in?</label>
+      <input type="text" id="rc5" style="width:100%">
+      <button class="btn small" onclick="checkContainsWord('rc5',['south america'],'rc5fb')">Check</button>
+      <div class="feedback" id="rc5fb"></div>
+    </div>
+    <div class="q">
+      <label>2. Name one animal that lives in the Amazon Rainforest.</label>
+      <input type="text" id="rc6" style="width:100%">
+      <button class="btn small" onclick="checkContainsWord('rc6',['jaguar','toucan','poison dart frog','frog'],'rc6fb')">Check</button>
+      <div class="feedback" id="rc6fb"></div>
+    </div>
+    <div class="q">
+      <label>3. Why is the rainforest sometimes called the "lungs of the Earth"?</label>
+      <div class="options">
+        <label><input type="radio" name="rc7" value="it produces a huge amount of oxygen"> It produces a huge amount of oxygen</label>
+        <label><input type="radio" name="rc7" value="it is shaped like lungs"> It is shaped like lungs</label>
+        <label><input type="radio" name="rc7" value="animals breathe there"> Animals go there to breathe</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('rc7','it produces a huge amount of oxygen','rc7fb')">Check</button>
+      <div class="feedback" id="rc7fb"></div>
+    </div>
+    <div class="q">
+      <label>4. What is happening to large areas of the rainforest, and why?</label>
+      <input type="text" id="rc8" style="width:100%" placeholder="e.g. cut down for farming and building">
+      <button class="btn small" onclick="checkRainforestThreat('rc8','rc8fb')">Check</button>
+      <div class="feedback" id="rc8fb"></div>
+    </div>
   </div>
 
   <div class="card subsection" id="card-4b">
@@ -1752,6 +1836,7 @@ function updateCertName(){
 
   <script>
     document.getElementById('listenGreatFireBtn').addEventListener('click', ()=> speakText(document.getElementById('listenGreatFireBtn').nextElementSibling.textContent));
+    document.getElementById('listenRainforestBtn').addEventListener('click', ()=> speakText(document.getElementById('listenRainforestBtn').nextElementSibling.textContent));
     document.getElementById('listenSecretRoomBtn').addEventListener('click', ()=> speakText(document.getElementById('listenSecretRoomBtn').nextElementSibling.textContent));
   </script>
 
