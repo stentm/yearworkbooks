@@ -2416,7 +2416,7 @@ function updateCertName(){
     }
     const subject = encodeURIComponent("Suggestion for the Year 2 Learning Hub");
     const body = encodeURIComponent(val);
-    const contactEmail = atob('c3RlbnRtQGdtYWlsLmNvbQ=='); // obfuscated to deter email-harvesting bots
+    const contactEmail = 'feedback@yearworkbooks.co.uk';
     window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
     saveSuggestion();
     fb.textContent = "📧 Email app opened — press Send there to finish. (Also saved here as a backup.)";
