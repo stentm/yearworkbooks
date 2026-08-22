@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "red-art-d8dd",
+  "compatibility_date": "2026-08-22",
+  "assets": {
+    "directory": "."
+  }
+}
