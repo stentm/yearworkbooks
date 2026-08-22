@@ -4,10 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Year 2 Learning Hub</title>
+<meta name="description" content="Free Year 2 learning hub for spelling, maths, grammar, reading, science and games — aligned with the UK National Curriculum. No sign-up, no ads, no tracking, works offline. Great for daily practice at home.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://year2.yearworkbooks.co.uk/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Year Workbooks">
+<meta property="og:title" content="Year 2 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice">
+<meta property="og:description" content="Free Year 2 learning hub for spelling, maths, grammar, reading, science and games — aligned with the UK National Curriculum. No sign-up, no ads, no tracking.">
+<meta property="og:url" content="https://year2.yearworkbooks.co.uk/">
+<meta property="og:image" content="https://year2.yearworkbooks.co.uk/banner.jpg">
+<meta property="og:locale" content="en_GB">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Year 2 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice">
+<meta name="twitter:description" content="Free Year 2 learning hub aligned with the UK National Curriculum. No sign-up, no ads, no tracking.">
+<meta name="twitter:image" content="https://year2.yearworkbooks.co.uk/banner.jpg">
+
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Year 2 Learning Hub",
+  "url": "https://year2.yearworkbooks.co.uk/",
+  "description": "Free Year 2 learning hub for spelling, maths, grammar, reading, science and games — aligned with the UK National Curriculum.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP"
+  },
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "student"
+  },
+  "inLanguage": "en-GB"
+}
+</script>
 <style>
   @font-face{
     font-family:"Lexend"; font-style:normal; font-weight:400 800; font-display:swap;
@@ -1109,7 +1148,7 @@ function updateCertName(){
     <div id="mdQs"></div>
     <script>
       const md = [
-        {q:"23 × 2", ans:"46"}, {q:"14 × 5", ans:"70"}, {q:"32 × 2", ans:"64"},
+        {q:"6 × 2", ans:"12"}, {q:"3 × 5", ans:"15"}, {q:"4 × 10", ans:"40"},
         {q:"40 ÷ 5", ans:"8"}, {q:"60 ÷ 10", ans:"6"}, {q:"18 ÷ 2", ans:"9"}
       ];
       const mdq = document.getElementById('mdQs');
@@ -1499,6 +1538,40 @@ function updateCertName(){
       <button class="btn small" onclick="checkText('rc4',['tired but happy','tired and happy'],'rc4fb')">Check</button>
       <div class="feedback" id="rc4fb"></div>
     </div>
+
+    <h3 style="margin-top:26px;">Passage 2: A Ladybird's Life</h3>
+    <div class="q" style="background:#f8fafc;">
+      <button class="btn small" id="listenLadybirdBtn" style="margin-bottom:10px;">🔊 Listen to this text</button>
+      <p style="line-height:1.7; font-weight:normal;">Ladybirds are small, round beetles. Most ladybirds are red or orange with black spots. They have six legs and two pairs of wings. Ladybirds like to eat tiny insects called aphids, which can harm plants in the garden. In winter, ladybirds hide under leaves or bark to keep warm and safe. A ladybird can lay hundreds of eggs in its lifetime!</p>
+    </div>
+    <div class="q">
+      <label>5. What colour are most ladybirds?</label>
+      <input type="text" id="rc5" style="width:100%">
+      <button class="btn small" onclick="checkText('rc5',['red','orange','red or orange'],'rc5fb')">Check</button>
+      <div class="feedback" id="rc5fb"></div>
+    </div>
+    <div class="q">
+      <label>6. How many legs does a ladybird have?</label>
+      <input type="text" id="rc6" style="width:100px">
+      <button class="btn small" onclick="checkText('rc6','6','rc6fb')">Check</button>
+      <div class="feedback" id="rc6fb"></div>
+    </div>
+    <div class="q">
+      <label>7. What do ladybirds like to eat?</label>
+      <div class="options">
+        <label><input type="radio" name="rc7" value="aphids"> Aphids (tiny insects)</label>
+        <label><input type="radio" name="rc7" value="leaves"> Leaves</label>
+        <label><input type="radio" name="rc7" value="other ladybirds"> Other ladybirds</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('rc7','aphids','rc7fb')">Check</button>
+      <div class="feedback" id="rc7fb"></div>
+    </div>
+    <div class="q">
+      <label>8. Where do ladybirds hide in winter?</label>
+      <input type="text" id="rc8" style="width:100%" placeholder="e.g. in a nest">
+      <button class="btn small" onclick="checkText('rc8',['under leaves or bark','under leaves','under bark'],'rc8fb')">Check</button>
+      <div class="feedback" id="rc8fb"></div>
+    </div>
   </div>
 
   <div class="card subsection" id="card-4b">
@@ -1618,6 +1691,7 @@ function updateCertName(){
 
   <script>
     document.getElementById('listenSeasideBtn').addEventListener('click', ()=> speakText(document.getElementById('listenSeasideBtn').nextElementSibling.textContent));
+    document.getElementById('listenLadybirdBtn').addEventListener('click', ()=> speakText(document.getElementById('listenLadybirdBtn').nextElementSibling.textContent));
     document.getElementById('listenKittenBtn').addEventListener('click', ()=> speakText(document.getElementById('listenKittenBtn').nextElementSibling.textContent));
   </script>
 
