@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Year 5 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice</title>
-<meta name="description" content="Free Year 5 Learning Hub for UK primary school children: spelling, maths, grammar and reading practice aligned to the National Curriculum. No accounts, no ads, no tracking.">
+<meta name="description" content="Free Year 5 Learning Hub for UK primary school children: spelling, maths, grammar, reading, science and games practice aligned to the National Curriculum. No accounts, no ads, no tracking.">
 <link rel="canonical" href="https://year5.yearworkbooks.co.uk/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Year 5 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice">
-<meta property="og:description" content="Free Year 5 Learning Hub for UK primary school children: spelling, maths, grammar and reading practice aligned to the National Curriculum. No accounts, no ads, no tracking.">
+<meta property="og:description" content="Free Year 5 Learning Hub for UK primary school children: spelling, maths, grammar, reading, science and games practice aligned to the National Curriculum. No accounts, no ads, no tracking.">
 <meta property="og:url" content="https://year5.yearworkbooks.co.uk/">
 <meta property="og:image" content="https://year5.yearworkbooks.co.uk/banner.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Year 5 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice">
-<meta name="twitter:description" content="Free Year 5 Learning Hub for UK primary school children: spelling, maths, grammar and reading practice aligned to the National Curriculum.">
+<meta name="twitter:description" content="Free Year 5 Learning Hub for UK primary school children: spelling, maths, grammar, reading, science and games practice aligned to the National Curriculum.">
 <meta name="twitter:image" content="https://year5.yearworkbooks.co.uk/banner.jpg">
 <meta name="theme-color" content="#16a34a">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -243,7 +243,7 @@
 <body>
 
 <header class="banner-header">
-  <img class="banner-img" src="banner.jpg" alt="Year 5 Learning Hub — Spelling, Maths, Grammar, Reading">
+  <img class="banner-img" src="banner.jpg" alt="Year 5 Learning Hub — Spelling, Maths, Grammar, Reading, Science, Games">
   <p class="credit-line">Made by @stentm · <span id="versionTag"></span> · <button class="whatsnew-btn" onclick="openWhatsNew()">What's new</button></p>
 </header>
 
@@ -251,7 +251,7 @@
   <div class="modal-box" style="max-width:480px; text-align:center;">
     <img src="welcome-kids.jpg" alt="" style="max-width:260px; width:100%; margin:0 auto 6px; display:block;">
     <h3 style="border:none; margin-top:0;">Welcome to Year 5 Learning Hub! 👋</h3>
-    <p style="margin-top:0;">Spelling, Maths, Grammar, and Reading — a little practice every day!</p>
+    <p style="margin-top:0;">Spelling, Maths, Grammar, Reading, Science, and Games — a little practice every day!</p>
     <label style="display:block; font-weight:bold; margin:14px 0 6px;">What's your name?</label>
     <input type="text" id="welcomeNameInput" placeholder="Type your name here" style="width:80%; text-align:center; margin-bottom:14px;">
     <button class="btn" onclick="closeWelcomeScreen()">Let's start! 🚀</button>
@@ -316,7 +316,7 @@
 </div>
 
 <script>
-const APP_VERSION = "1.0";
+const APP_VERSION = "1.1";
 document.getElementById('versionTag').textContent = "v" + APP_VERSION;
 
 let score = 0, total = 0;
@@ -539,6 +539,8 @@ const sections = [
   {id:"s2", icon:"🔢", label:"Maths", color:"var(--blue)"},
   {id:"s3", icon:"📖", label:"Grammar", color:"var(--green)"},
   {id:"s4", icon:"🌍", label:"Reading", color:"var(--teal)"},
+  {id:"s7", icon:"🔬", label:"Science", color:"var(--pink)"},
+  {id:"s8", icon:"🎮", label:"Games", color:"var(--orange)"},
   {id:"s6", icon:"📊", label:"Progress", color:"var(--teal-dark)"},
   {id:"s5", icon:"💬", label:"Parents", color:"var(--purple-dark)"},
 ];
@@ -1680,6 +1682,873 @@ function updateCertName(){
 
 </div>
 
+
+<div id="s7" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s7','card-7a', this)">🌍 Earth &amp; Space</button>
+    <button onclick="showSub('s7','card-7b', this)">🪐 Forces</button>
+    <button onclick="showSub('s7','card-7c', this)">🧪 Materials</button>
+    <button onclick="showSub('s7','card-7d', this)">🐸 Living Things &amp; Habitats</button>
+    <button onclick="showSub('s7','card-7e', this)">🧍 Animals, Including Humans</button>
+  </div>
+
+  <div class="card subsection active" id="card-7a">
+    <h3>Earth &amp; Space</h3>
+    <div class="q">
+      <label>1. What is at the centre of our Solar System? <input type="text" id="es1" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('es1',['the Sun','Sun','sun'],'esfb1')">Check</button>
+      <div class="feedback" id="esfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. Why do we have day and night?</label>
+      <div class="options">
+        <label><input type="radio" name="es2" value="The Earth spins (rotates) on its axis"> The Earth spins (rotates) on its axis</label>
+        <label><input type="radio" name="es2" value="The Sun moves around the Earth"> The Sun moves around the Earth</label>
+        <label><input type="radio" name="es2" value="The Earth stops moving at night"> The Earth stops moving at night</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('es2','The Earth spins (rotates) on its axis','esfb2')">Check</button>
+      <div class="feedback" id="esfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. About how long does the Earth take to spin round once? <input type="text" id="es3" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('es3',['24 hours','a day','one day'],'esfb3')">Check</button>
+      <div class="feedback" id="esfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. About how long does the Earth take to orbit the Sun once? <input type="text" id="es4" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('es4',['a year','one year','365 days'],'esfb4')">Check</button>
+      <div class="feedback" id="esfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. What shape is the Earth?</label>
+      <div class="options">
+        <label><input type="radio" name="es5" value="a sphere"> A sphere (ball-shaped)</label>
+        <label><input type="radio" name="es5" value="flat"> Flat</label>
+        <label><input type="radio" name="es5" value="a cube"> A cube</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('es5','a sphere','esfb5')">Check</button>
+      <div class="feedback" id="esfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Put these in order of size, biggest first: Earth, Moon, Sun <input type="text" id="es6" style="width:220px"></label>
+      <button class="btn small" onclick="checkText('es6','Sun, Earth, Moon','esfb6')">Check</button>
+      <div class="feedback" id="esfb6"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-7b">
+    <h3>Forces</h3>
+    <div class="q">
+      <label>1. What force pulls objects down towards the ground? <input type="text" id="fo1" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('fo1','gravity','fofb1')">Check</button>
+      <div class="feedback" id="fofb1"></div>
+    </div>
+    <div class="q">
+      <label>2. What force slows a parachute down as it falls? <input type="text" id="fo2" style="width:170px"></label>
+      <button class="btn small" onclick="checkText('fo2','air resistance','fofb2')">Check</button>
+      <div class="feedback" id="fofb2"></div>
+    </div>
+    <div class="q">
+      <label>3. What force slows a swimmer moving through a pool? <input type="text" id="fo3" style="width:170px"></label>
+      <button class="btn small" onclick="checkText('fo3','water resistance','fofb3')">Check</button>
+      <div class="feedback" id="fofb3"></div>
+    </div>
+    <div class="q">
+      <label>4. What do we call the force between two surfaces rubbing together, which slows movement down? <input type="text" id="fo4" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('fo4','friction','fofb4')">Check</button>
+      <div class="feedback" id="fofb4"></div>
+    </div>
+    <div class="q">
+      <label>5. A see-saw is an example of which simple machine?</label>
+      <div class="options">
+        <label><input type="radio" name="fo5" value="lever"> Lever</label>
+        <label><input type="radio" name="fo5" value="pulley"> Pulley</label>
+        <label><input type="radio" name="fo5" value="wheel"> Wheel</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('fo5','lever','fofb5')">Check</button>
+      <div class="feedback" id="fofb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Name a simple machine that uses a wheel and a rope to help lift heavy objects. <input type="text" id="fo6" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('fo6','pulley','fofb6')">Check</button>
+      <div class="feedback" id="fofb6"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-7c">
+    <h3>Properties &amp; Changes of Materials</h3>
+    <div class="q">
+      <label>1. What do we call it when a solid seems to "disappear" into a liquid, like sugar in tea? <input type="text" id="ma1" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('ma1','dissolving','mafb1')">Check</button>
+      <div class="feedback" id="mafb1"></div>
+    </div>
+    <div class="q">
+      <label>2. A mixture where a solid has dissolved into a liquid is called a ___. <input type="text" id="ma2" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('ma2','solution','mafb2')">Check</button>
+      <div class="feedback" id="mafb2"></div>
+    </div>
+    <div class="q">
+      <label>3. How would you separate sand from water?</label>
+      <div class="options">
+        <label><input type="radio" name="ma3" value="filtering"> Filtering</label>
+        <label><input type="radio" name="ma3" value="freezing"> Freezing</label>
+        <label><input type="radio" name="ma3" value="melting"> Melting</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ma3','filtering','mafb3')">Check</button>
+      <div class="feedback" id="mafb3"></div>
+    </div>
+    <div class="q">
+      <label>4. Which of these is a REVERSIBLE change?</label>
+      <div class="options">
+        <label><input type="radio" name="ma4" value="melting chocolate"> Melting chocolate</label>
+        <label><input type="radio" name="ma4" value="baking a cake"> Baking a cake</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ma4','melting chocolate','mafb4')">Check</button>
+      <div class="feedback" id="mafb4"></div>
+    </div>
+    <div class="q">
+      <label>5. Which of these is an IRREVERSIBLE change?</label>
+      <div class="options">
+        <label><input type="radio" name="ma5" value="freezing water"> Freezing water</label>
+        <label><input type="radio" name="ma5" value="burning paper"> Burning paper</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ma5','burning paper','mafb5')">Check</button>
+      <div class="feedback" id="mafb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Name a material that dissolves in water. <input type="text" id="ma6" style="width:150px" placeholder="e.g. sugar, salt"></label>
+      <button class="btn small" id="ma6btn">Check</button>
+      <div class="feedback" id="mafb6"></div>
+    </div>
+    <script>
+      document.getElementById('ma6btn').addEventListener('click', ()=> checkContainsWord('ma6', ["sugar","salt"], 'mafb6'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7d">
+    <h3>Living Things &amp; Habitats</h3>
+    <div class="q">
+      <label>1. Put a frog's life cycle in order: tadpole, egg, froglet, adult frog <input type="text" id="lh1" style="width:100%"></label>
+      <button class="btn small" onclick="checkText('lh1','egg, tadpole, froglet, adult frog','lhfb1')">Check</button>
+      <div class="feedback" id="lhfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. What is it called when an insect changes completely in shape as it grows, like a caterpillar becoming a butterfly? <input type="text" id="lh2" style="width:170px"></label>
+      <button class="btn small" onclick="checkText('lh2','metamorphosis','lhfb2')">Check</button>
+      <div class="feedback" id="lhfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. Name at least 3 stages of a butterfly's life cycle. <input type="text" id="lh3" style="width:100%" placeholder="e.g. egg, caterpillar, chrysalis, butterfly"></label>
+      <button class="btn small" id="lh3btn">Check</button>
+      <div class="feedback" id="lhfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. True or False: mammals give birth to live young.</label>
+      <div class="options">
+        <label><input type="radio" name="lh4" value="True"> True</label>
+        <label><input type="radio" name="lh4" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('lh4','True','lhfb4')">Check</button>
+      <div class="feedback" id="lhfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. True or False: every single animal species lays eggs.</label>
+      <div class="options">
+        <label><input type="radio" name="lh5" value="True"> True</label>
+        <label><input type="radio" name="lh5" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('lh5','False','lhfb5')">Check</button>
+      <div class="feedback" id="lhfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. In plants, what is it called when pollen from one flower reaches another flower? <input type="text" id="lh6" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('lh6','pollination','lhfb6')">Check</button>
+      <div class="feedback" id="lhfb6"></div>
+    </div>
+    <script>
+      document.getElementById('lh3btn').addEventListener('click', ()=> checkContainsWord('lh3', ["egg","caterpillar","larva","chrysalis","pupa","butterfly"], 'lhfb3'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7e">
+    <h3>Animals, Including Humans</h3>
+    <p class="hint">How humans and other animals grow, change and age.</p>
+    <div class="q">
+      <label>1. What do we call the process of a human body changing from a child into an adult? <input type="text" id="ah1" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('ah1','puberty','ahfb1')">Check</button>
+      <div class="feedback" id="ahfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. Put these human life stages in order: adult, baby, child, elderly, teenager <input type="text" id="ah2" style="width:100%"></label>
+      <button class="btn small" onclick="checkText('ah2','baby, child, teenager, adult, elderly','ahfb2')">Check</button>
+      <div class="feedback" id="ahfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. Name one way the human body can change as it grows older. <input type="text" id="ah3" style="width:100%" placeholder="e.g. grey hair, wrinkles, weaker bones"></label>
+      <button class="btn small" id="ah3btn">Check</button>
+      <div class="feedback" id="ahfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. True or False: all mammals, including humans, feed their babies with milk.</label>
+      <div class="options">
+        <label><input type="radio" name="ah4" value="True"> True</label>
+        <label><input type="radio" name="ah4" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ah4','True','ahfb4')">Check</button>
+      <div class="feedback" id="ahfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. True or False: humans stop growing and changing as soon as they become adults.</label>
+      <div class="options">
+        <label><input type="radio" name="ah5" value="True"> True</label>
+        <label><input type="radio" name="ah5" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ah5','False','ahfb5')">Check</button>
+      <div class="feedback" id="ahfb5"></div>
+    </div>
+    <script>
+      document.getElementById('ah3btn').addEventListener('click', ()=> checkContainsWord('ah3', ["grey","gray","white","wrinkle","wrinkles","weak","weaker","slower","slow"], 'ahfb3'));
+    </script>
+  </div>
+
+</div>
+
+<div id="s8" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s8','card-8a', this)">🧩 Sudoku</button>
+    <button onclick="showSub('s8','card-8b', this)">📝 Crossword</button>
+    <button onclick="showSub('s8','card-8c', this)">🔍 Word Search</button>
+  </div>
+
+  <div class="card subsection active" id="card-8a">
+    <h3>Sudoku</h3>
+    <p class="hint">Fill in the empty boxes so that every row, every column, and every bold-bordered box contains each number exactly once. Start with the 4×4 warm-up, then try the bigger 6×6!</p>
+    <div class="q">
+      <label>Warm-up: 4×4 Sudoku (numbers 1–4)</label>
+      <div id="sudoku4"></div>
+      <button class="btn small" id="sudoku4btn" style="display:block; margin:10px auto 0;">Check</button>
+      <div class="feedback" id="sudoku4fb" style="text-align:center;"></div>
+    </div>
+    <div class="q" style="margin-top:24px;">
+      <label>Challenge: 6×6 Sudoku (numbers 1–6)</label>
+      <div id="sudoku6"></div>
+      <button class="btn small" id="sudoku6btn" style="display:block; margin:10px auto 0;">Check</button>
+      <div class="feedback" id="sudoku6fb" style="text-align:center;"></div>
+    </div>
+    <script>
+      function buildSudoku(containerId, size, boxW, boxH, puzzle, solution){
+        const container = document.getElementById(containerId);
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        container.style.gap = '0';
+        container.style.maxWidth = (size*44)+'px';
+        container.style.margin = '10px auto';
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const val = puzzle[r][c];
+            const isGiven = val !== 0;
+            const borderRight = ((c+1)%boxW===0 && c!==size-1) ? '3px solid var(--teal-dark)' : '1px solid #cbd5e1';
+            const borderBottom = ((r+1)%boxH===0 && r!==size-1) ? '3px solid var(--teal-dark)' : '1px solid #cbd5e1';
+            const wrap = document.createElement('div');
+            wrap.style.cssText = `position:relative; width:100%; aspect-ratio:1; box-sizing:border-box; border-right:${borderRight}; border-bottom:${borderBottom}; border-left:1px solid #cbd5e1; border-top:1px solid #cbd5e1;`;
+            if(isGiven){
+              wrap.style.background = '#e6fffa';
+              wrap.style.color = 'var(--teal-dark)';
+              wrap.style.display = 'flex';
+              wrap.style.alignItems = 'center';
+              wrap.style.justifyContent = 'center';
+              wrap.style.fontWeight = 'bold';
+              wrap.style.fontSize = '1.15em';
+              wrap.textContent = val;
+            } else {
+              const inp = document.createElement('input');
+              inp.type = 'text';
+              inp.maxLength = 1;
+              inp.id = `${containerId}-${r}-${c}`;
+              inp.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:none; box-sizing:border-box; text-align:center; font-weight:bold; font-size:1.15em; font-family:inherit; padding:0; background:white;';
+              inp.addEventListener('input', ()=>{
+                inp.value = inp.value.replace(new RegExp('[^1-'+size+']','g'), '').slice(0,1);
+              });
+              wrap.appendChild(inp);
+            }
+            container.appendChild(wrap);
+          }
+        }
+        return function checkSudoku(fbId){
+          let allOk = true;
+          for(let r=0;r<size;r++){
+            for(let c=0;c<size;c++){
+              if(puzzle[r][c]===0){
+                const cell = document.getElementById(`${containerId}-${r}-${c}`);
+                const wrap = cell.parentElement;
+                const ok = cell.value.trim() === String(solution[r][c]);
+                wrap.style.background = ok ? '#eafff1' : '#fff1f1';
+                let mark = wrap.querySelector('.sudoku-mark');
+                if(!mark){
+                  mark = document.createElement('span');
+                  mark.className = 'sudoku-mark';
+                  mark.setAttribute('aria-hidden', 'true');
+                  mark.style.cssText = 'position:absolute; top:0px; right:2px; font-size:.65em; line-height:1; pointer-events:none; font-weight:bold;';
+                  wrap.appendChild(mark);
+                }
+                mark.textContent = ok ? '✓' : '✗';
+                mark.style.color = ok ? 'var(--green-dark)' : '#b91c1c';
+                if(!ok) allOk = false;
+              }
+            }
+          }
+          const fb = document.getElementById(fbId);
+          total++;
+          if(allOk){ score++; fb.textContent="✅ Well done — Sudoku solved correctly!"; fb.className="feedback correct"; }
+          else{ fb.textContent="❌ Some numbers aren't right yet — check the highlighted boxes."; fb.className="feedback incorrect"; }
+          updateScore();
+        };
+      }
+
+      const sudoku4Puzzle = [
+        [1,0,0,0],
+        [3,4,0,0],
+        [0,1,0,3],
+        [0,0,0,2]
+      ];
+      const sudoku4Solution = [
+        [1,2,3,4],
+        [3,4,2,1],
+        [2,1,4,3],
+        [4,3,1,2]
+      ];
+      const check4 = buildSudoku('sudoku4', 4, 2, 2, sudoku4Puzzle, sudoku4Solution);
+      document.getElementById('sudoku4btn').addEventListener('click', ()=> check4('sudoku4fb'));
+
+      const sudoku6Puzzle = [
+        [0,2,0,4,5,0],
+        [0,1,0,0,6,0],
+        [6,0,0,1,0,0],
+        [0,0,0,0,4,6],
+        [0,6,1,5,0,4],
+        [0,4,0,0,0,0]
+      ];
+      const sudoku6Solution = [
+        [3,2,6,4,5,1],
+        [4,1,5,2,6,3],
+        [6,3,4,1,2,5],
+        [1,5,2,3,4,6],
+        [2,6,1,5,3,4],
+        [5,4,3,6,1,2]
+      ];
+      const check6 = buildSudoku('sudoku6', 6, 3, 2, sudoku6Puzzle, sudoku6Solution);
+      document.getElementById('sudoku6btn').addEventListener('click', ()=> check6('sudoku6fb'));
+    </script>
+
+    <div class="q" style="margin-top:24px;">
+      <label>New puzzle: another 4×4 Sudoku</label>
+      <div id="sudoku4b"></div>
+      <button class="btn small" id="sudoku4bbtn" style="display:block; margin:10px auto 0;">Check</button>
+      <div class="feedback" id="sudoku4bfb" style="text-align:center;"></div>
+    </div>
+    <div class="q" style="margin-top:24px;">
+      <label>New puzzle: another 6×6 Sudoku</label>
+      <div id="sudoku6b"></div>
+      <button class="btn small" id="sudoku6bbtn" style="display:block; margin:10px auto 0;">Check</button>
+      <div class="feedback" id="sudoku6bfb" style="text-align:center;"></div>
+    </div>
+    <script>
+      const sudoku4bPuzzle = [
+        [0,0,0,4],
+        [4,0,0,0],
+        [0,1,4,0],
+        [0,4,2,0]
+      ];
+      const sudoku4bSolution = [
+        [1,2,3,4],
+        [4,3,1,2],
+        [2,1,4,3],
+        [3,4,2,1]
+      ];
+      const check4b = buildSudoku('sudoku4b', 4, 2, 2, sudoku4bPuzzle, sudoku4bSolution);
+      document.getElementById('sudoku4bbtn').addEventListener('click', ()=> check4b('sudoku4bfb'));
+
+      const sudoku6bPuzzle = [
+        [2,3,0,0,1,0],
+        [4,5,0,2,0,0],
+        [0,0,0,0,0,2],
+        [0,6,0,0,0,1],
+        [0,1,0,5,0,0],
+        [6,0,5,0,0,4]
+      ];
+      const sudoku6bSolution = [
+        [2,3,6,4,1,5],
+        [4,5,1,2,6,3],
+        [1,4,3,6,5,2],
+        [5,6,2,3,4,1],
+        [3,1,4,5,2,6],
+        [6,2,5,1,3,4]
+      ];
+      const check6b = buildSudoku('sudoku6b', 6, 3, 2, sudoku6bPuzzle, sudoku6bSolution);
+      document.getElementById('sudoku6bbtn').addEventListener('click', ()=> check6b('sudoku6bfb'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-8b">
+    <h3>Mini Crossword</h3>
+    <p class="hint">Read each clue, then type one letter per box. Numbers show where each word starts.</p>
+    <div id="crosswordGrid"></div>
+    <div id="crosswordClues" style="margin-top:14px;"></div>
+    <button class="btn small" id="crosswordBtn" style="display:block; margin:14px auto 0;">Check</button>
+    <div class="feedback" id="crosswordfb" style="text-align:center;"></div>
+    <script>
+      const crosswordSolution = [
+        [null,'F',null,'C',null],
+        [null,'O',null,'O',null],
+        ['P','R','I','M','E'],
+        [null,'C',null,'E',null],
+        [null,'E',null,'T',null]
+      ];
+      const crosswordNumbers = {"2,0":1, "0,1":2, "0,3":3};
+      const crosswordClues = [
+        {num:1, dir:'Across', text:'A number with exactly two factors: 1 and itself'},
+        {num:2, dir:'Down', text:'A push or a pull'},
+        {num:3, dir:'Down', text:'A ball of ice and dust that orbits the Sun'}
+      ];
+
+      function buildCrossword(){
+        const grid = document.getElementById('crosswordGrid');
+        const size = crosswordSolution.length;
+        grid.style.display = 'grid';
+        grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        grid.style.gap = '2px';
+        grid.style.maxWidth = (size*46)+'px';
+        grid.style.margin = '10px auto';
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crosswordSolution[r][c];
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'position:relative; width:100%; aspect-ratio:1; box-sizing:border-box;';
+            if(letter === null){
+              wrap.style.background = '#1f2937';
+              wrap.style.borderRadius = '4px';
+            } else {
+              wrap.style.border = '2px solid var(--teal)';
+              wrap.style.borderRadius = '4px';
+              const key = `${r},${c}`;
+              if(crosswordNumbers[key]){
+                const num = document.createElement('span');
+                num.textContent = crosswordNumbers[key];
+                num.style.cssText = 'position:absolute; top:1px; left:2px; font-size:.6em; font-weight:bold; color:var(--teal-dark); pointer-events:none;';
+                wrap.appendChild(num);
+              }
+              const inp = document.createElement('input');
+              inp.type = 'text';
+              inp.maxLength = 1;
+              inp.id = `cw-${r}-${c}`;
+              inp.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:none; box-sizing:border-box; text-align:center; text-transform:uppercase; font-weight:bold; font-size:1.1em; font-family:inherit; padding:0; background:white;';
+              inp.addEventListener('input', ()=>{
+                inp.value = inp.value.replace(/[^a-zA-Z]/g,'').slice(0,1).toUpperCase();
+              });
+              wrap.appendChild(inp);
+            }
+            grid.appendChild(wrap);
+          }
+        }
+        const cluesEl = document.getElementById('crosswordClues');
+        const across = crosswordClues.filter(c=>c.dir==='Across');
+        const down = crosswordClues.filter(c=>c.dir==='Down');
+        function clueListHtml(list){
+          return list.map(c=>`<div>${c.num}. ${c.text}</div>`).join('');
+        }
+        cluesEl.innerHTML = `
+          <div style="display:flex; gap:24px; flex-wrap:wrap;">
+            <div><strong>Across</strong>${clueListHtml(across)}</div>
+            <div><strong>Down</strong>${clueListHtml(down)}</div>
+          </div>`;
+      }
+      buildCrossword();
+
+      function checkCrossword(){
+        let allOk = true;
+        const size = crosswordSolution.length;
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crosswordSolution[r][c];
+            if(letter !== null){
+              const cell = document.getElementById(`cw-${r}-${c}`);
+              const wrap = cell.parentElement;
+              const ok = cell.value.trim().toUpperCase() === letter;
+              wrap.style.background = ok ? '#eafff1' : '#fff1f1';
+              let mark = wrap.querySelector('.cw-mark');
+              if(!mark){
+                mark = document.createElement('span');
+                mark.className = 'cw-mark';
+                mark.setAttribute('aria-hidden','true');
+                mark.style.cssText = 'position:absolute; bottom:0px; right:1px; font-size:.6em; line-height:1; pointer-events:none; font-weight:bold;';
+                wrap.appendChild(mark);
+              }
+              mark.textContent = ok ? '✓' : '✗';
+              mark.style.color = ok ? 'var(--green-dark)' : '#b91c1c';
+              if(!ok) allOk = false;
+            }
+          }
+        }
+        const fb = document.getElementById('crosswordfb');
+        total++;
+        if(allOk){ score++; fb.textContent="✅ Well done — crossword complete!"; fb.className="feedback correct"; }
+        else{ fb.textContent="❌ Some letters aren't right yet — check the highlighted boxes."; fb.className="feedback incorrect"; }
+        updateScore();
+      }
+      document.getElementById('crosswordBtn').addEventListener('click', checkCrossword);
+    </script>
+
+    <h3 style="margin-top:28px;">Challenge Crossword</h3>
+    <p class="hint">A bigger one — three words, two crossing points.</p>
+    <div id="crossword2Grid"></div>
+    <div id="crossword2Clues" style="margin-top:14px;"></div>
+    <button class="btn small" id="crossword2Btn" style="display:block; margin:14px auto 0;">Check</button>
+    <div class="feedback" id="crossword2fb" style="text-align:center;"></div>
+    <script>
+      const crossword2Solution = [
+        [null,'G',null,null,null,null,null],
+        [null,'R',null,null,null,null,null],
+        ['D','E','C','I','M','A','L'],
+        [null,'A',null,null,'E',null,null],
+        [null,'T',null,null,'T',null,null],
+        [null,'E',null,null,'A',null,null],
+        [null,'R',null,null,'L',null,null]
+      ];
+      const crossword2Numbers = {"2,0":1, "0,1":2, "2,4":3};
+      const crossword2Clues = [
+        {num:1, dir:'Across', text:'A number written with a point, like 3.75'},
+        {num:2, dir:'Down', text:"Bigger than — the opposite of 'smaller than'"},
+        {num:3, dir:'Down', text:'A hard, shiny material like iron or gold'}
+      ];
+      function buildCrossword2(){
+        const grid = document.getElementById('crossword2Grid');
+        const size = crossword2Solution.length;
+        grid.style.display = 'grid';
+        grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        grid.style.gap = '2px';
+        grid.style.maxWidth = (size*42)+'px';
+        grid.style.margin = '10px auto';
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crossword2Solution[r][c];
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'position:relative; width:100%; aspect-ratio:1; box-sizing:border-box;';
+            if(letter === null){
+              wrap.style.background = '#1f2937';
+              wrap.style.borderRadius = '4px';
+            } else {
+              wrap.style.border = '2px solid var(--teal)';
+              wrap.style.borderRadius = '4px';
+              const key = `${r},${c}`;
+              if(crossword2Numbers[key]){
+                const num = document.createElement('span');
+                num.textContent = crossword2Numbers[key];
+                num.style.cssText = 'position:absolute; top:1px; left:2px; font-size:.6em; font-weight:bold; color:var(--teal-dark); pointer-events:none;';
+                wrap.appendChild(num);
+              }
+              const inp = document.createElement('input');
+              inp.type = 'text';
+              inp.maxLength = 1;
+              inp.id = `cw2-${r}-${c}`;
+              inp.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:none; box-sizing:border-box; text-align:center; text-transform:uppercase; font-weight:bold; font-size:1.1em; font-family:inherit; padding:0; background:white;';
+              inp.addEventListener('input', ()=>{
+                inp.value = inp.value.replace(/[^a-zA-Z]/g,'').slice(0,1).toUpperCase();
+              });
+              wrap.appendChild(inp);
+            }
+            grid.appendChild(wrap);
+          }
+        }
+        const cluesEl = document.getElementById('crossword2Clues');
+        const across = crossword2Clues.filter(c=>c.dir==='Across');
+        const down = crossword2Clues.filter(c=>c.dir==='Down');
+        function clueListHtml(list){ return list.map(c=>`<div>${c.num}. ${c.text}</div>`).join(''); }
+        cluesEl.innerHTML = `
+          <div style="display:flex; gap:24px; flex-wrap:wrap;">
+            <div><strong>Across</strong>${clueListHtml(across)}</div>
+            <div><strong>Down</strong>${clueListHtml(down)}</div>
+          </div>`;
+      }
+      buildCrossword2();
+      function checkCrossword2(){
+        let allOk = true;
+        const size = crossword2Solution.length;
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crossword2Solution[r][c];
+            if(letter !== null){
+              const cell = document.getElementById(`cw2-${r}-${c}`);
+              const wrap = cell.parentElement;
+              const ok = cell.value.trim().toUpperCase() === letter;
+              wrap.style.background = ok ? '#eafff1' : '#fff1f1';
+              let mark = wrap.querySelector('.cw2-mark');
+              if(!mark){
+                mark = document.createElement('span');
+                mark.className = 'cw2-mark';
+                mark.setAttribute('aria-hidden','true');
+                mark.style.cssText = 'position:absolute; bottom:0px; right:1px; font-size:.6em; line-height:1; pointer-events:none; font-weight:bold;';
+                wrap.appendChild(mark);
+              }
+              mark.textContent = ok ? '✓' : '✗';
+              mark.style.color = ok ? 'var(--green-dark)' : '#b91c1c';
+              if(!ok) allOk = false;
+            }
+          }
+        }
+        const fb = document.getElementById('crossword2fb');
+        total++;
+        if(allOk){ score++; fb.textContent="✅ Well done — challenge crossword complete!"; fb.className="feedback correct"; }
+        else{ fb.textContent="❌ Some letters aren't right yet — check the highlighted boxes."; fb.className="feedback incorrect"; }
+        updateScore();
+      }
+      document.getElementById('crossword2Btn').addEventListener('click', checkCrossword2);
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-8c">
+    <h3>Word Search</h3>
+    <p class="hint">Click the first letter of a word, then click its last letter (words can go across, down, or diagonally). Find all 6 words!</p>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; justify-content:center;">
+      <div id="wordsearchGrid"></div>
+      <ul id="wordsearchList" style="list-style:none; padding:0; font-weight:bold; font-size:1.05em; line-height:1.9;"></ul>
+    </div>
+    <div class="feedback" id="wordsearchfb" style="text-align:center; margin-top:10px;"></div>
+    <script>
+      const wsGrid = [
+        ["E","W","F","N","A","Q","Z","R","V","X"],
+        ["M","X","X","R","V","G","L","N","Y","C"],
+        ["I","V","K","T","I","K","V","T","D","X"],
+        ["R","J","Q","J","E","C","I","V","N","K"],
+        ["P","M","W","J","R","V","T","R","E","T"],
+        ["G","N","V","M","A","V","X","I","E","F"],
+        ["T","S","J","R","U","M","R","M","O","A"],
+        ["J","J","G","G","Q","N","O","Z","S","N"],
+        ["T","U","K","O","S","C","O","O","V","G"],
+        ["Q","D","E","C","I","M","A","L","P","Z"]
+      ];
+      const wsWords = ["GRAVITY","FRICTION","DECIMAL","SQUARE","COMET","PRIME"];
+
+      function buildWordSearch(){
+        const container = document.getElementById('wordsearchGrid');
+        const size = wsGrid.length;
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        container.style.gap = '2px';
+        container.style.maxWidth = (size*32)+'px';
+
+        const listEl = document.getElementById('wordsearchList');
+        wsWords.forEach(w=>{
+          const li = document.createElement('li');
+          li.id = `wsword-${w}`;
+          li.textContent = w;
+          listEl.appendChild(li);
+        });
+
+        const cells = [];
+        for(let r=0;r<size;r++){
+          cells.push([]);
+          for(let c=0;c<size;c++){
+            const cell = document.createElement('div');
+            cell.textContent = wsGrid[r][c];
+            cell.style.cssText = 'aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-weight:bold; border:1px solid #cbd5e1; border-radius:4px; background:white; cursor:pointer; user-select:none; font-size:.8em;';
+            cell.addEventListener('click', ()=> onWsCellClick(r,c,cell));
+            container.appendChild(cell);
+            cells[r].push(cell);
+          }
+        }
+
+        const foundWords = new Set();
+        let firstSel = null;
+
+        function onWsCellClick(r,c,cellEl){
+          if(!firstSel){
+            firstSel = {r,c,el:cellEl};
+            cellEl.style.background = '#fef9c3';
+            return;
+          }
+          const rDiff = r - firstSel.r, cDiff = c - firstSel.c;
+          const dr = Math.sign(rDiff), dc = Math.sign(cDiff);
+          let valid = (dr!==0 || dc!==0) && (rDiff===0 || cDiff===0 || Math.abs(rDiff)===Math.abs(cDiff));
+          let matchedWord = null;
+          let matchedCells = [];
+          if(valid){
+            const lineLen = Math.max(Math.abs(rDiff), Math.abs(cDiff)) + 1;
+            let letters = '';
+            for(let i=0;i<lineLen;i++){
+              const rr = firstSel.r + dr*i, cc = firstSel.c + dc*i;
+              letters += wsGrid[rr][cc];
+              matchedCells.push([rr,cc]);
+            }
+            const rev = letters.split('').reverse().join('');
+            for(const w of wsWords){
+              if(foundWords.has(w)) continue;
+              if(letters === w || rev === w){ matchedWord = w; break; }
+            }
+          }
+          const fb = document.getElementById('wordsearchfb');
+          if(matchedWord){
+            foundWords.add(matchedWord);
+            matchedCells.forEach(([rr,cc])=>{
+              cells[rr][cc].style.background = '#bbf7d0';
+              cells[rr][cc].style.color = 'var(--green-dark)';
+            });
+            const li = document.getElementById(`wsword-${matchedWord}`);
+            li.style.textDecoration = 'line-through';
+            li.style.opacity = '.5';
+            const check = document.createElement('span');
+            check.textContent = ' ✓';
+            check.setAttribute('aria-hidden','true');
+            li.appendChild(check);
+            firstSel.el.style.background = 'white';
+            firstSel = null;
+            if(foundWords.size === wsWords.length){
+              total++; score++;
+              fb.textContent = "✅ Amazing — you found all the words!";
+              fb.className = "feedback correct";
+              updateScore();
+            } else {
+              fb.textContent = `Found ${foundWords.size} of ${wsWords.length} words — keep going!`;
+              fb.className = "feedback";
+            }
+          } else {
+            firstSel.el.style.background = '#fecaca';
+            cellEl.style.background = '#fecaca';
+            const prevFirst = firstSel;
+            setTimeout(()=>{
+              prevFirst.el.style.background = 'white';
+              cellEl.style.background = 'white';
+            }, 400);
+            firstSel = null;
+          }
+        }
+      }
+      buildWordSearch();
+    </script>
+
+    <h3 style="margin-top:28px;">Challenge Word Search</h3>
+    <p class="hint">A bigger 10×10 grid — find all 6 words!</p>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; justify-content:center;">
+      <div id="wordsearch2Grid"></div>
+      <ul id="wordsearch2List" style="list-style:none; padding:0; font-weight:bold; font-size:1.05em; line-height:1.9;"></ul>
+    </div>
+    <div class="feedback" id="wordsearch2fb" style="text-align:center; margin-top:10px;"></div>
+    <script>
+      const ws2Grid = [
+        ["M","M","W","E","W","A","G","C","N","N"],
+        ["I","K","R","O","D","V","N","Y","B","G"],
+        ["X","N","M","O","I","R","Y","E","S","E"],
+        ["T","W","A","R","S","A","Y","L","S","T"],
+        ["U","M","P","B","S","L","A","L","L","A"],
+        ["R","J","Y","I","O","M","N","U","R","T"],
+        ["E","X","X","T","L","R","Z","P","T","O"],
+        ["H","P","H","I","V","N","P","A","M","R"],
+        ["K","V","V","Z","E","M","X","F","O","E"],
+        ["T","R","A","M","S","S","V","A","C","U"]
+      ];
+      const ws2Words = ["DISSOLVE","MIXTURE","ROTATE","PULLEY","LARVA","ORBIT"];
+
+      function buildWordSearch2(){
+        const container = document.getElementById('wordsearch2Grid');
+        const size = ws2Grid.length;
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        container.style.gap = '2px';
+        container.style.maxWidth = (size*32)+'px';
+
+        const listEl = document.getElementById('wordsearch2List');
+        ws2Words.forEach(w=>{
+          const li = document.createElement('li');
+          li.id = `ws2word-${w}`;
+          li.textContent = w;
+          listEl.appendChild(li);
+        });
+
+        const cells = [];
+        for(let r=0;r<size;r++){
+          cells.push([]);
+          for(let c=0;c<size;c++){
+            const cell = document.createElement('div');
+            cell.textContent = ws2Grid[r][c];
+            cell.style.cssText = 'aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-weight:bold; border:1px solid #cbd5e1; border-radius:4px; background:white; cursor:pointer; user-select:none; font-size:.8em;';
+            cell.addEventListener('click', ()=> onWs2CellClick(r,c,cell));
+            container.appendChild(cell);
+            cells[r].push(cell);
+          }
+        }
+
+        const foundWords = new Set();
+        let firstSel = null;
+
+        function onWs2CellClick(r,c,cellEl){
+          if(!firstSel){
+            firstSel = {r,c,el:cellEl};
+            cellEl.style.background = '#fef9c3';
+            return;
+          }
+          const rDiff = r - firstSel.r, cDiff = c - firstSel.c;
+          const dr = Math.sign(rDiff), dc = Math.sign(cDiff);
+          let valid = (dr!==0 || dc!==0) && (rDiff===0 || cDiff===0 || Math.abs(rDiff)===Math.abs(cDiff));
+          let matchedWord = null;
+          let matchedCells = [];
+          if(valid){
+            const lineLen = Math.max(Math.abs(rDiff), Math.abs(cDiff)) + 1;
+            let letters = '';
+            for(let i=0;i<lineLen;i++){
+              const rr = firstSel.r + dr*i, cc = firstSel.c + dc*i;
+              letters += ws2Grid[rr][cc];
+              matchedCells.push([rr,cc]);
+            }
+            const rev = letters.split('').reverse().join('');
+            for(const w of ws2Words){
+              if(foundWords.has(w)) continue;
+              if(letters === w || rev === w){ matchedWord = w; break; }
+            }
+          }
+          const fb = document.getElementById('wordsearch2fb');
+          if(matchedWord){
+            foundWords.add(matchedWord);
+            matchedCells.forEach(([rr,cc])=>{
+              cells[rr][cc].style.background = '#bbf7d0';
+              cells[rr][cc].style.color = 'var(--green-dark)';
+            });
+            const li = document.getElementById(`ws2word-${matchedWord}`);
+            li.style.textDecoration = 'line-through';
+            li.style.opacity = '.5';
+            const check = document.createElement('span');
+            check.textContent = ' ✓';
+            check.setAttribute('aria-hidden','true');
+            li.appendChild(check);
+            firstSel.el.style.background = 'white';
+            firstSel = null;
+            if(foundWords.size === ws2Words.length){
+              total++; score++;
+              fb.textContent = "✅ Amazing — you found all the words!";
+              fb.className = "feedback correct";
+              updateScore();
+            } else {
+              fb.textContent = `Found ${foundWords.size} of ${ws2Words.length} words — keep going!`;
+              fb.className = "feedback";
+            }
+          } else {
+            firstSel.el.style.background = '#fecaca';
+            cellEl.style.background = '#fecaca';
+            const prevFirst = firstSel;
+            setTimeout(()=>{
+              prevFirst.el.style.background = 'white';
+              cellEl.style.background = 'white';
+            }, 400);
+            firstSel = null;
+          }
+        }
+      }
+      buildWordSearch2();
+    </script>
+  </div>
+
+</div>
+
 <div id="s6" class="section">
   <div class="card">
     <h3>📊 Your Progress</h3>
@@ -1786,6 +2655,11 @@ function updateCertName(){
       "Progress dashboard, certificate of achievement, celebration popups, text size controls, and automatic local saving",
       "Dyslexia-friendly font, colourblind-friendly ✓/✗ marks, and full keyboard support built in from day one",
       "Nothing is loaded from the internet once the page is open, and nothing is sent anywhere — everything stays on this device"
+    ],
+    "1.1": [
+      "New Science section: Earth & Space, Forces, Properties & Changes of Materials, Living Things & Habitats, and Animals Including Humans",
+      "New Games section: Sudoku (4×4 and 6×6, two puzzles each), a Mini Crossword plus a Challenge Crossword, and a Word Search plus a Challenge Word Search",
+      "Maths: added long multiplication, formal written division, prime/square/cube numbers, rounding, and more fractions and decimals practice"
     ]
   };
   function openWhatsNew(){
