@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Year Workbooks — Free UK Primary School Workbooks (Year 2–5)</title>
-<meta name="description" content="Free Year 2, 3, 4 and 5 workbooks for UK primary school children. Curriculum-based spelling, maths, grammar and reading practice — no account, no ads, nothing saved online.">
+<title>Year Workbooks — Free UK Primary School Workbooks (Year 2–6)</title>
+<meta name="description" content="Free Year 2, 3, 4, 5 and 6 workbooks for UK primary school children. Curriculum-based spelling, maths, grammar and reading practice — no account, no ads, nothing saved online.">
 <link rel="canonical" href="https://yearworkbooks.co.uk/">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Year Workbooks">
-<meta property="og:title" content="Year Workbooks — Free UK Primary School Workbooks (Year 2–5)">
-<meta property="og:description" content="Free Year 2, 3, 4 and 5 workbooks for UK primary school children. Curriculum-based spelling, maths, grammar and reading practice — no account, no ads, nothing saved online.">
+<meta property="og:title" content="Year Workbooks — Free UK Primary School Workbooks (Year 2–6)">
+<meta property="og:description" content="Free Year 2, 3, 4, 5 and 6 workbooks for UK primary school children. Curriculum-based spelling, maths, grammar and reading practice — no account, no ads, nothing saved online.">
 <meta property="og:url" content="https://yearworkbooks.co.uk/">
 <meta property="og:image" content="https://yearworkbooks.co.uk/assets/hero.jpg">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Year Workbooks — Free UK Primary School Workbooks (Year 2–5)">
-<meta name="twitter:description" content="Free Year 2, 3, 4 and 5 workbooks for UK primary school children. Curriculum-based spelling, maths, grammar and reading practice — no account, no ads, nothing saved online.">
+<meta name="twitter:title" content="Year Workbooks — Free UK Primary School Workbooks (Year 2–6)">
+<meta name="twitter:description" content="Free Year 2, 3, 4, 5 and 6 workbooks for UK primary school children. Curriculum-based spelling, maths, grammar and reading practice — no account, no ads, nothing saved online.">
 <meta name="twitter:image" content="https://yearworkbooks.co.uk/assets/hero.jpg">
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -64,6 +64,12 @@
       "position": 4,
       "name": "Year 5 Workbooks",
       "url": "https://year5.yearworkbooks.co.uk/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Year 6 Workbooks",
+      "url": "https://year6.yearworkbooks.co.uk/"
     }
   ]
 }
@@ -78,13 +84,13 @@ a{text-decoration:none;color:inherit}
 .hero-wrap{position:relative}
 .hero-cta{position:absolute;left:9.2%;top:72.2%;width:28%;height:9%;border-radius:999px;cursor:pointer;background:transparent;border:0}
 
-.hubs{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:6px 1.3% 28px}
+.hubs{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:22px 1.3% 28px}
 .year-card{
-  position:relative;display:block;min-width:0;border-radius:22px;overflow:hidden;
+  position:relative;display:block;min-width:0;border-radius:22px;
   box-shadow:0 12px 26px rgba(9,39,111,.16),0 3px 8px rgba(9,39,111,.08);
   transition:transform .18s ease,box-shadow .18s ease;
 }
-.year-card img{display:block;width:100%;height:auto}
+.year-card img{display:block;width:100%;height:auto;border-radius:22px}
 .year-card.live{cursor:pointer}
 .year-card.live:hover,.year-card.live:focus-visible{
   transform:translateY(-7px);
@@ -92,6 +98,12 @@ a{text-decoration:none;color:inherit}
 }
 .year-card.disabled{cursor:not-allowed}
 .year-card.disabled img{filter:saturate(.5) brightness(1.03);opacity:.82}
+.tag-badge{
+  position:absolute;top:-17px;right:16px;color:#fff;font-size:.62em;font-weight:bold;letter-spacing:.08em;
+  padding:5px 11px;border-radius:999px;border:2px solid #fff;box-shadow:0 3px 8px rgba(0,0,0,.25);
+}
+.tag-badge.updated{background:#f59e0b}
+.tag-badge.new{background:#e11d74}
 .soon-badge{
   position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:5px;
   background:rgba(9,39,111,.92);color:#fff;font-size:.72em;font-weight:bold;
@@ -138,7 +150,7 @@ footer .fbrand{color:#09276f;font-weight:900}
 <body>
 <main class="site">
   <section class="hero-wrap" aria-label="Year Workbooks introduction">
-    <h1 class="sr-only">Year Workbooks — Free UK Primary School Learning Hubs for Year 2, 3, 4 and 5</h1>
+    <h1 class="sr-only">Year Workbooks — Free UK Primary School Learning Hubs for Year 2, 3, 4, 5 and 6</h1>
     <img class="visual" src="assets/hero.jpg" width="1536" height="610" fetchpriority="high" alt="Year Workbooks — Learning is FUN! UK primary learning hubs">
     <a class="hero-cta" href="#hubs" aria-label="Explore the learning hubs"></a>
   </section>
@@ -154,12 +166,13 @@ footer .fbrand{color:#09276f;font-weight:900}
       <img src="assets/year4.jpg" width="769" height="512" alt="Year 4 Workbooks — available now">
     </a>
     <a class="year-card live" href="https://year5.yearworkbooks.co.uk/" aria-label="Start Year 5">
-      <img src="assets/year5.jpg" width="767" height="512" alt="Year 5 Workbooks — available now">
+      <img src="assets/year5.jpg" width="767" height="512" alt="Year 5 Workbooks — available now, recently updated">
+      <span class="tag-badge updated">UPDATED</span>
     </a>
-    <div class="year-card disabled" aria-label="Year 6 Coming Soon" role="button" tabindex="0">
-      <img src="assets/year6.jpg" width="769" height="512" loading="lazy" alt="Year 6 Workbooks — Coming Soon">
-      <span class="soon-badge">🔒 Coming Soon</span>
-    </div>
+    <a class="year-card live" href="https://year6.yearworkbooks.co.uk/" aria-label="Start Year 6">
+      <img src="assets/year6.jpg" width="769" height="512" alt="Year 6 Workbooks — new, available now">
+      <span class="tag-badge new">NEW</span>
+    </a>
   </section>
 
   <section class="story" aria-label="About this project">
