@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://year6.yearworkbooks.co.uk/sitemap.xml
