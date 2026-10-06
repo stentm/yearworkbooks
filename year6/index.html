@@ -1,0 +1,2929 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Year 6 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice</title>
+<meta name="description" content="Free Year 6 Learning Hub for UK primary school children: spelling, maths, grammar, reading, science and games practice aligned to the National Curriculum. No accounts, no ads, no tracking.">
+<link rel="canonical" href="https://year6.yearworkbooks.co.uk/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Year 6 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice">
+<meta property="og:description" content="Free Year 6 Learning Hub for UK primary school children: spelling, maths, grammar, reading, science and games practice aligned to the National Curriculum. No accounts, no ads, no tracking.">
+<meta property="og:url" content="https://year6.yearworkbooks.co.uk/">
+<meta property="og:image" content="https://year6.yearworkbooks.co.uk/banner.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Year 6 Learning Hub — Free Spelling, Maths, Grammar &amp; Reading Practice">
+<meta name="twitter:description" content="Free Year 6 Learning Hub for UK primary school children: spelling, maths, grammar, reading, science and games practice aligned to the National Curriculum.">
+<meta name="twitter:image" content="https://year6.yearworkbooks.co.uk/banner.jpg">
+<meta name="theme-color" content="#7c3aed">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<style>
+  @font-face{
+    font-family:"Lexend"; font-style:normal; font-weight:400 800; font-display:swap;
+    src:url("fonts/Lexend.woff2") format("woff2");
+  }
+  :root{
+    --blue:#2563eb; --blue-dark:#1d4ed8; --green:#16a34a; --green-dark:#15803d;
+    --red:#ef4444; --yellow:#facc15; --orange:#fb923c; --pink:#ec4899;
+    --teal:#0d9488; --teal-dark:#0f766e; --purple:#8b5cf6; --purple-dark:#7c3aed;
+    --bg:#f0fdfa; --card:#ffffff; --ink:#1f2937; --ink-soft:#475569;
+    --radius:18px; --radius-sm:12px;
+    --shadow:0 6px 18px rgba(31,41,55,.08);
+    --shadow-hover:0 10px 24px rgba(31,41,55,.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Lexend","Trebuchet MS",sans-serif;
+    background:
+      radial-gradient(circle at 8% 12%, rgba(13,148,136,.16) 0, transparent 40%),
+      radial-gradient(circle at 92% 18%, rgba(37,99,235,.14) 0, transparent 40%),
+      radial-gradient(circle at 15% 90%, rgba(250,204,21,.16) 0, transparent 40%),
+      radial-gradient(circle at 90% 85%, rgba(236,72,153,.12) 0, transparent 40%),
+      linear-gradient(160deg,#f0fdfa,#eaf3ff 55%,#fdf9f0 100%);
+    background-attachment:fixed;
+    margin:0; padding:0; color:var(--ink);
+    overflow-x:hidden;
+  }
+  header{
+    background: linear-gradient(120deg,var(--teal) 0%,var(--blue) 55%,var(--purple) 100%);
+    background-size:200% 200%;
+    animation:gradientShift 10s ease 3;
+    color:white; padding:34px 16px 30px; text-align:center;
+    box-shadow:0 6px 20px rgba(13,60,90,.25);
+    border-bottom-left-radius:28px; border-bottom-right-radius:28px;
+    position:relative; overflow:hidden;
+  }
+  @keyframes gradientShift{
+    0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;}
+  }
+  header h1{
+    margin:0; font-size:2em; text-shadow:0 3px 8px rgba(0,0,0,.2); letter-spacing:.5px;
+  }
+  header p{margin:8px 0 0; opacity:.95; font-size:1.05em;}
+  nav{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    padding:16px 12px; background:rgba(255,255,255,.85);
+    position:sticky; top:0; z-index:10;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+  }
+  nav button{
+    display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;
+    border:none; border-radius:999px; padding:12px 20px; min-height:48px; min-width:112px;
+    font-family:inherit; font-weight:bold; font-size:1em; color:white;
+    box-shadow:0 3px 8px rgba(31,41,55,.18); transition:.18s ease;
+  }
+  nav button .nav-icon{ font-size:1.3em; line-height:1; }
+  nav button:hover{ transform:translateY(-2px) scale(1.03); }
+  nav button.active{
+    transform:translateY(-1px) scale(1.05);
+    box-shadow:0 0 0 3px white, 0 0 0 6px rgba(31,41,55,.25), 0 6px 14px rgba(31,41,55,.3);
+  }
+  @media (max-width:600px){
+    nav button{ padding:9px 14px; min-width:90px; font-size:.85em; }
+  }
+  .section{display:none; animation:fade .35s ease; max-width:820px; margin:24px auto; padding:0 14px 90px;}
+  .section.active{display:block;}
+  @keyframes fade{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+  .card{
+    background:var(--card); border-radius:var(--radius); padding:20px 22px; margin-bottom:18px;
+    box-shadow:var(--shadow); border:2px solid #e0f2ea;
+    animation:popIn .3s ease;
+  }
+  @keyframes popIn{from{opacity:0; transform:scale(.97) translateY(6px);} to{opacity:1; transform:scale(1) translateY(0);}}
+  .card h3{
+    margin-top:0; color:var(--teal-dark); font-size:1.3em;
+    padding-bottom:10px; margin-bottom:14px; border-bottom:3px dashed #d3f3ec;
+  }
+  .card.subsection{display:none;}
+  .card.subsection.active{display:block;}
+  .subnav{
+    display:flex; flex-wrap:wrap; gap:9px; margin-bottom:20px;
+  }
+  .subnav button{
+    background:#f1f5f9; border:2px solid #e2e8f0; color:#475569;
+    border-radius:18px; padding:8px 16px; font-weight:bold; cursor:pointer;
+    font-family:inherit; font-size:.9em; transition:.18s ease;
+  }
+  .subnav button:hover{ transform:translateY(-2px); box-shadow:0 4px 10px rgba(100,116,139,.25); border-color:#cbd5e1; }
+  .subnav button.active{
+    background:linear-gradient(135deg,var(--teal),var(--blue)); color:white; border-color:transparent;
+    box-shadow:0 4px 10px rgba(37,99,235,.4);
+  }
+  .q{margin-bottom:16px; padding:12px 14px; border-radius:var(--radius-sm); background:#fbfdfd; border:1px solid #eef4f2;}
+  .q:hover{background:#f5fbfa;}
+  .q label{display:block; margin-bottom:8px; font-weight:bold;}
+  input[type=text]{
+    padding:9px 12px; border:2px solid #cbd5e1; border-radius:var(--radius-sm); font-size:1em;
+    font-family:inherit; width:220px; max-width:100%; transition:.15s;
+    background:white;
+  }
+  input[type=text]:focus, textarea:focus, select:focus{
+    outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(37,99,235,.2);
+  }
+  textarea{
+    width:100%; min-height:64px; padding:10px 12px; border:2px solid #cbd5e1;
+    border-radius:var(--radius-sm); font-family:inherit; font-size:1em; transition:.15s;
+  }
+  select{padding:7px 10px; border-radius:var(--radius-sm); border:2px solid #cbd5e1; font-family:inherit; background:white;}
+  .options label{
+    display:inline-block; font-weight:normal; margin-right:16px; cursor:pointer;
+    padding:4px 6px; border-radius:8px; transition:.15s;
+  }
+  .options label:hover{ background:#e6fffa; }
+  .feedback{margin-top:8px; font-weight:bold; min-height:20px; border-radius:10px;}
+  .feedback:not(:empty){padding:8px 12px; animation:pop .25s ease;}
+  @keyframes pop{0%{transform:scale(.85); opacity:0;} 60%{transform:scale(1.04);} 100%{transform:scale(1); opacity:1;}}
+  .correct{color:var(--green-dark); background:#eafff1; border:1.5px solid #bbf7d0;}
+  .incorrect{color:#9a5b00; background:#fff7ec; border:1.5px solid #fed7aa;}
+  .btn{
+    background:linear-gradient(135deg,var(--teal),var(--blue)); color:white; border:none;
+    border-radius:var(--radius-sm); padding:11px 20px; font-weight:bold; cursor:pointer; font-family:inherit;
+    font-size:1em; margin-top:8px; box-shadow:0 3px 8px rgba(37,99,235,.3); transition:.15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 6px 14px rgba(37,99,235,.4); }
+  .btn:active{ transform:translateY(0); box-shadow:0 2px 4px rgba(37,99,235,.3); }
+  .btn.reveal{background:linear-gradient(135deg,var(--yellow),var(--orange)); color:#5c3d00; box-shadow:0 3px 8px rgba(251,146,60,.35);}
+  .btn.small{padding:7px 14px; font-size:.85em; margin-top:4px;}
+  .score-bar{
+    position:fixed; bottom:0; left:0; width:100%; z-index:15; background:#fbfdf7;
+    padding:10px 18px; text-align:center; box-shadow:0 -4px 14px rgba(0,0,0,.1);
+    font-weight:bold; font-size:1.1em;
+  }
+  .score-track{
+    width:100%; max-width:480px; margin:8px auto 0; height:10px; background:#e5e7eb;
+    border-radius:20px; overflow:hidden;
+  }
+  .score-fill{
+    height:100%; width:0%; border-radius:20px;
+    background:linear-gradient(90deg,var(--green),var(--teal));
+    transition:width .4s ease;
+  }
+  .hint{font-weight:normal; color:var(--ink-soft); font-size:.9em;}
+  .answer-reveal{
+    display:none; margin-top:8px; background:#fff7e6; border-left:4px solid var(--yellow);
+    padding:10px 12px; border-radius:var(--radius-sm); animation:pop .25s ease;
+  }
+  .modal-overlay{
+    display:none; position:fixed; inset:0; background:rgba(15,41,45,.55);
+    z-index:100; align-items:center; justify-content:center; padding:20px;
+  }
+  .modal-overlay.active{display:flex;}
+  .modal-box{
+    background:var(--card); border-radius:var(--radius); padding:26px 24px; max-width:440px;
+    box-shadow:0 20px 50px rgba(0,0,0,.35); animation:popIn .3s ease; border:2px solid #e0f2ea;
+  }
+  .modal-box h3{margin-top:0; color:var(--teal-dark);}
+  .modal-box ul{padding-left:20px; line-height:1.7; margin-bottom:18px;}
+  html.text-large{ font-size:115%; }
+  html.text-xlarge{ font-size:130%; }
+  header.banner-header{
+    padding:0; text-align:center; overflow:hidden; background:#0d2b3a;
+    border-bottom-left-radius:28px; border-bottom-right-radius:28px;
+    box-shadow:0 6px 20px rgba(13,60,90,.25);
+  }
+  header.banner-header .banner-img{ display:block; width:100%; height:auto; }
+  header.banner-header .credit-line{
+    color:white; background:#0d2b3a; margin:0; padding:6px 10px; font-size:.7em; opacity:.85;
+  }
+  .whatsnew-btn{
+    background:none; border:none; color:white; font-family:inherit; font-size:1em;
+    text-decoration:underline; cursor:pointer; padding:0; opacity:.95;
+  }
+  .textsize-bar{
+    display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:6px;
+    padding:8px 12px; background:rgba(255,255,255,.75);
+  }
+  .text-size-btn{
+    background:#e6fffa; border:1.5px solid var(--teal); color:var(--teal-dark);
+    border-radius:8px; padding:4px 11px; font-weight:bold; cursor:pointer; font-family:inherit;
+    font-size:.8em; transition:.15s;
+  }
+  .text-size-btn.active{ background:linear-gradient(135deg,var(--teal),var(--blue)); color:white; border-color:transparent; }
+  .a11y-info{
+    position:relative; display:inline-block; margin-left:6px;
+    font-size:.8em; font-weight:bold; color:var(--purple-dark);
+    border-bottom:1px dotted var(--purple-dark); cursor:help;
+  }
+  .a11y-tooltip{
+    display:none; position:absolute; bottom:135%; left:50%; transform:translateX(-50%);
+    background:white; color:var(--ink); border:2px solid var(--purple); border-radius:10px;
+    padding:10px 14px; width:230px; text-align:left; font-weight:normal; font-size:1em;
+    box-shadow:0 8px 20px rgba(0,0,0,.18); z-index:20;
+  }
+  .a11y-tooltip:after{
+    content:""; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+    border:7px solid transparent; border-top-color:var(--purple);
+  }
+  .a11y-tooltip ul{ margin:6px 0 0; padding-left:18px; }
+  .a11y-info:hover .a11y-tooltip, .a11y-info:focus .a11y-tooltip{ display:block; }
+  .nav-badge{ margin-left:2px; font-size:.85em; }
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+    outline:3px solid var(--purple); outline-offset:2px;
+  }
+  @media print{
+    body *{ visibility:hidden; }
+    #certificateBox, #certificateBox *{ visibility:visible; }
+    #certificateBox{ position:absolute; top:40px; left:50%; transform:translateX(-50%); width:90%; max-width:700px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    @page{ size:A4; margin:20mm; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:0.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.001ms !important;
+    }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="banner-header">
+  <img class="banner-img" src="banner.jpg" alt="Year 6 Learning Hub — Spelling, Maths, Grammar, Reading, Science, Games">
+  <p class="credit-line">Made by @stentm · <span id="versionTag"></span> · <button class="whatsnew-btn" onclick="openWhatsNew()">What's new</button></p>
+</header>
+
+<div class="modal-overlay" id="welcomeModal">
+  <div class="modal-box" style="max-width:480px; text-align:center;">
+    <img src="welcome-kids.jpg" alt="" style="max-width:260px; width:100%; margin:0 auto 6px; display:block;">
+    <h3 style="border:none; margin-top:0;">Welcome to Year 6 Learning Hub! 👋</h3>
+    <p style="margin-top:0;">Spelling, Maths, Grammar, Reading, Science, and Games — a little practice every day!</p>
+    <label style="display:block; font-weight:bold; margin:14px 0 6px;">What's your name?</label>
+    <input type="text" id="welcomeNameInput" placeholder="Type your name here" style="width:80%; text-align:center; margin-bottom:14px;">
+    <button class="btn" onclick="closeWelcomeScreen()">Let's start! 🚀</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="whatsNewModal">
+  <div class="modal-box">
+    <h3>🎉 What's new!</h3>
+    <div id="whatsNewList" style="max-height:50vh; overflow-y:auto; text-align:left;"></div>
+    <button class="btn" onclick="closeWhatsNew()">Got it, let's start!</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="sectionCompleteModal">
+  <div class="modal-box" style="text-align:center;">
+    <p style="font-size:2.5em; margin:0 0 6px;">🎉🌟🎊</p>
+    <h3 style="border:none;">Well done!</h3>
+    <p id="sectionCompleteText" style="font-size:1.1em;"></p>
+    <button class="btn" onclick="closeSectionComplete()">Keep going!</button>
+  </div>
+</div>
+
+<nav id="nav"></nav>
+
+<div class="textsize-bar">
+  <span class="hint" style="margin-right:2px;">Text size:</span>
+  <button class="text-size-btn" id="textsize-normal" onclick="setTextSize('normal')">A</button>
+  <button class="text-size-btn" id="textsize-large" onclick="setTextSize('large')">A+</button>
+  <button class="text-size-btn" id="textsize-xlarge" onclick="setTextSize('xlarge')">A++</button>
+  <span class="a11y-info" tabindex="0">♿ Accessible design
+    <div class="a11y-tooltip">
+      <strong>This app supports:</strong>
+      <ul>
+        <li>Adjustable text size (A / A+ / A++)</li>
+        <li>Icons as well as colour for feedback (not colour alone)</li>
+        <li>Dyslexia-friendly Lexend font, chosen for young readers</li>
+        <li>Softer, encouraging colours for "try again" feedback</li>
+        <li>Stronger text contrast throughout</li>
+        <li>Your device's reduced-motion setting, and animations that settle down on their own</li>
+      </ul>
+    </div>
+  </span>
+  <span class="a11y-info" tabindex="0">🔒 Privacy-friendly
+    <div class="a11y-tooltip">
+      <strong>This app:</strong>
+      <ul>
+        <li>Has no account, no sign-up, no login</li>
+        <li>Does not track your child or use analytics/ads</li>
+        <li>Saves progress only on this device (never sent anywhere)</li>
+        <li>Works fully offline once loaded — no external requests</li>
+      </ul>
+      <span class="hint">See the Parents tab for the full plain-English notice.</span>
+    </div>
+  </span>
+</div>
+
+<div class="score-bar">
+  <span id="scoreBar">Score: 0 / 0 ✅</span>
+  <div class="score-track"><div class="score-fill" id="scoreFill"></div></div>
+  <div style="margin-top:6px;"><button onclick="resetProgress()" style="margin-top:0; background:none; border:none; color:var(--ink-soft); font-family:inherit; font-size:.75em; text-decoration:underline; cursor:pointer; padding:4px;">Start over</button></div>
+</div>
+
+<script>
+const APP_VERSION = "1.1";
+document.getElementById('versionTag').textContent = "v" + APP_VERSION;
+
+let score = 0, total = 0;
+
+function updateScore(){
+  document.getElementById('scoreBar').textContent = `Score: ${score} / ${total} ✅`;
+  const pct = total > 0 ? Math.round((score/total)*100) : 0;
+  document.getElementById('scoreFill').style.width = pct + '%';
+  saveProgress();
+  renderProgressDashboard();
+}
+
+// ---------- Local progress saving ----------
+function saveProgress(){
+  const state = { score, total, inputs:{}, radios:{}, selects:{}, feedback:{}, shaded:{} };
+  document.querySelectorAll('input[type=text], textarea').forEach(el=>{ if(el.id) state.inputs[el.id] = el.value; });
+  document.querySelectorAll('input[type=radio]:checked').forEach(el=>{ state.radios[el.name] = el.value; });
+  document.querySelectorAll('select[id]').forEach(el=>{ state.selects[el.id] = {value: el.value, border: el.style.borderColor}; });
+  document.querySelectorAll('.feedback[id]').forEach(el=>{ if(el.textContent) state.feedback[el.id] = {text: el.textContent, cls: el.className}; });
+  document.querySelectorAll('[data-shade-id]').forEach(el=>{ state.shaded[el.dataset.shadeId] = el.dataset.shaded; });
+  localStorage.setItem('y6Progress', JSON.stringify(state));
+}
+
+function restoreProgress(){
+  const raw = localStorage.getItem('y6Progress');
+  if(raw){
+    let state = null;
+    try { state = JSON.parse(raw); } catch(e){ state = null; }
+    if(state){
+      score = state.score || 0;
+      total = state.total || 0;
+      Object.keys(state.inputs || {}).forEach(id=>{
+        const el = document.getElementById(id);
+        if(el) el.value = state.inputs[id];
+      });
+      Object.keys(state.radios || {}).forEach(name=>{
+        document.querySelectorAll(`input[name="${name}"]`).forEach(el=>{ el.checked = (el.value === state.radios[name]); });
+      });
+      Object.keys(state.selects || {}).forEach(id=>{
+        const el = document.getElementById(id);
+        if(el && state.selects[id]){ el.value = state.selects[id].value; el.style.borderColor = state.selects[id].border || ''; }
+      });
+      Object.keys(state.feedback || {}).forEach(id=>{
+        const el = document.getElementById(id);
+        if(el){ el.textContent = state.feedback[id].text; el.className = state.feedback[id].cls; }
+      });
+      Object.keys(state.shaded || {}).forEach(shadeId=>{
+        const el = document.querySelector(`[data-shade-id="${shadeId}"]`);
+        if(el && state.shaded[shadeId] === "1"){
+          el.dataset.shaded = "1";
+          el.style.background = "linear-gradient(135deg,#0d9488,#2563eb)";
+          el.style.transform = "scale(1.05)";
+        }
+      });
+    }
+  }
+  initSplashTracking();
+  updateScore();
+}
+
+function resetProgress(){
+  if(confirm("Do you really want to delete all progress saved on this device?")){
+    localStorage.removeItem('y6Progress');
+    localStorage.removeItem('y6SplashShown');
+    localStorage.removeItem('y6SplashInit');
+    location.reload();
+  }
+}
+
+// ---------- Text size ----------
+function setTextSize(size){
+  document.documentElement.classList.remove('text-large','text-xlarge');
+  if(size === 'large') document.documentElement.classList.add('text-large');
+  if(size === 'xlarge') document.documentElement.classList.add('text-xlarge');
+  localStorage.setItem('y6TextSize', size);
+  document.querySelectorAll('.text-size-btn').forEach(b=>b.classList.remove('active'));
+  const btn = document.getElementById('textsize-' + size);
+  if(btn) btn.classList.add('active');
+}
+function initTextSize(){
+  setTextSize(localStorage.getItem('y6TextSize') || 'normal');
+}
+
+function checkText(inputId, correctAnswers, fbId, caseSensitive=false){
+  const val = document.getElementById(inputId).value.trim();
+  const norm = s => caseSensitive ? s.trim() : s.trim().toLowerCase();
+  const answers = Array.isArray(correctAnswers) ? correctAnswers : [correctAnswers];
+  const ok = answers.some(a => norm(a) === norm(val));
+  const fb = document.getElementById(fbId);
+  total++;
+  if(ok){
+    score++;
+    fb.textContent = "✅ Correct! Well done!";
+    fb.className = "feedback correct";
+  } else {
+    fb.textContent = "❌ Not quite — try again! (Hint: check the answer key)";
+    fb.className = "feedback incorrect";
+  }
+  updateScore();
+}
+
+function checkTextLoose(inputId, correctAnswer, fbId){
+  const norm = s => s.trim().replace(/\s+/g,' ').toLowerCase();
+  const val = norm(document.getElementById(inputId).value);
+  const ans = norm(correctAnswer);
+  const fb = document.getElementById(fbId);
+  total++;
+  if(val === ans){
+    score++;
+    fb.textContent = "✅ Perfect! Words and punctuation match!";
+    fb.className = "feedback correct";
+  } else {
+    fb.textContent = "❌ Not quite right — check the words and punctuation carefully, or reveal the answer below.";
+    fb.className = "feedback incorrect";
+  }
+  updateScore();
+}
+
+function diffWords(userText, correctText){
+  const splitWords = t => t.trim().split(/\s+/).filter(w=>w.length>0);
+  const userWords = splitWords(userText);
+  const correctWords = splitWords(correctText);
+  const len = Math.max(userWords.length, correctWords.length);
+  let html = '';
+  for(let i=0;i<len;i++){
+    const uw = userWords[i] || '';
+    const cw = correctWords[i] || '';
+    if(uw.length>0 && uw.toLowerCase() === cw.toLowerCase()){
+      html += `<span style="color:var(--green-dark); font-weight:bold;">${escapeHtml(uw)}</span> `;
+    } else if(uw.length>0){
+      html += `<span style="color:#b91c1c; text-decoration:line-through;">${escapeHtml(uw)}</span><span style="color:var(--ink-soft);"> (${escapeHtml(cw)})</span> `;
+    } else {
+      html += `<span style="color:var(--ink-soft); font-style:italic;">(missing: ${escapeHtml(cw)})</span> `;
+    }
+  }
+  return html;
+}
+
+function checkTextLooseDiff(inputId, correctAnswer, fbId, diffId){
+  const val = document.getElementById(inputId).value;
+  checkTextLoose(inputId, correctAnswer, fbId);
+  const diffEl = document.getElementById(diffId);
+  if(diffEl) diffEl.innerHTML = diffWords(val, correctAnswer);
+}
+
+function checkContainsWord(inputId, wordList, fbId){
+  const val = document.getElementById(inputId).value.trim().toLowerCase();
+  const fb = document.getElementById(fbId);
+  total++;
+  const matches = wordList.some(w => new RegExp(`\\b${w}\\b`).test(val));
+  if(matches){
+    score++; fb.textContent = "✅ Correct!"; fb.className = "feedback correct";
+  } else {
+    fb.textContent = `❌ Not quite — think again, or check the hint.`;
+    fb.className = "feedback incorrect";
+  }
+  updateScore();
+}
+
+function hasDoubleSpace(s){ return /  +/.test(s); }
+function hasRepeatedWord(s){ return /\b(\w+)\s+\1\b/i.test(s); }
+
+function checkRadio(name, correct, fbId){
+  const sel = document.querySelector(`input[name="${name}"]:checked`);
+  const fb = document.getElementById(fbId);
+  total++;
+  if(sel && sel.value.toLowerCase() === correct.toLowerCase()){
+    score++;
+    fb.textContent = "✅ Correct!";
+    fb.className = "feedback correct";
+  } else {
+    fb.textContent = `❌ Not quite. The correct answer is "${correct}".`;
+    fb.className = "feedback incorrect";
+  }
+  updateScore();
+}
+
+function checkSelects(ids, correctMap, fbId){
+  let allOk = true;
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if(el.value !== correctMap[id]) allOk = false;
+    el.style.borderColor = el.value === correctMap[id] ? "var(--green)" : "var(--red)";
+  });
+  const fb = document.getElementById(fbId);
+  total++;
+  if(allOk){ score++; fb.textContent="✅ All correct!"; fb.className="feedback correct"; }
+  else{ fb.textContent="❌ Some are wrong — look at the coloured boxes and try again."; fb.className="feedback incorrect"; }
+  updateScore();
+}
+
+function reveal(id){
+  document.getElementById(id).style.display = "block";
+}
+
+function speakText(text){
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+    const clean = text.replace(/_+/g, ' ').replace(/\s+/g, ' ').trim();
+    const utter = new SpeechSynthesisUtterance(clean);
+    utter.lang = 'en-GB';
+    utter.rate = 0.85;
+    window.speechSynthesis.speak(utter);
+  } else {
+    alert("Sorry, this browser can't read text aloud. Ask an adult to read it instead, or use the reveal button.");
+  }
+}
+
+function peekWord(id, word, duration=2500){
+  const el = document.getElementById(id);
+  el.style.visibility = "visible";
+  clearTimeout(el._hideTimer);
+  el._hideTimer = setTimeout(()=>{ el.style.visibility = "hidden"; }, duration);
+  speakText(word);
+}
+
+// ---------- Section navigation ----------
+const sections = [
+  {id:"s1", icon:"✏️", label:"Spelling", color:"var(--purple)"},
+  {id:"s2", icon:"🔢", label:"Maths", color:"var(--blue)"},
+  {id:"s3", icon:"📖", label:"Grammar", color:"var(--green)"},
+  {id:"s4", icon:"🌍", label:"Reading", color:"var(--teal)"},
+  {id:"s7", icon:"🔬", label:"Science", color:"var(--pink)"},
+  {id:"s8", icon:"🎮", label:"Games", color:"var(--orange)"},
+  {id:"s6", icon:"📊", label:"Progress", color:"var(--teal-dark)"},
+  {id:"s5", icon:"💬", label:"Parents", color:"var(--purple-dark)"},
+];
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+const nav = document.getElementById('nav');
+sections.forEach((s,i)=>{
+  const b = document.createElement('button');
+  b.style.background = s.color;
+  b.innerHTML = `<span class="nav-icon">${s.icon}</span><span>${s.label}</span><span class="nav-badge" id="navbadge-${s.id}" aria-hidden="true"></span>`;
+  b.onclick = ()=> showSection(s.id, b);
+  if(i===0) b.classList.add('active');
+  nav.appendChild(b);
+});
+function updateNavBadges(){
+  sections.forEach(s=>{
+    if(s.id === 's5' || s.id === 's6') return;
+    const subs = computeSectionProgress(s.id);
+    const sectionTotal = subs.reduce((a,b)=>a+b.total,0);
+    const sectionDone = subs.reduce((a,b)=>a+b.done,0);
+    const badge = document.getElementById(`navbadge-${s.id}`);
+    if(badge) badge.textContent = (sectionTotal>0 && sectionDone===sectionTotal) ? '✓' : '';
+  });
+}
+
+// ---------- Gentle feedback sounds ----------
+function playTone(freq, duration=150){
+  try{
+    const ctx = playTone._ctx || (playTone._ctx = new (window.AudioContext||window.webkitAudioContext)());
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    osc.type = 'sine'; osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.07, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration/1000);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(); osc.stop(ctx.currentTime + duration/1000);
+  }catch(e){}
+}
+function playFeedbackSound(ok){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(ok){ playTone(660,120); setTimeout(()=>playTone(880,150),100); }
+  else { playTone(220,180); }
+}
+function watchFeedback(el){
+  new MutationObserver(()=>{
+    if(el.classList.contains('correct')) playFeedbackSound(true);
+    else if(el.classList.contains('incorrect')) playFeedbackSound(false);
+  }).observe(el, {attributes:true, attributeFilter:['class']});
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.feedback').forEach(watchFeedback);
+  document.querySelectorAll('input[type=text], textarea').forEach(el=> el.setAttribute('spellcheck','true'));
+});
+
+// ---------- Enter key submits the nearest Check button ----------
+document.addEventListener('keydown', function(e){
+  if(e.key !== 'Enter') return;
+  const el = e.target;
+  const isText = el.tagName === 'INPUT' && el.type === 'text';
+  const isTextarea = el.tagName === 'TEXTAREA';
+  if(!isText && !isTextarea) return;
+  if(isTextarea && !(e.ctrlKey || e.metaKey)) return;
+  const container = el.closest('.q') || el.parentElement;
+  if(!container) return;
+  const candidate = [...container.querySelectorAll('button')].find(b=>{
+    if(b.classList.contains('reveal')) return false;
+    const oc = (b.getAttribute('onclick')||'').toLowerCase();
+    if(oc.startsWith('speaktext')) return false;
+    if(oc.startsWith('peekword')) return false;
+    return true;
+  });
+  if(candidate){ e.preventDefault(); candidate.click(); }
+});
+
+function scrollToNav(){
+  const nav = document.getElementById('nav');
+  const y = nav.getBoundingClientRect().top + window.scrollY;
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(window.scrollY > y){
+    window.scrollTo({top: y, behavior: reduceMotion ? 'auto' : 'smooth'});
+  }
+}
+
+function showSection(id, btn){
+  document.querySelectorAll('.section').forEach(el=>el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  scrollToNav();
+}
+
+function showSub(sectionId, cardId, btn){
+  document.querySelectorAll(`#${sectionId} .card.subsection`).forEach(c=>c.classList.remove('active'));
+  document.getElementById(cardId).classList.add('active');
+  document.querySelectorAll(`#${sectionId} .subnav button`).forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  scrollToNav();
+}
+
+// ---------- Progress dashboard, celebration splash & certificate ----------
+function computeSectionProgress(sectionId){
+  const cards = document.querySelectorAll(`#${sectionId} .card.subsection`);
+  return [...cards].map(card=>{
+    const label = card.querySelector('h3')?.textContent || card.id;
+    const fbs = card.querySelectorAll('.feedback[id]');
+    const totalQ = fbs.length;
+    const doneQ = [...fbs].filter(f=>f.classList.contains('correct')).length;
+    return {id: card.id, label, done: doneQ, total: totalQ};
+  });
+}
+
+function initSplashTracking(){
+  if(localStorage.getItem('y6SplashInit')) return;
+  const shown = new Set();
+  sections.forEach(s=>{
+    if(s.id === 's5' || s.id === 's6') return;
+    computeSectionProgress(s.id).forEach(sub=>{
+      if(sub.total > 0 && sub.done === sub.total) shown.add(sub.id);
+    });
+  });
+  localStorage.setItem('y6SplashShown', JSON.stringify([...shown]));
+  localStorage.setItem('y6SplashInit', '1');
+}
+
+function showSectionComplete(label){
+  const name = (localStorage.getItem('y6CertName') || '').trim();
+  const greeting = name ? `Well done, ${name}! ` : '';
+  document.getElementById('sectionCompleteText').textContent = `${greeting}You finished "${label}" — awesome work!`;
+  document.getElementById('sectionCompleteModal').classList.add('active');
+}
+function closeSectionComplete(){
+  document.getElementById('sectionCompleteModal').classList.remove('active');
+}
+
+function renderProgressDashboard(){
+  const container = document.getElementById('progressDashboard');
+  if(!container) return;
+  const shown = new Set(JSON.parse(localStorage.getItem('y6SplashShown') || '[]'));
+  let newlyCompleted = null;
+  let html = '';
+  let grandDone = 0, grandTotal = 0;
+  sections.forEach(s=>{
+    if(s.id === 's5' || s.id === 's6') return;
+    const subs = computeSectionProgress(s.id);
+    const sectionTotal = subs.reduce((a,b)=>a+b.total,0);
+    const sectionDone = subs.reduce((a,b)=>a+b.done,0);
+    grandDone += sectionDone; grandTotal += sectionTotal;
+    subs.forEach(sub=>{
+      if(sub.total > 0 && sub.done === sub.total && !shown.has(sub.id)){
+        shown.add(sub.id);
+        if(!newlyCompleted) newlyCompleted = sub.label;
+      }
+    });
+    const pct = sectionTotal ? Math.round(sectionDone/sectionTotal*100) : 0;
+    html += `<div class="q" style="background:#f8fafc;">
+      <label style="display:flex; justify-content:space-between; margin-bottom:6px;"><span>${s.label}</span><span>${sectionDone}/${sectionTotal}</span></label>
+      <div class="score-track"><div class="score-fill" style="width:${pct}%"></div></div>
+      <div style="margin-top:8px;">${subs.map(sub=>`<div style="display:flex; justify-content:space-between; gap:8px; font-size:.85em; color:var(--ink-soft); padding:2px 4px;"><span style="word-break:break-word;">${escapeHtml(sub.label)}</span><span style="white-space:nowrap;">${sub.done}/${sub.total}</span></div>`).join('')}</div>
+    </div>`;
+  });
+  container.innerHTML = html;
+  updateNavBadges();
+  localStorage.setItem('y6SplashShown', JSON.stringify([...shown]));
+  if(newlyCompleted && localStorage.getItem('y6SplashInit')){
+    showSectionComplete(newlyCompleted);
+  }
+
+  const certCard = document.getElementById('certificateCard');
+  if(certCard){
+    if(grandTotal > 0 && grandDone === grandTotal){
+      certCard.style.display = 'block';
+      document.getElementById('certDate').textContent = "Completed on " + new Date().toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+    } else {
+      certCard.style.display = 'none';
+    }
+  }
+}
+
+function initCertName(){
+  const saved = localStorage.getItem('y6CertName') || '';
+  const input = document.getElementById('certNameInput');
+  const nameEl = document.getElementById('certName');
+  if(input) input.value = saved;
+  if(nameEl) nameEl.textContent = saved || '___________';
+}
+function updateCertName(){
+  const val = document.getElementById('certNameInput').value.trim();
+  localStorage.setItem('y6CertName', val);
+  document.getElementById('certName').textContent = val || '___________';
+}
+</script>
+
+<div id="s1" class="section active">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s1','card-1a', this)">📝 Word List</button>
+    <button onclick="showSub('s1','card-1b', this)">🎭 -cial / -tial</button>
+    <button onclick="showSub('s1','card-1c', this)">🔄 -ant/-ance &amp; -ent/-ence</button>
+    <button onclick="showSub('s1','card-1d', this)">🔀 Homophones</button>
+    <button onclick="showSub('s1','card-1e', this)">➖ Hyphens for Clarity</button>
+    <button onclick="showSub('s1','card-1f', this)">🎧 Dictation</button>
+  </div>
+
+  <div class="card subsection active" id="card-1a">
+    <h3>Year 6 Word List</h3>
+    <p class="hint">Press "👁️ Show word" to peek and hear it, then cover it up and write it from memory — that's how real spellers practise!</p>
+    <div class="q" style="background:#f8fafc; display:flex; align-items:center; gap:10px;">
+      <span style="font-weight:bold; white-space:nowrap;">Progress:</span>
+      <div class="score-track" style="margin:0; flex:1;"><div class="score-fill" id="wordListProgressFill"></div></div>
+      <span id="wordListProgressText" style="font-weight:bold; white-space:nowrap; font-size:.9em;"></span>
+    </div>
+    <div id="wordChecklist"></div>
+    <script>
+      const words1a = ["definite","desperate","determined","develop","dictionary","disastrous","embarrass",
+        "environment","equipment","especially","exaggerate","excellent","existence","explanation","familiar",
+        "foreign","forty","frequently","government","guarantee"];
+      const wc = document.getElementById('wordChecklist');
+      words1a.forEach((w,i)=>{
+        const div = document.createElement('div');
+        div.className = "q";
+        div.innerHTML = `
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:6px;">
+            <button class="btn small" onclick="peekWord('word1a-${i}','${w}')">👁️ Show word</button>
+            <span id="word1a-${i}" style="visibility:hidden; font-weight:bold; font-size:1.2em; color:var(--blue-dark,#1d4ed8); background:linear-gradient(135deg,#e0f2ea,#e0ecff); padding:5px 14px; border-radius:12px; border:2px solid #bfe3d6;">${w}</span>
+          </div>
+          <input type="text" id="w1a-${i}" placeholder="type it 3 times, separated by commas" style="width:280px;">
+          <button class="btn small" onclick="checkRepeat('w1a-${i}','${w}','w1afb-${i}')">Check</button>
+          <div class="feedback" id="w1afb-${i}"></div>
+          <input type="text" id="w1as-${i}" placeholder="use it in a sentence" spellcheck="true" style="width:100%; margin-top:4px;">
+          <button class="btn small" onclick="checkSentenceWord('w1as-${i}','${w}','w1asfb-${i}')">Check sentence</button>
+          <div class="feedback" id="w1asfb-${i}"></div>
+        `;
+        wc.appendChild(div);
+      });
+      function updateWordListProgress(){
+        const fill = document.getElementById('wordListProgressFill');
+        const text = document.getElementById('wordListProgressText');
+        if(!fill) return;
+        const totalItems = words1a.length * 2;
+        let done = 0;
+        words1a.forEach((w,i)=>{
+          if(document.getElementById(`w1afb-${i}`).textContent.trim()) done++;
+          if(document.getElementById(`w1asfb-${i}`).textContent.trim()) done++;
+        });
+        fill.style.width = Math.round(done/totalItems*100) + '%';
+        text.textContent = `${done}/${totalItems}`;
+      }
+      function checkSentenceWord(inputId, word, fbId){
+        const val = document.getElementById(inputId).value.trim();
+        const fb = document.getElementById(fbId);
+        total++;
+        const hasWord = new RegExp(`\\b${word}\\b`, 'i').test(val);
+        const startsCapital = /^[A-Z]/.test(val);
+        const endsPunct = /[.!?]$/.test(val);
+        const enoughWords = val.split(/\s+/).filter(w=>w.length>0).length >= 3;
+        const noDoubleSpace = !hasDoubleSpace(val);
+        const noRepeatedWord = !hasRepeatedWord(val);
+        if(hasWord && startsCapital && endsPunct && enoughWords && noDoubleSpace && noRepeatedWord){
+          score++; fb.textContent="✅ Great sentence!"; fb.className="feedback correct";
+        } else {
+          const missing = [];
+          if(!hasWord) missing.push(`include the word "${word}"`);
+          if(!startsCapital) missing.push("start with a capital letter");
+          if(!endsPunct) missing.push("end with . ! or ?");
+          if(!enoughWords) missing.push("be at least 3 words long");
+          if(!noDoubleSpace) missing.push("not have double spaces");
+          if(!noRepeatedWord) missing.push("not repeat the same word twice in a row");
+          fb.textContent = `❌ Your sentence should ${missing.join(", ")}.`;
+          fb.className = "feedback incorrect";
+        }
+        updateScore();
+        updateWordListProgress();
+      }
+      function checkRepeat(inputId, word, fbId){
+        const raw = document.getElementById(inputId).value.trim();
+        const parts = raw.split(/[,\n]+/).map(p=>p.trim().toLowerCase()).filter(p=>p.length>0);
+        const fb = document.getElementById(fbId);
+        total++;
+        if(parts.length >= 3 && parts.slice(0,3).every(p=>p === word.toLowerCase())){
+          score++; fb.textContent="✅ Well done!"; fb.className="feedback correct";
+        } else {
+          fb.textContent=`❌ Type "${word}" three times, separated by commas.`;
+          fb.className="feedback incorrect";
+        }
+        updateScore();
+        updateWordListProgress();
+      }
+      updateWordListProgress();
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-1b">
+    <h3>Words ending in -cial or -tial</h3>
+    <p class="hint">Complete each word with the correct ending: -cial or -tial. Tip: after a vowel it's usually -cial (official); after a consonant it's usually -tial (essential) — but always check if you're not sure!</p>
+    <div id="cialQs"></div>
+    <script>
+      const cial = [
+        {start:"offi", end:"cial", ans:"official"}, {start:"spe", end:"cial", ans:"special"},
+        {start:"artifi", end:"cial", ans:"artificial"}, {start:"cru", end:"cial", ans:"crucial"},
+        {start:"finan", end:"cial", ans:"financial"}, {start:"essen", end:"tial", ans:"essential"},
+        {start:"poten", end:"tial", ans:"potential"}, {start:"commer", end:"cial", ans:"commercial"}
+      ];
+      const cialq = document.getElementById('cialQs');
+      cial.forEach((c,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${c.start}___ = <input type="text" id="cial-${i}" style="width:140px" placeholder="-cial or -tial"></label>
+          <button class="btn small" onclick="checkText('cial-${i}','${c.ans}','cialfb-${i}')">Check</button>
+          <div class="feedback" id="cialfb-${i}"></div>`;
+        cialq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-1c">
+    <h3>Suffixes: -ant/-ance/-ancy and -ent/-ence/-ency</h3>
+    <p class="hint">Add the suffix shown to build a new word from the base word.</p>
+    <div id="antQs"></div>
+    <script>
+      const antSuf = [
+        {base:"observe", suffix:"-ant (adjective)", ans:"observant"},
+        {base:"observe", suffix:"-ance (noun)", ans:"observance"},
+        {base:"expect", suffix:"-ant (adjective)", ans:"expectant"},
+        {base:"expect", suffix:"-ancy (noun)", ans:"expectancy"},
+        {base:"hesitate", suffix:"-ant (adjective)", ans:"hesitant"},
+        {base:"hesitate", suffix:"-ancy (noun)", ans:"hesitancy"},
+        {base:"tolerate", suffix:"-ant (adjective)", ans:"tolerant"},
+        {base:"tolerate", suffix:"-ance (noun)", ans:"tolerance"},
+        {base:"confident", suffix:"-ce (noun)", ans:"confidence"},
+        {base:"urgent", suffix:"-cy (noun)", ans:"urgency"},
+        {base:"frequent", suffix:"-cy (noun)", ans:"frequency"},
+        {base:"obedient", suffix:"-ce (noun)", ans:"obedience"}
+      ];
+      const asq = document.getElementById('antQs');
+      antSuf.forEach((v,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${v.base} + ${v.suffix} → <input type="text" id="ant-${i}" style="width:160px" placeholder="new word"></label>
+          <button class="btn small" onclick="checkText('ant-${i}','${v.ans}','antfb-${i}')">Check</button>
+          <div class="feedback" id="antfb-${i}"></div>`;
+        asq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-1d">
+    <h3>Homophones &amp; Near-Homophones</h3>
+    <p class="hint">Choose the word that correctly completes each sentence.</p>
+    <div class="q">
+      <label>1. She said the poem out ___ to the whole class.</label>
+      <div class="options">
+        <label><input type="radio" name="ho1" value="aloud"> aloud</label>
+        <label><input type="radio" name="ho1" value="allowed"> allowed</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho1','aloud','fbho1')">Check</button>
+      <div class="feedback" id="fbho1"></div>
+    </div>
+    <div class="q">
+      <label>2. Visitors are not ___ to touch the museum exhibits.</label>
+      <div class="options">
+        <label><input type="radio" name="ho2" value="aloud"> aloud</label>
+        <label><input type="radio" name="ho2" value="allowed"> allowed</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho2','allowed','fbho2')">Check</button>
+      <div class="feedback" id="fbho2"></div>
+    </div>
+    <div class="q">
+      <label>3. The bride's father walked her to the ___ for the ceremony.</label>
+      <div class="options">
+        <label><input type="radio" name="ho3" value="altar"> altar</label>
+        <label><input type="radio" name="ho3" value="alter"> alter</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho3','altar','fbho3')">Check</button>
+      <div class="feedback" id="fbho3"></div>
+    </div>
+    <div class="q">
+      <label>4. The tailor had to ___ the trousers so they would fit.</label>
+      <div class="options">
+        <label><input type="radio" name="ho4" value="altar"> altar</label>
+        <label><input type="radio" name="ho4" value="alter"> alter</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho4','alter','fbho4')">Check</button>
+      <div class="feedback" id="fbho4"></div>
+    </div>
+    <div class="q">
+      <label>5. The climbers began their final ___ towards the summit at dawn.</label>
+      <div class="options">
+        <label><input type="radio" name="ho5" value="ascent"> ascent</label>
+        <label><input type="radio" name="ho5" value="assent"> assent</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho5','ascent','fbho5')">Check</button>
+      <div class="feedback" id="fbho5"></div>
+    </div>
+    <div class="q">
+      <label>6. The groom wore a ___ suit with a pale blue tie.</label>
+      <div class="options">
+        <label><input type="radio" name="ho6" value="bridal"> bridal</label>
+        <label><input type="radio" name="ho6" value="bridle"> bridle</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho6','bridal','fbho6')">Check</button>
+      <div class="feedback" id="fbho6"></div>
+    </div>
+    <div class="q">
+      <label>7. The rider fastened the ___ onto the horse before the ride.</label>
+      <div class="options">
+        <label><input type="radio" name="ho7" value="bridal"> bridal</label>
+        <label><input type="radio" name="ho7" value="bridle"> bridle</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho7','bridle','fbho7')">Check</button>
+      <div class="feedback" id="fbho7"></div>
+    </div>
+    <div class="q">
+      <label>8. I had toast and a bowl of ___ for breakfast.</label>
+      <div class="options">
+        <label><input type="radio" name="ho8" value="cereal"> cereal</label>
+        <label><input type="radio" name="ho8" value="serial"> serial</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho8','cereal','fbho8')">Check</button>
+      <div class="feedback" id="fbho8"></div>
+    </div>
+    <div class="q">
+      <label>9. The TV drama was shown as a ten-part ___.</label>
+      <div class="options">
+        <label><input type="radio" name="ho9" value="cereal"> cereal</label>
+        <label><input type="radio" name="ho9" value="serial"> serial</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho9','serial','fbho9')">Check</button>
+      <div class="feedback" id="fbho9"></div>
+    </div>
+    <div class="q">
+      <label>10. There was a sharp ___ into a life of crime for the character in the film.</label>
+      <div class="options">
+        <label><input type="radio" name="ho10" value="descent"> descent</label>
+        <label><input type="radio" name="ho10" value="dissent"> dissent</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho10','descent','fbho10')">Check</button>
+      <div class="feedback" id="fbho10"></div>
+    </div>
+    <div class="q">
+      <label>11. Several council members voiced their ___ about the new plan.</label>
+      <div class="options">
+        <label><input type="radio" name="ho11" value="descent"> descent</label>
+        <label><input type="radio" name="ho11" value="dissent"> dissent</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho11','dissent','fbho11')">Check</button>
+      <div class="feedback" id="fbho11"></div>
+    </div>
+    <div class="q">
+      <label>12. The company's ___s this year were much higher than expected.</label>
+      <div class="options">
+        <label><input type="radio" name="ho12" value="profits"> profits</label>
+        <label><input type="radio" name="ho12" value="prophets"> prophets</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho12','profits','fbho12')">Check</button>
+      <div class="feedback" id="fbho12"></div>
+    </div>
+    <div class="q">
+      <label>13. The travellers were exhausted and ___ after the long hike.</label>
+      <div class="options">
+        <label><input type="radio" name="ho13" value="wary"> wary</label>
+        <label><input type="radio" name="ho13" value="weary"> weary</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho13','weary','fbho13')">Check</button>
+      <div class="feedback" id="fbho13"></div>
+    </div>
+    <div class="q">
+      <label>14. The cat stayed ___ of the noisy vacuum cleaner.</label>
+      <div class="options">
+        <label><input type="radio" name="ho14" value="wary"> wary</label>
+        <label><input type="radio" name="ho14" value="weary"> weary</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho14','wary','fbho14')">Check</button>
+      <div class="feedback" id="fbho14"></div>
+    </div>
+    <div class="q">
+      <label>15. The knight vowed to ___ the treasure would never be stolen.</label>
+      <div class="options">
+        <label><input type="radio" name="ho15" value="steel"> steel</label>
+        <label><input type="radio" name="ho15" value="steal"> steal</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho15','steal','fbho15')">Check</button>
+      <div class="feedback" id="fbho15"></div>
+    </div>
+    <div class="q">
+      <label>16. The bridge was built from strong ___ girders.</label>
+      <div class="options">
+        <label><input type="radio" name="ho16" value="steel"> steel</label>
+        <label><input type="radio" name="ho16" value="steal"> steal</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ho16','steel','fbho16')">Check</button>
+      <div class="feedback" id="fbho16"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-1e">
+    <h3>Hyphens for Clarity</h3>
+    <p class="hint">A hyphen can completely change a sentence's meaning. Classic examples: <em>a man-eating shark</em> (a shark that eats people) vs <em>a man eating shark</em> (a man who is eating shark meat); <em>re-cover</em> a chair (put a new cover on it) vs <em>recover</em> from an illness (get better); <em>twenty-odd</em> people (about twenty) vs <em>twenty odd</em> socks (twenty mismatched socks).</p>
+    <div id="hyphQs"></div>
+    <script>
+      const hyph = [
+        {q:"A ___ shark can be extremely dangerous to swimmers.", a:"man eating", b:"man-eating", ans:"man-eating"},
+        {q:"At the picnic, I spotted a ___ having a huge plate of chips.", a:"man eating", b:"man-eating", ans:"man eating"},
+        {q:"Grandad plans to ___ the old sofa in dark green velvet next year.", a:"recover", b:"re-cover", ans:"re-cover"},
+        {q:"The doctor says she should fully ___ within a fortnight.", a:"recover", b:"re-cover", ans:"recover"},
+        {q:"Roughly ___ children turned up to the school fete, though nobody counted exactly.", a:"twenty odd", b:"twenty-odd", ans:"twenty-odd"},
+        {q:"The lost-property box held ___ socks — twenty unusual, unmatched ones.", a:"twenty odd", b:"twenty-odd", ans:"twenty odd"}
+      ];
+      const hq = document.getElementById('hyphQs');
+      hyph.forEach((h,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${h.q}</label>
+          <div class="options">
+            <label><input type="radio" name="hyph${i}" value="${h.a}"> ${h.a}</label>
+            <label><input type="radio" name="hyph${i}" value="${h.b}"> ${h.b}</label>
+          </div>
+          <button class="btn small" onclick="checkRadio('hyph${i}','${h.ans}','hyphfb-${i}')">Check</button>
+          <div class="feedback" id="hyphfb-${i}"></div>`;
+        hq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-1f">
+    <h3>Spelling Dictation</h3>
+    <p class="hint">Press "🔊 Listen" to hear the sentence read aloud (you can click it again as many times as you like), then write what you hear, including the punctuation. No adult needed!</p>
+    <div id="dictQs"></div>
+    <script>
+      const dict = [
+        "The expedition was meticulously planned; nothing was left to chance.",
+        "Three things worried her: the weather, the tides, and the failing torch battery.",
+        "The old bridge — creaking under every step — had stood for over two hundred years.",
+        "Although the forecast promised sunshine, the sky grew increasingly ominous.",
+        "He whispered a single word of warning: run."
+      ];
+      const dq = document.getElementById('dictQs');
+      dict.forEach((s,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>Sentence ${i+1}: <button class="btn small" onclick="speakText('${s.replace(/'/g,"\\'")}')">🔊 Listen</button></label>
+          <textarea id="dict-${i}" placeholder="Write what you hear..."></textarea>
+          <button class="btn small" onclick="checkTextLooseDiff('dict-${i}','${s.replace(/'/g,"\\'")}','dictfb-${i}','dictdiff-${i}')">Check</button>
+          <button class="btn reveal small" onclick="reveal('dictans-${i}')">Show answer</button>
+          <div class="feedback" id="dictfb-${i}"></div>
+          <div class="word-diff" id="dictdiff-${i}" style="margin-top:6px; line-height:2;"></div>
+          <div class="answer-reveal" id="dictans-${i}">${s}</div>`;
+        dq.appendChild(div);
+      });
+    </script>
+  </div>
+
+</div>
+
+<div id="s2" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s2','card-2a', this)">🔢 Place Value</button>
+    <button onclick="showSub('s2','card-2b', this)">🧮 Order of Operations</button>
+    <button onclick="showSub('s2','card-2c', this)">🔷 Factors, Multiples &amp; Primes</button>
+    <button onclick="showSub('s2','card-2d', this)">🍰 Fractions</button>
+    <button onclick="showSub('s2','card-2e', this)">⚖️ Ratio &amp; Proportion</button>
+    <button onclick="showSub('s2','card-2f', this)">🔤 Algebra</button>
+    <button onclick="showSub('s2','card-2g', this)">💯 Decimals &amp; Percentages</button>
+    <button onclick="showSub('s2','card-2h', this)">📐 Area, Perimeter &amp; Volume</button>
+    <button onclick="showSub('s2','card-2i', this)">📏 Angles &amp; Shape</button>
+    <button onclick="showSub('s2','card-2j', this)">📊 Position &amp; Statistics</button>
+  </div>
+
+  <div class="card subsection active" id="card-2a">
+    <h3>Place Value to 10,000,000</h3>
+    <p class="hint">Read, write, compare, order, and round very large numbers. Example: in 4,<u>3</u>2,891 the underlined 3 is worth 30,000.</p>
+    <div id="pvQs"></div>
+    <script>
+      const pv = [
+        {q:"In 4,<u>2</u>36,715 what is the value of the underlined digit?", ans:["200,000","200000"]},
+        {q:"In <u>8</u>,145,902 what is the value of the underlined digit?", ans:["8,000,000","8000000"]},
+        {q:"Write 'six million, two hundred and four thousand and seventeen' in figures.", ans:["6,204,017","6204017"]},
+        {q:"Order from smallest to largest: 3,502,600 &nbsp; 3,250,600 &nbsp; 3,520,006", ans:["3,250,600, 3,502,600, 3,520,006","3250600, 3502600, 3520006"]},
+        {q:"Which is bigger: 4,999,999 or 5,000,000?", ans:["5,000,000","5000000"]},
+        {q:"Round 6,482,913 to the nearest 100,000.", ans:["6,500,000","6500000"]},
+        {q:"Round 6,482,913 to the nearest million.", ans:["6,000,000","6000000"]}
+      ];
+      const pvq = document.getElementById('pvQs');
+      pv.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${p.q}</label>
+          <input type="text" id="pv-${i}" style="width:200px">
+          <button class="btn small" id="pvbtn-${i}">Check</button>
+          <div class="feedback" id="pvfb-${i}"></div>`;
+        pvq.appendChild(div);
+        document.getElementById(`pvbtn-${i}`).addEventListener('click', ()=> checkText(`pv-${i}`, p.ans, `pvfb-${i}`));
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2b">
+    <h3>Order of Operations (BODMAS / BIDMAS)</h3>
+    <p class="hint">Work out calculations in this order: Brackets, Orders/Indices (powers), Division &amp; Multiplication, Addition &amp; Subtraction.</p>
+    <div id="bodQs"></div>
+    <script>
+      const bod = [
+        {q:"(3 + 4) × 2 =", ans:["14"]}, {q:"3 + 4 × 2 =", ans:["11"]},
+        {q:"20 − 6 ÷ 2 =", ans:["17"]}, {q:"(20 − 6) ÷ 2 =", ans:["7"]},
+        {q:"2³ + 5 = (2 cubed plus 5)", ans:["13"]},
+        {q:"5 × (2 + 3)² = (2 plus 3, all squared, then times 5)", ans:["125"]},
+        {q:"(10 − 4) × (3 + 2) =", ans:["30"]}
+      ];
+      const bodq = document.getElementById('bodQs');
+      bod.forEach((b,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${b.q}</label>
+          <input type="text" id="bod-${i}" style="width:120px">
+          <button class="btn small" id="bodbtn-${i}">Check</button>
+          <div class="feedback" id="bodfb-${i}"></div>`;
+        bodq.appendChild(div);
+        document.getElementById(`bodbtn-${i}`).addEventListener('click', ()=> checkText(`bod-${i}`, b.ans, `bodfb-${i}`));
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2c">
+    <h3>Factors, Multiples &amp; Primes</h3>
+    <p class="hint">A prime number has exactly two factors: 1 and itself.</p>
+    <div id="factQs"></div>
+    <script>
+      const fact = [
+        {q:"What is the highest common factor of 12 and 18?", ans:["6"]},
+        {q:"What is the lowest common multiple of 4 and 6?", ans:["12"]},
+        {q:"Is 51 a prime number? (type True or False)", ans:["False"]},
+        {q:"What is the highest common factor of 20 and 30?", ans:["10"]},
+        {q:"What are the prime factors of 30? (e.g. 2, 3, 5)", ans:["2, 3, 5","2,3,5"]}
+      ];
+      const factq = document.getElementById('factQs');
+      fact.forEach((f,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${f.q}</label>
+          <input type="text" id="fact-${i}" style="width:140px">
+          <button class="btn small" id="factbtn-${i}">Check</button>
+          <div class="feedback" id="factfb-${i}"></div>`;
+        factq.appendChild(div);
+        document.getElementById(`factbtn-${i}`).addEventListener('click', ()=> checkText(`fact-${i}`, f.ans, `factfb-${i}`));
+      });
+      const primeDiv = document.createElement('div'); primeDiv.className="q";
+      primeDiv.innerHTML = `
+        <label>6. List at least three prime numbers between 20 and 40:</label>
+        <input type="text" id="primeList6" style="width:100%" placeholder="e.g. 23, 29, 31">
+        <button class="btn small" id="primeList6Btn">Check</button>
+        <div class="feedback" id="primeList6Fb"></div>`;
+      factq.appendChild(primeDiv);
+      function checkPrimes6(){
+        const val = document.getElementById('primeList6').value.trim().toLowerCase();
+        const fb = document.getElementById('primeList6Fb');
+        total++;
+        const primes = ["23","29","31","37"];
+        const matches = primes.filter(p => new RegExp(`\\b${p}\\b`).test(val));
+        if(matches.length >= 3){
+          score++; fb.textContent = "✅ Correct — well spotted!"; fb.className = "feedback correct";
+        } else {
+          fb.textContent = "❌ Try naming 3 of: 23, 29, 31, 37.";
+          fb.className = "feedback incorrect";
+        }
+        updateScore();
+      }
+      document.getElementById('primeList6Btn').addEventListener('click', checkPrimes6);
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2d">
+    <h3>Fractions</h3>
+    <p class="hint">Remember to find a common denominator before adding or subtracting fractions with different denominators.</p>
+    <div id="fracQs"></div>
+    <script>
+      const frac = [
+        {q:"1/3 + 1/4 =", ans:["7/12"]}, {q:"2/5 + 1/3 =", ans:["11/15"]},
+        {q:"3/4 − 1/6 =", ans:["7/12"]}, {q:"5/6 − 1/2 =", ans:["1/3"]},
+        {q:"2/3 × 4 = (fraction times a whole number)", ans:["8/3","2 2/3","2⅔"]},
+        {q:"3/5 × 2/3 =", ans:["6/15","2/5"]},
+        {q:"3/4 ÷ 2 = (fraction divided by a whole number)", ans:["3/8"]},
+        {q:"Simplify 8/12", ans:["2/3"]},
+        {q:"Write 17/5 as a mixed number", ans:["3 2/5","3⅖"]},
+        {q:"Write 4 1/3 as an improper fraction", ans:["13/3"]}
+      ];
+      const fracq = document.getElementById('fracQs');
+      frac.forEach((f,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${f.q}</label>
+          <input type="text" id="frac-${i}" style="width:120px" placeholder="e.g. 3/4">
+          <button class="btn small" id="fracbtn-${i}">Check</button>
+          <div class="feedback" id="fracfb-${i}"></div>`;
+        fracq.appendChild(div);
+        document.getElementById(`fracbtn-${i}`).addEventListener('click', ()=> checkText(`frac-${i}`, f.ans, `fracfb-${i}`));
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2e">
+    <h3>Ratio &amp; Proportion</h3>
+    <div id="ratioQs"></div>
+    <script>
+      const ratio = [
+        {q:"A recipe for 4 people needs 200g of rice. How much rice is needed for 8 people?", ans:["400g","400"]},
+        {q:"In a fruit bowl there are 3 apples for every 2 oranges. If there are 6 oranges, how many apples are there?", ans:["9"]},
+        {q:"Write the ratio of 6 red counters to 9 blue counters in its simplest form.", ans:["2:3"]},
+        {q:"A model car is built at a scale of 1:20. If the model is 8cm long, how long is the real car?", ans:["160cm","160"]},
+        {q:"For every 5 sweets Ben has, Amir has 3. If Ben has 20 sweets, how many does Amir have?", ans:["12"]},
+        {q:"Simplify the ratio 15:25.", ans:["3:5"]}
+      ];
+      const ratioq = document.getElementById('ratioQs');
+      ratio.forEach((r,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${r.q}</label>
+          <input type="text" id="ratio-${i}" style="width:140px">
+          <button class="btn small" id="ratiobtn-${i}">Check</button>
+          <div class="feedback" id="ratiofb-${i}"></div>`;
+        ratioq.appendChild(div);
+        document.getElementById(`ratiobtn-${i}`).addEventListener('click', ()=> checkText(`ratio-${i}`, r.ans, `ratiofb-${i}`));
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2f">
+    <h3>Algebra</h3>
+    <p class="hint">Work out the value of the unknown letter in each equation.</p>
+    <div id="algQs"></div>
+    <script>
+      const alg = [
+        {q:"If 2x + 3 = 11, what is x?", ans:["4","x=4"]},
+        {q:"If 3y − 4 = 17, what is y?", ans:["7","y=7"]},
+        {q:"What is the next number in the sequence: 4, 9, 14, 19, ___?", ans:["24"]},
+        {q:"The nth term of a sequence is 3n + 1. What is the 5th term?", ans:["16"]},
+        {q:"If a = 5, what is 2a + 6?", ans:["16"]},
+        {q:"Find the missing number: 15 + ___ = 4 × 8", ans:["17"]},
+        {q:"If p + p + p = 21, what is p?", ans:["7","p=7"]}
+      ];
+      const algq = document.getElementById('algQs');
+      alg.forEach((a,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${a.q}</label>
+          <input type="text" id="alg-${i}" style="width:120px">
+          <button class="btn small" id="algbtn-${i}">Check</button>
+          <div class="feedback" id="algfb-${i}"></div>`;
+        algq.appendChild(div);
+        document.getElementById(`algbtn-${i}`).addEventListener('click', ()=> checkText(`alg-${i}`, a.ans, `algfb-${i}`));
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2g">
+    <h3>Decimals &amp; Percentages</h3>
+    <div id="decQs"></div>
+    <script>
+      const dec = [
+        {q:"Write 3/8 as a decimal (3 decimal places).", ans:["0.375"]},
+        {q:"Write 0.6 as a fraction in its simplest form.", ans:["3/5"]},
+        {q:"What is 35% of 60?", ans:["21"]},
+        {q:"Write 7/20 as a percentage.", ans:["35%","35"]},
+        {q:"0.45 × 10 =", ans:["4.5"]},
+        {q:"3.6 ÷ 4 =", ans:["0.9"]},
+        {q:"What is 12.5% written as a fraction?", ans:["1/8"]},
+        {q:"Round 5.6789 to 2 decimal places.", ans:["5.68"]}
+      ];
+      const decq = document.getElementById('decQs');
+      dec.forEach((d,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${d.q}</label>
+          <input type="text" id="dec-${i}" style="width:120px">
+          <button class="btn small" id="decbtn-${i}">Check</button>
+          <div class="feedback" id="decfb-${i}"></div>`;
+        decq.appendChild(div);
+        document.getElementById(`decbtn-${i}`).addEventListener('click', ()=> checkText(`dec-${i}`, d.ans, `decfb-${i}`));
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2h">
+    <h3>Area, Perimeter &amp; Volume</h3>
+    <p class="hint">Area of a triangle = ½ × base × height. Area of a parallelogram = base × height. Volume of a cuboid = length × width × height.</p>
+    <div id="areaQs"></div>
+    <script>
+      const area = [
+        {q:"A triangle has a base of 10cm and a height of 6cm. What is its area?", ans:["30cm²","30cm2","30"]},
+        {q:"A parallelogram has a base of 8cm and a height of 5cm. What is its area?", ans:["40cm²","40cm2","40"]},
+        {q:"A compound shape is made of a 6cm × 4cm rectangle joined to a 3cm × 2cm rectangle. What is its total area?", ans:["30cm²","30cm2","30"]},
+        {q:"A cuboid measures 4cm × 3cm × 2cm. What is its volume?", ans:["24cm³","24cm3","24"]},
+        {q:"An L-shaped garden is a 10m × 6m rectangle with a 4m × 3m rectangle removed from one corner. What is its area?", ans:["48m²","48m2","48"]},
+        {q:"A cuboid has volume 60cm³, length 5cm and width 4cm. What is its height?", ans:["3cm","3"]}
+      ];
+      const areaq = document.getElementById('areaQs');
+      area.forEach((a,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${a.q}</label>
+          <input type="text" id="area-${i}" style="width:140px">
+          <button class="btn small" id="areabtn-${i}">Check</button>
+          <div class="feedback" id="areafb-${i}"></div>`;
+        areaq.appendChild(div);
+        document.getElementById(`areabtn-${i}`).addEventListener('click', ()=> checkText(`area-${i}`, a.ans, `areafb-${i}`));
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2i">
+    <h3>Angles &amp; Properties of Shape</h3>
+    <div id="angQs"></div>
+    <script>
+      const ang = [
+        {q:"The angles in a triangle add up to ___ degrees.", ans:["180"]},
+        {q:"The angles in a quadrilateral add up to ___ degrees.", ans:["360"]},
+        {q:"Angles around a point add up to ___ degrees.", ans:["360"]},
+        {q:"Angles on a straight line add up to ___ degrees.", ans:["180"]},
+        {q:"A triangle has angles of 50° and 60°. What is the third angle?", ans:["70°","70"]},
+        {q:"What is the name for the distance across a circle, through its centre?", ans:["diameter"]},
+        {q:"What is the name for the distance from the centre of a circle to its edge?", ans:["radius"]},
+        {q:"What is the distance around the outside of a circle called?", ans:["circumference"]}
+      ];
+      const angq = document.getElementById('angQs');
+      ang.forEach((a,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${a.q}</label>
+          <input type="text" id="ang-${i}" style="width:140px">
+          <button class="btn small" id="angbtn-${i}">Check</button>
+          <div class="feedback" id="angfb-${i}"></div>`;
+        angq.appendChild(div);
+        document.getElementById(`angbtn-${i}`).addEventListener('click', ()=> checkText(`ang-${i}`, a.ans, `angfb-${i}`));
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2j">
+    <h3>Position, Direction &amp; Statistics</h3>
+    <div id="posQs"></div>
+    <script>
+      const pos = [
+        {q:"A point is at (2, 3). It is translated 3 right and 2 down. What are its new coordinates?", ans:["(5, 1)","(5,1)","5,1"]},
+        {q:"A point at (-2, 4) is reflected in the x-axis. What are its new coordinates?", ans:["(-2, -4)","(-2,-4)"]},
+        {q:"A point at (3, -1) is reflected in the y-axis. What are its new coordinates?", ans:["(-3, -1)","(-3,-1)"]},
+        {q:"What are the coordinates of the point 4 units left and 2 units up from (1, 1)?", ans:["(-3, 3)","(-3,3)"]},
+        {q:"Five test scores were 6, 8, 7, 9 and 10. What is the mean average?", ans:["8"]},
+        {q:"A pie chart shows that 1/4 of children walk to school. If there are 120 children, how many walk to school?", ans:["30"]}
+      ];
+      const posq = document.getElementById('posQs');
+      pos.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${p.q}</label>
+          <input type="text" id="pos-${i}" style="width:160px">
+          <button class="btn small" id="posbtn-${i}">Check</button>
+          <div class="feedback" id="posfb-${i}"></div>`;
+        posq.appendChild(div);
+        document.getElementById(`posbtn-${i}`).addEventListener('click', ()=> checkText(`pos-${i}`, p.ans, `posfb-${i}`));
+      });
+    </script>
+  </div>
+
+</div>
+
+<div id="s3" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s3','card-3a', this)">🔁 Passive Voice</button>
+    <button onclick="showSub('s3','card-3b', this)">🎩 Subjunctive Form</button>
+    <button onclick="showSub('s3','card-3c', this)">✏️ Semi-colons, Colons &amp; Dashes</button>
+    <button onclick="showSub('s3','card-3d', this)">🔀 Synonyms &amp; Antonyms</button>
+    <button onclick="showSub('s3','card-3e', this)">🔗 Cohesion</button>
+    <button onclick="showSub('s3','card-3f', this)">🏷️ Word Sort</button>
+  </div>
+
+  <div class="card subsection active" id="card-3a">
+    <h3>The Passive Voice</h3>
+    <p class="hint">In the passive voice, the subject receives the action instead of doing it: "The cake was eaten by Tom" instead of "Tom ate the cake."</p>
+    <div id="passQs"></div>
+    <script>
+      const pass = [
+        {q:"Rewrite in the passive voice: 'The chef cooked the meal.'", ans:"The meal was cooked by the chef."},
+        {q:"Rewrite in the passive voice: 'Vandals damaged the statue.'", ans:"The statue was damaged by vandals."},
+        {q:"Rewrite in the active voice: 'The window was broken by the storm.'", ans:"The storm broke the window."},
+        {q:"Rewrite in the passive voice: 'The government will announce the results.'", ans:"The results will be announced by the government."}
+      ];
+      const pq = document.getElementById('passQs');
+      pass.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${p.q}</label>
+          <textarea id="pass-${i}" placeholder="Type the rewritten sentence..."></textarea>
+          <button class="btn small" onclick="checkTextLooseDiff('pass-${i}','${p.ans.replace(/'/g,"\\'")}','passfb-${i}','passdiff-${i}')">Check</button>
+          <button class="btn reveal small" onclick="reveal('passans-${i}')">Show answer</button>
+          <div class="feedback" id="passfb-${i}"></div>
+          <div class="word-diff" id="passdiff-${i}" style="margin-top:6px; line-height:2;"></div>
+          <div class="answer-reveal" id="passans-${i}">${p.ans}</div>`;
+        pq.appendChild(div);
+      });
+    </script>
+    <div class="q">
+      <label>5. Which sentence is written in the passive voice?</label>
+      <div class="options">
+        <label><input type="radio" name="passid" value="The dog chased the cat."> The dog chased the cat.</label>
+        <label><input type="radio" name="passid" value="The cat was chased by the dog."> The cat was chased by the dog.</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('passid','The cat was chased by the dog.','passidfb')">Check</button>
+      <div class="feedback" id="passidfb"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-3b">
+    <h3>The Subjunctive Form</h3>
+    <p class="hint">The subjunctive is a formal verb form used for wishes, suggestions, and things that aren't (yet) true, e.g. "If I <strong>were</strong> you..." and "It is vital that she <strong>attend</strong>..."</p>
+    <div id="subjQs"></div>
+    <script>
+      const subj = [
+        {q:"If I ___ you, I would apologise immediately. (was / were)", ans:"were"},
+        {q:"It is essential that everyone ___ on time. (is / be)", ans:"be"},
+        {q:"The teacher insisted that he ___ his homework again. (does / do)", ans:"do"},
+        {q:"If she ___ taller, she could reach the shelf. (was / were)", ans:"were"},
+        {q:"It was recommended that the report ___ submitted by Friday. (is / be)", ans:"be"}
+      ];
+      const sjq = document.getElementById('subjQs');
+      subj.forEach((s,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${s.q}</label>
+          <input type="text" id="subj-${i}" style="width:100px">
+          <button class="btn small" onclick="checkText('subj-${i}','${s.ans}','subjfb-${i}')">Check</button>
+          <div class="feedback" id="subjfb-${i}"></div>`;
+        sjq.appendChild(div);
+      });
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-3c">
+    <h3>Semi-colons, Colons &amp; Dashes</h3>
+    <p class="hint">Use a semicolon to join two closely related main clauses; use a colon to introduce a list or explanation; use a pair of dashes — like this — to add extra information.</p>
+    <div id="puncQs"></div>
+    <script>
+      const punc = [
+        {q:"Add a semicolon to join these clauses correctly: 'The rain poured down we stayed inside all afternoon.'", ans:"The rain poured down; we stayed inside all afternoon."},
+        {q:"Add a colon to introduce the list: 'We packed three things a tent, a torch and a map.'", ans:"We packed three things: a tent, a torch and a map."},
+        {q:"Rewrite using a pair of dashes to add extra information: 'My cousin who lives in Leeds is visiting this weekend.'", ans:"My cousin — who lives in Leeds — is visiting this weekend."}
+      ];
+      const pcq = document.getElementById('puncQs');
+      punc.forEach((p,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${p.q}</label>
+          <textarea id="punc-${i}" placeholder="Type the corrected sentence..."></textarea>
+          <button class="btn small" onclick="checkTextLooseDiff('punc-${i}','${p.ans.replace(/'/g,"\\'")}','puncfb-${i}','puncdiff-${i}')">Check</button>
+          <button class="btn reveal small" onclick="reveal('puncans-${i}')">Show answer</button>
+          <div class="feedback" id="puncfb-${i}"></div>
+          <div class="word-diff" id="puncdiff-${i}" style="margin-top:6px; line-height:2;"></div>
+          <div class="answer-reveal" id="puncans-${i}">${p.ans}</div>`;
+        pcq.appendChild(div);
+      });
+    </script>
+    <div class="q">
+      <label>4. Which sentence uses a semicolon correctly?</label>
+      <div class="options">
+        <label><input type="radio" name="semiid" value="The sun set; the sky turned orange."> The sun set; the sky turned orange.</label>
+        <label><input type="radio" name="semiid" value="The sun set; and the sky turned orange."> The sun set; and the sky turned orange.</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('semiid','The sun set; the sky turned orange.','semiidfb')">Check</button>
+      <div class="feedback" id="semiidfb"></div>
+    </div>
+    <div class="q">
+      <label>5. Which sentence uses a colon correctly?</label>
+      <div class="options">
+        <label><input type="radio" name="colonid" value="She needed: eggs, milk and flour."> She needed: eggs, milk and flour.</label>
+        <label><input type="radio" name="colonid" value="She needed the following: eggs, milk and flour."> She needed the following: eggs, milk and flour.</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('colonid','She needed the following: eggs, milk and flour.','colonidfb')">Check</button>
+      <div class="feedback" id="colonidfb"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-3d">
+    <h3>Synonyms &amp; Antonyms</h3>
+    <p class="hint">A synonym means almost the same as a word; an antonym means the opposite.</p>
+    <div class="q">
+      <label>1. Write a synonym for "happy".</label>
+      <input type="text" id="syn1" style="width:160px">
+      <button class="btn small" onclick="checkContainsWord('syn1',['glad','joyful','cheerful','delighted','content','pleased','elated','joyous'],'synfb1')">Check</button>
+      <div class="feedback" id="synfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. Write an antonym for "ancient".</label>
+      <input type="text" id="syn2" style="width:160px">
+      <button class="btn small" onclick="checkContainsWord('syn2',['modern','new','recent','contemporary'],'synfb2')">Check</button>
+      <div class="feedback" id="synfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. Write a synonym for "enormous".</label>
+      <input type="text" id="syn3" style="width:160px">
+      <button class="btn small" onclick="checkContainsWord('syn3',['huge','massive','gigantic','immense','vast','colossal'],'synfb3')">Check</button>
+      <div class="feedback" id="synfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. Write an antonym for "generous".</label>
+      <input type="text" id="syn4" style="width:160px">
+      <button class="btn small" onclick="checkContainsWord('syn4',['mean','stingy','selfish','miserly'],'synfb4')">Check</button>
+      <div class="feedback" id="synfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. Write a synonym for "brave".</label>
+      <input type="text" id="syn5" style="width:160px">
+      <button class="btn small" onclick="checkContainsWord('syn5',['courageous','bold','fearless','daring','heroic','valiant'],'synfb5')">Check</button>
+      <div class="feedback" id="synfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Write an antonym for "transparent".</label>
+      <input type="text" id="syn6" style="width:160px">
+      <button class="btn small" onclick="checkContainsWord('syn6',['opaque','cloudy','murky'],'synfb6')">Check</button>
+      <div class="feedback" id="synfb6"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-3e">
+    <h3>Cohesion Across Paragraphs</h3>
+    <p class="hint">Good writers link their ideas across sentences and paragraphs using adverbials of time, place or number ("Later," "Nearby," "Firstly,") and by using pronouns to avoid repeating names.</p>
+    <div class="q">
+      <label>1. "The scientists gathered their equipment. ___, they set off into the jungle."</label>
+      <div class="options">
+        <label><input type="radio" name="coh1" value="Then"> Then</label>
+        <label><input type="radio" name="coh1" value="Nowhere"> Nowhere</label>
+        <label><input type="radio" name="coh1" value="Sometimes"> Sometimes</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('coh1','Then','cohfb1')">Check</button>
+      <div class="feedback" id="cohfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. "Firstly, mix the flour and sugar. ___, add the eggs and butter."</label>
+      <div class="options">
+        <label><input type="radio" name="coh2" value="Secondly"> Secondly</label>
+        <label><input type="radio" name="coh2" value="Elsewhere"> Elsewhere</label>
+        <label><input type="radio" name="coh2" value="Rarely"> Rarely</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('coh2','Secondly','cohfb2')">Check</button>
+      <div class="feedback" id="cohfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. "The treasure was buried deep underground. ___, a fox had made its den."</label>
+      <div class="options">
+        <label><input type="radio" name="coh3" value="Nearby"> Nearby</label>
+        <label><input type="radio" name="coh3" value="Later"> Later</label>
+        <label><input type="radio" name="coh3" value="Never"> Never</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('coh3','Nearby','cohfb3')">Check</button>
+      <div class="feedback" id="cohfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. "She practised the piano every single day. ___, her performance was flawless."</label>
+      <div class="options">
+        <label><input type="radio" name="coh4" value="Consequently"> Consequently</label>
+        <label><input type="radio" name="coh4" value="Occasionally"> Occasionally</label>
+        <label><input type="radio" name="coh4" value="Nowhere"> Nowhere</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('coh4','Consequently','cohfb4')">Check</button>
+      <div class="feedback" id="cohfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. "Maya packed her bag carefully. ___ didn't want to forget anything important."</label>
+      <div class="options">
+        <label><input type="radio" name="coh5" value="She"> She</label>
+        <label><input type="radio" name="coh5" value="He"> He</label>
+        <label><input type="radio" name="coh5" value="They"> They</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('coh5','She','cohfb5')">Check</button>
+      <div class="feedback" id="cohfb5"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-3f">
+    <h3>Sort the words: Determiner, Preposition, Conjunction, or Pronoun?</h3>
+    <div id="sortQs6"></div>
+    <script>
+      const sortWords6 = {
+        "several":"Determiner", "beneath":"Preposition", "although":"Conjunction", "herself":"Pronoun",
+        "many":"Determiner", "throughout":"Preposition", "whereas":"Conjunction", "somebody":"Pronoun"
+      };
+      const soq6 = document.getElementById('sortQs6');
+      const ids6 = [];
+      Object.keys(sortWords6).forEach((w,i)=>{
+        const id = `sort6-${i}`;
+        ids6.push(id);
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label style="display:inline-block; width:120px;">${w}</label>
+          <select id="${id}">
+            <option value="">-- choose --</option>
+            <option value="Determiner">Determiner</option>
+            <option value="Preposition">Preposition</option>
+            <option value="Conjunction">Conjunction</option>
+            <option value="Pronoun">Pronoun</option>
+          </select>`;
+        soq6.appendChild(div);
+      });
+      const correctMap6 = {};
+      Object.keys(sortWords6).forEach((w,i)=> correctMap6[`sort6-${i}`] = sortWords6[w]);
+      const btnDiv6 = document.createElement('div');
+      btnDiv6.innerHTML = `<button class="btn" id="sortCheckBtn6">Check all</button>
+        <div class="feedback" id="sortfb6"></div>`;
+      soq6.appendChild(btnDiv6);
+      document.getElementById('sortCheckBtn6').addEventListener('click', ()=> checkSelects(ids6, correctMap6, 'sortfb6'));
+    </script>
+  </div>
+
+</div>
+
+<div id="s4" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s4','card-4a', this)">🔍 Vocabulary in Context</button>
+    <button onclick="showSub('s4','card-4b', this)">📖 Fiction</button>
+    <button onclick="showSub('s4','card-4c', this)">🌍 Non-fiction</button>
+    <button onclick="showSub('s4','card-4d', this)">✅ Quick Quiz</button>
+  </div>
+
+  <div class="card subsection active" id="card-4a">
+    <h3>Vocabulary in Context</h3>
+    <div class="q" style="background:#f8fafc;">
+      <p style="line-height:1.7; font-weight:normal;">Zara had always been curious, but nothing prepared her for the ancient manuscript hidden in the museum's archive. The parchment was <strong>brittle</strong>, its edges crumbling like dry autumn leaves, and the ink had faded to a pale, ghostly brown. She examined it <strong>meticulously</strong>, careful not to damage the fragile page, and slowly began to <strong>decipher</strong> the looping, unfamiliar script. It seemed to describe a voyage across a <strong>treacherous</strong> sea, one fraught with storms and hidden reefs. Zara felt a surge of <strong>exhilaration</strong> — she was certain this discovery would astonish the museum's curators.</p>
+    </div>
+    <div class="q">
+      <label>1. What does "brittle" mean in this passage?</label>
+      <div class="options">
+        <label><input type="radio" name="voc1" value="easily broken"> easily broken</label>
+        <label><input type="radio" name="voc1" value="very colourful"> very colourful</label>
+        <label><input type="radio" name="voc1" value="extremely heavy"> extremely heavy</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('voc1','easily broken','vocfb1')">Check</button>
+      <div class="feedback" id="vocfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. What does "meticulously" mean?</label>
+      <div class="options">
+        <label><input type="radio" name="voc2" value="carelessly"> carelessly</label>
+        <label><input type="radio" name="voc2" value="very carefully, with great attention to detail"> very carefully, with great attention to detail</label>
+        <label><input type="radio" name="voc2" value="quickly"> quickly</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('voc2','very carefully, with great attention to detail','vocfb2')">Check</button>
+      <div class="feedback" id="vocfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. What does "treacherous" mean in this context?</label>
+      <div class="options">
+        <label><input type="radio" name="voc3" value="dangerous"> dangerous</label>
+        <label><input type="radio" name="voc3" value="friendly"> friendly</label>
+        <label><input type="radio" name="voc3" value="shallow"> shallow</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('voc3','dangerous','vocfb3')">Check</button>
+      <div class="feedback" id="vocfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. What does "exhilaration" mean? (write a word or phrase)</label>
+      <input type="text" id="voc4" style="width:100%">
+      <button class="btn small" onclick="checkContainsWord('voc4',['excitement','thrill','elation','joy','exciting','thrilled'],'vocfb4')">Check</button>
+      <div class="feedback" id="vocfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. Find a word in the passage that means "to work out or translate something difficult".</label>
+      <input type="text" id="voc5" style="width:100%">
+      <button class="btn small" onclick="checkText('voc5','decipher','vocfb5')">Check</button>
+      <div class="feedback" id="vocfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Find a word in the passage that means "people in charge of a museum's collection".</label>
+      <input type="text" id="voc6" style="width:100%">
+      <button class="btn small" onclick="checkText('voc6','curators','vocfb6')">Check</button>
+      <div class="feedback" id="vocfb6"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-4b">
+    <h3>Fiction Comprehension</h3>
+    <h3 style="margin-top:0;">The Kite Race</h3>
+    <div class="q" style="background:#f8fafc;">
+      <p style="line-height:1.7; font-weight:normal;">Ravi had built his kite from bamboo canes and an old bedsheet, painstakingly stitching each seam by candlelight for a fortnight. His younger sister, Priya, thought it looked more like a patchwork quilt than a kite, but she kept her opinion to herself — mostly. On the morning of the village kite festival, a stiff breeze rolled in from the hills, and Ravi's hands trembled as he unwound the string.</p>
+      <p style="line-height:1.7; font-weight:normal;">The other competitors' kites were sleek and brightly coloured, darting confidently into the sky, while Ravi's patchwork creation wobbled and dipped, threatening to nosedive into the crowd. Just as he was about to give up hope, a sudden gust caught beneath the fabric and lifted it high above the others, spinning gracefully against the clouds.</p>
+      <p style="line-height:1.7; font-weight:normal;">The crowd gasped, then cheered. Ravi's ungainly kite, stitched with such care, soared higher than any other that day. Priya grinned and squeezed his arm. "I take it back," she whispered. "It's the best kite I've ever seen."</p>
+    </div>
+    <div class="q">
+      <label>1. What materials did Ravi use to build his kite?</label>
+      <input type="text" id="fic1" style="width:100%" placeholder="e.g. bamboo, an old bedsheet">
+      <button class="btn small" onclick="checkContainsWord('fic1',['bamboo','bedsheet','sheet','cloth'],'ficfb1')">Check</button>
+      <div class="feedback" id="ficfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. How long did Ravi spend making the kite?</label>
+      <input type="text" id="fic2" style="width:100%">
+      <button class="btn small" onclick="checkText('fic2',['a fortnight','fortnight','two weeks'],'ficfb2')">Check</button>
+      <div class="feedback" id="ficfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. What did Priya think the kite looked like at first?</label>
+      <div class="options">
+        <label><input type="radio" name="fic3" value="a patchwork quilt"> a patchwork quilt</label>
+        <label><input type="radio" name="fic3" value="a bird"> a bird</label>
+        <label><input type="radio" name="fic3" value="a boat"> a boat</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('fic3','a patchwork quilt','ficfb3')">Check</button>
+      <div class="feedback" id="ficfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. Why did Ravi's kite almost fail at first?</label>
+      <div class="options">
+        <label><input type="radio" name="fic4" value="it wobbled and dipped in the wind"> it wobbled and dipped in the wind</label>
+        <label><input type="radio" name="fic4" value="the string snapped"> the string snapped</label>
+        <label><input type="radio" name="fic4" value="it was too heavy to lift"> it was too heavy to lift</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('fic4','it wobbled and dipped in the wind','ficfb4')">Check</button>
+      <div class="feedback" id="ficfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. What happened when the gust of wind caught the kite?</label>
+      <input type="text" id="fic5" style="width:100%">
+      <button class="btn small" onclick="checkContainsWord('fic5',['lifted','soared','rose','flew higher','spinning'],'ficfb5')">Check</button>
+      <div class="feedback" id="ficfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. How do you think Priya felt at the end of the story? Explain, using evidence from the text.</label>
+      <textarea id="fic6" placeholder="Write your answer..." spellcheck="true"></textarea>
+      <button class="btn small" onclick="checkContainsWord('fic6',['proud','impressed','happy','surprised','amazed','pleased','delighted'],'ficfb6')">Check</button>
+      <div class="feedback" id="ficfb6"></div>
+    </div>
+  </div>
+
+  <div class="card subsection" id="card-4c">
+    <h3>Non-fiction Comprehension</h3>
+    <h3 style="margin-top:0;">The Water Cycle</h3>
+    <div class="q" style="background:#f8fafc;">
+      <p style="line-height:1.7; font-weight:normal;">Water is constantly on the move, travelling endlessly between the oceans, the atmosphere and the land in a process called the water cycle. It begins with evaporation, when heat from the sun turns water in rivers, lakes and seas into invisible water vapour, which rises into the sky. As this vapour climbs higher, it cools and condenses into tiny droplets, clustering together to form clouds. Eventually, these droplets grow too heavy to stay airborne, and they fall back to Earth as precipitation — rain, snow, sleet or hail. Some of this water soaks into the ground and becomes groundwater, while the rest flows across the surface as run-off, collecting in streams and rivers that carry it back to the sea. The entire cycle then begins again, and has done so for billions of years, without ever needing a single drop of extra water.</p>
+    </div>
+    <div class="q">
+      <label>1. What is the name for the process when the sun's heat turns water into vapour?</label>
+      <input type="text" id="nf1" style="width:100%">
+      <button class="btn small" onclick="checkText('nf1','evaporation','nffb1')">Check</button>
+      <div class="feedback" id="nffb1"></div>
+    </div>
+    <div class="q">
+      <label>2. What happens to water vapour as it rises and cools?</label>
+      <div class="options">
+        <label><input type="radio" name="nf2" value="it condenses into droplets and forms clouds"> it condenses into droplets and forms clouds</label>
+        <label><input type="radio" name="nf2" value="it disappears completely"> it disappears completely</label>
+        <label><input type="radio" name="nf2" value="it turns into ice immediately"> it turns into ice immediately</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('nf2','it condenses into droplets and forms clouds','nffb2')">Check</button>
+      <div class="feedback" id="nffb2"></div>
+    </div>
+    <div class="q">
+      <label>3. Name at least two forms of precipitation mentioned in the passage.</label>
+      <input type="text" id="nf3" style="width:100%" placeholder="e.g. rain, snow...">
+      <button class="btn small" onclick="checkPrecipitation()">Check</button>
+      <div class="feedback" id="nffb3"></div>
+    </div>
+    <div class="q">
+      <label>4. What is water called when it soaks into the ground?</label>
+      <input type="text" id="nf4" style="width:100%">
+      <button class="btn small" onclick="checkText('nf4','groundwater','nffb4')">Check</button>
+      <div class="feedback" id="nffb4"></div>
+    </div>
+    <div class="q">
+      <label>5. What carries run-off water back to the sea?</label>
+      <input type="text" id="nf5" style="width:100%">
+      <button class="btn small" onclick="checkContainsWord('nf5',['streams','rivers'],'nffb5')">Check</button>
+      <div class="feedback" id="nffb5"></div>
+    </div>
+    <div class="q">
+      <label>6. According to the passage, how long has the water cycle been happening for?</label>
+      <input type="text" id="nf6" style="width:100%">
+      <button class="btn small" onclick="checkContainsWord('nf6',['billions'],'nffb6')">Check</button>
+      <div class="feedback" id="nffb6"></div>
+    </div>
+  </div>
+
+  <script>
+    function checkPrecipitation(){
+      const val = document.getElementById('nf3').value.trim().toLowerCase();
+      const fb = document.getElementById('nffb3');
+      total++;
+      const forms = ["rain","snow","sleet","hail"];
+      const matches = forms.filter(f => new RegExp(`\\b${f}\\b`).test(val));
+      if(matches.length >= 2){
+        score++; fb.textContent = "✅ Correct — well spotted!"; fb.className = "feedback correct";
+      } else {
+        fb.textContent = "❌ Look again in the text — try naming 2 of: rain, snow, sleet, hail.";
+        fb.className = "feedback incorrect";
+      }
+      updateScore();
+    }
+  </script>
+
+  <div class="card subsection" id="card-4d">
+    <h3>Quick Quiz</h3>
+    <div id="quizQs"></div>
+    <script>
+      const quiz = [
+        {q:"True or False: The human heart has four chambers.", ans:"True"},
+        {q:"True or False: Jupiter is the smallest planet in the solar system.", ans:"False"},
+        {q:"True or False: A hexagon has six sides.", ans:"True"},
+        {q:"True or False: Sound travels faster than light.", ans:"False"},
+        {q:"True or False: The Great Barrier Reef is located off the coast of Australia.", ans:"True"},
+        {q:"True or False: The River Thames flows through London.", ans:"True"}
+      ];
+      const quizq = document.getElementById('quizQs');
+      quiz.forEach((t,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        div.innerHTML = `
+          <label>${i+1}. ${t.q}</label>
+          <div class="options">
+            <label><input type="radio" name="quiz${i}" value="True"> True</label>
+            <label><input type="radio" name="quiz${i}" value="False"> False</label>
+          </div>
+          <button class="btn small" onclick="checkRadio('quiz${i}','${t.ans}','quizfb-${i}')">Check</button>
+          <div class="feedback" id="quizfb-${i}"></div>`;
+        quizq.appendChild(div);
+      });
+      const gk = [
+        {q:"What is the capital city of Wales?", ans:["Cardiff"]},
+        {q:"Which ocean is the largest — Atlantic, Pacific, or Indian?", ans:["Pacific"]},
+        {q:"How many centimetres are there in a metre?", ans:["100"]},
+        {q:"What is the chemical symbol for water?", ans:["H2O","H₂O"]}
+      ];
+      gk.forEach((g,i)=>{
+        const div = document.createElement('div'); div.className="q";
+        const idx = quiz.length + i;
+        div.innerHTML = `
+          <label>${idx+1}. ${g.q}</label>
+          <input type="text" id="gkq6-${i}" style="width:160px">
+          <button class="btn small" id="gkq6btn-${i}">Check</button>
+          <div class="feedback" id="gkq6fb-${i}"></div>`;
+        quizq.appendChild(div);
+        document.getElementById(`gkq6btn-${i}`).addEventListener('click', ()=> checkText(`gkq6-${i}`, g.ans, `gkq6fb-${i}`));
+      });
+    </script>
+  </div>
+
+  <div class="card">
+    <h3>🎉 All done!</h3>
+    <p>Great job working through the workbook! Remember: 15–20 minutes a day, mixing one spelling task with one maths task, works better than doing everything at once. Keep going — every section you finish is one step closer to your certificate!</p>
+  </div>
+
+</div>
+
+<div id="s7" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s7','card-7a', this)">🐸 Living Things &amp; Habitats</button>
+    <button onclick="showSub('s7','card-7b', this)">❤️ Animals, Including Humans</button>
+    <button onclick="showSub('s7','card-7c', this)">🦴 Evolution &amp; Inheritance</button>
+    <button onclick="showSub('s7','card-7d', this)">💡 Light</button>
+    <button onclick="showSub('s7','card-7e', this)">🔋 Electricity</button>
+  </div>
+
+  <div class="card subsection active" id="card-7a">
+    <h3>Living Things &amp; Their Habitats</h3>
+    <p class="hint">Living things can be sorted into broad groups — such as plants, animals and micro-organisms — based on features we can observe.</p>
+    <div class="q">
+      <label>1. What is the name for a branching diagram of yes/no questions that helps you sort and identify living things? <input type="text" id="lv1" style="width:190px"></label>
+      <button class="btn small" onclick="checkText('lv1',['classification key','a classification key'],'lvfb1')">Check</button>
+      <div class="feedback" id="lvfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. Which of these is one of the three broad groups used to classify living things?</label>
+      <div class="options">
+        <label><input type="radio" name="lv2" value="Micro-organisms"> Micro-organisms</label>
+        <label><input type="radio" name="lv2" value="Robots"> Robots</label>
+        <label><input type="radio" name="lv2" value="Rocks"> Rocks</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('lv2','Micro-organisms','lvfb2')">Check</button>
+      <div class="feedback" id="lvfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. True or False: a classification key can only be used to sort animals, not plants.</label>
+      <div class="options">
+        <label><input type="radio" name="lv3" value="True"> True</label>
+        <label><input type="radio" name="lv3" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('lv3','False','lvfb3')">Check</button>
+      <div class="feedback" id="lvfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. Name one example of a micro-organism. <input type="text" id="lv4" style="width:180px" placeholder="e.g. bacteria"></label>
+      <button class="btn small" id="lv4btn">Check</button>
+      <div class="feedback" id="lvfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. What feature decides whether an animal is a vertebrate or an invertebrate? <input type="text" id="lv5" style="width:220px"></label>
+      <button class="btn small" id="lv5btn">Check</button>
+      <div class="feedback" id="lvfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Name one invertebrate animal (an animal without a backbone). <input type="text" id="lv6" style="width:180px" placeholder="e.g. snail, spider"></label>
+      <button class="btn small" id="lv6btn">Check</button>
+      <div class="feedback" id="lvfb6"></div>
+    </div>
+    <script>
+      document.getElementById('lv4btn').addEventListener('click', ()=> checkContainsWord('lv4', ["bacteria","bacterium","virus","viruses","fungus","fungi","mould","mold","yeast"], 'lvfb4'));
+      document.getElementById('lv5btn').addEventListener('click', ()=> checkContainsWord('lv5', ["backbone","spine"], 'lvfb5'));
+      document.getElementById('lv6btn').addEventListener('click', ()=> checkContainsWord('lv6', ["snail","slug","worm","spider","insect","beetle","butterfly","moth","bee","ant","crab","octopus","jellyfish","starfish"], 'lvfb6'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7b">
+    <h3>Animals, Including Humans</h3>
+    <p class="hint">The circulatory system moves blood — carrying oxygen and nutrients — all around the body.</p>
+    <div class="q">
+      <label>1. What is the name of the muscular organ that pumps blood around the body? <input type="text" id="ci1" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('ci1','heart','cifb1')">Check</button>
+      <div class="feedback" id="cifb1"></div>
+    </div>
+    <div class="q">
+      <label>2. How many main chambers does the human heart have?</label>
+      <div class="options">
+        <label><input type="radio" name="ci2" value="2"> 2</label>
+        <label><input type="radio" name="ci2" value="4"> 4</label>
+        <label><input type="radio" name="ci2" value="6"> 6</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ci2','4','cifb2')">Check</button>
+      <div class="feedback" id="cifb2"></div>
+    </div>
+    <div class="q">
+      <label>3. What do we call the blood vessels that carry blood away from the heart? <input type="text" id="ci3" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('ci3',['arteries','artery'],'cifb3')">Check</button>
+      <div class="feedback" id="cifb3"></div>
+    </div>
+    <div class="q">
+      <label>4. What do we call the blood vessels that carry blood back to the heart? <input type="text" id="ci4" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('ci4',['veins','vein'],'cifb4')">Check</button>
+      <div class="feedback" id="cifb4"></div>
+    </div>
+    <div class="q">
+      <label>5. True or False: blood carries oxygen and nutrients to every part of the body.</label>
+      <div class="options">
+        <label><input type="radio" name="ci5" value="True"> True</label>
+        <label><input type="radio" name="ci5" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ci5','True','cifb5')">Check</button>
+      <div class="feedback" id="cifb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Name one lifestyle habit that can harm the circulatory system. <input type="text" id="ci6" style="width:100%" placeholder="e.g. smoking, a diet high in sugary or fatty food, not exercising"></label>
+      <button class="btn small" id="ci6btn">Check</button>
+      <div class="feedback" id="cifb6"></div>
+    </div>
+    <script>
+      document.getElementById('ci6btn').addEventListener('click', ()=> checkContainsWord('ci6', ["smoking","smoke","sugary","fatty","junk","inactive","no exercise","lack of exercise","alcohol","drugs","unhealthy"], 'cifb6'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7c">
+    <h3>Evolution &amp; Inheritance</h3>
+    <p class="hint">Living things have changed gradually over millions of years, and offspring inherit features from their parents — with some variation.</p>
+    <div class="q">
+      <label>1. What is the name for the preserved remains of an animal or plant that lived long ago, usually found in rock? <input type="text" id="ev1" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('ev1',['fossil','fossils','a fossil'],'evfb1')">Check</button>
+      <div class="feedback" id="evfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. Which scientist is famous for his theory of evolution by natural selection?</label>
+      <div class="options">
+        <label><input type="radio" name="ev2" value="Charles Darwin"> Charles Darwin</label>
+        <label><input type="radio" name="ev2" value="Isaac Newton"> Isaac Newton</label>
+        <label><input type="radio" name="ev2" value="Albert Einstein"> Albert Einstein</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ev2','Charles Darwin','evfb2')">Check</button>
+      <div class="feedback" id="evfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. True or False: offspring are always exactly identical to their parents.</label>
+      <div class="options">
+        <label><input type="radio" name="ev3" value="True"> True</label>
+        <label><input type="radio" name="ev3" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('ev3','False','evfb3')">Check</button>
+      <div class="feedback" id="evfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. Name one feature that can vary between parents and their offspring. <input type="text" id="ev4" style="width:100%" placeholder="e.g. eye colour, height, fur colour"></label>
+      <button class="btn small" id="ev4btn">Check</button>
+      <div class="feedback" id="evfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. What word describes a feature that helps a living thing survive well in its environment? <input type="text" id="ev5" style="width:170px"></label>
+      <button class="btn small" onclick="checkText('ev5',['adaptation','adapted','an adaptation'],'evfb5')">Check</button>
+      <div class="feedback" id="evfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Name one way a polar bear is adapted to survive in the Arctic. <input type="text" id="ev6" style="width:100%" placeholder="e.g. thick fur, blubber for warmth"></label>
+      <button class="btn small" id="ev6btn">Check</button>
+      <div class="feedback" id="evfb6"></div>
+    </div>
+    <script>
+      document.getElementById('ev4btn').addEventListener('click', ()=> checkContainsWord('ev4', ["colour","color","height","size","pattern","fur","hair","eye","skin","shape"], 'evfb4'));
+      document.getElementById('ev6btn').addEventListener('click', ()=> checkContainsWord('ev6', ["fur","blubber","fat","white","coat","camouflage"], 'evfb6'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7d">
+    <h3>Light</h3>
+    <p class="hint">Light always travels in straight lines — that's what makes shadows and reflections behave the way they do.</p>
+    <div class="q">
+      <label>1. Light always travels in ___ lines. <input type="text" id="lg1" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('lg1','straight','lgfb1')">Check</button>
+      <div class="feedback" id="lgfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. We see an object because...</label>
+      <div class="options">
+        <label><input type="radio" name="lg2" value="light travels from it (or is reflected by it) into our eyes"> light travels from it (or is reflected by it) into our eyes</label>
+        <label><input type="radio" name="lg2" value="light comes out of our eyes and bounces off it"> light comes out of our eyes and bounces off it</label>
+        <label><input type="radio" name="lg2" value="it glows in the dark, even with no light source nearby"> it glows in the dark, even with no light source nearby</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('lg2','light travels from it (or is reflected by it) into our eyes','lgfb2')">Check</button>
+      <div class="feedback" id="lgfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. What do we call the dark shape made when an opaque object blocks light? <input type="text" id="lg3" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('lg3','shadow','lgfb3')">Check</button>
+      <div class="feedback" id="lgfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. True or False: a shadow is always exactly the same size as the object that makes it.</label>
+      <div class="options">
+        <label><input type="radio" name="lg4" value="True"> True</label>
+        <label><input type="radio" name="lg4" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('lg4','False','lgfb4')">Check</button>
+      <div class="feedback" id="lgfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. What is the word for light bouncing off a surface, such as a mirror? <input type="text" id="lg5" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('lg5','reflection','lgfb5')">Check</button>
+      <div class="feedback" id="lgfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Name one material that is opaque (it blocks light completely). <input type="text" id="lg6" style="width:180px" placeholder="e.g. wood, brick"></label>
+      <button class="btn small" id="lg6btn">Check</button>
+      <div class="feedback" id="lgfb6"></div>
+    </div>
+    <script>
+      document.getElementById('lg6btn').addEventListener('click', ()=> checkContainsWord('lg6', ["wood","brick","metal","curtain","wall","card","cardboard","book","stone","door"], 'lgfb6'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7e">
+    <h3>Electricity</h3>
+    <p class="hint">In a circuit, the number and voltage of cells — and the components you add — change how bright a bulb shines or how loud a buzzer sounds.</p>
+    <div class="q">
+      <label>1. What do we call a circuit where the components are connected one after another, in a single loop? <input type="text" id="el1" style="width:180px"></label>
+      <button class="btn small" onclick="checkText('el1',['series circuit','a series circuit'],'elfb1')">Check</button>
+      <div class="feedback" id="elfb1"></div>
+    </div>
+    <div class="q">
+      <label>2. What happens to a bulb's brightness if you add a second cell (battery) to a simple series circuit?</label>
+      <div class="options">
+        <label><input type="radio" name="el2" value="It gets brighter"> It gets brighter</label>
+        <label><input type="radio" name="el2" value="It gets dimmer"> It gets dimmer</label>
+        <label><input type="radio" name="el2" value="It stays exactly the same"> It stays exactly the same</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('el2','It gets brighter','elfb2')">Check</button>
+      <div class="feedback" id="elfb2"></div>
+    </div>
+    <div class="q">
+      <label>3. True or False: adding more bulbs to a series circuit (without adding more cells) makes each bulb dimmer.</label>
+      <div class="options">
+        <label><input type="radio" name="el3" value="True"> True</label>
+        <label><input type="radio" name="el3" value="False"> False</label>
+      </div>
+      <button class="btn small" onclick="checkRadio('el3','True','elfb3')">Check</button>
+      <div class="feedback" id="elfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. What component is used to turn a circuit on and off? <input type="text" id="el4" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('el4','switch','elfb4')">Check</button>
+      <div class="feedback" id="elfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. What unit is used to measure voltage? <input type="text" id="el5" style="width:150px"></label>
+      <button class="btn small" onclick="checkText('el5',['volt','volts'],'elfb5')">Check</button>
+      <div class="feedback" id="elfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Name one component you might find in a circuit, other than a cell, bulb or wire. <input type="text" id="el6" style="width:180px" placeholder="e.g. switch, buzzer, motor"></label>
+      <button class="btn small" id="el6btn">Check</button>
+      <div class="feedback" id="elfb6"></div>
+    </div>
+    <script>
+      document.getElementById('el6btn').addEventListener('click', ()=> checkContainsWord('el6', ["switch","buzzer","motor","resistor","led","speaker"], 'elfb6'));
+    </script>
+  </div>
+
+</div>
+
+<div id="s8" class="section">
+
+  <div class="subnav">
+    <button class="active" onclick="showSub('s8','card-8a', this)">🧩 Sudoku</button>
+    <button onclick="showSub('s8','card-8b', this)">📝 Crossword</button>
+    <button onclick="showSub('s8','card-8c', this)">🔍 Word Search</button>
+  </div>
+
+  <div class="card subsection active" id="card-8a">
+    <h3>Sudoku</h3>
+    <p class="hint">Fill in the empty boxes so that every row, every column, and every bold-bordered box contains each number exactly once. Start with the 4×4 warm-up, then try the bigger 6×6!</p>
+    <div class="q">
+      <label>Warm-up: 4×4 Sudoku (numbers 1–4)</label>
+      <div id="sudoku4"></div>
+      <button class="btn small" id="sudoku4btn" style="display:block; margin:10px auto 0;">Check</button>
+      <div class="feedback" id="sudoku4fb" style="text-align:center;"></div>
+    </div>
+    <div class="q" style="margin-top:24px;">
+      <label>Challenge: 6×6 Sudoku (numbers 1–6)</label>
+      <div id="sudoku6"></div>
+      <button class="btn small" id="sudoku6btn" style="display:block; margin:10px auto 0;">Check</button>
+      <div class="feedback" id="sudoku6fb" style="text-align:center;"></div>
+    </div>
+    <script>
+      function buildSudoku(containerId, size, boxW, boxH, puzzle, solution){
+        const container = document.getElementById(containerId);
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        container.style.gap = '0';
+        container.style.maxWidth = (size*44)+'px';
+        container.style.margin = '10px auto';
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const val = puzzle[r][c];
+            const isGiven = val !== 0;
+            const borderRight = ((c+1)%boxW===0 && c!==size-1) ? '3px solid var(--teal-dark)' : '1px solid #cbd5e1';
+            const borderBottom = ((r+1)%boxH===0 && r!==size-1) ? '3px solid var(--teal-dark)' : '1px solid #cbd5e1';
+            const wrap = document.createElement('div');
+            wrap.style.cssText = `position:relative; width:100%; aspect-ratio:1; box-sizing:border-box; border-right:${borderRight}; border-bottom:${borderBottom}; border-left:1px solid #cbd5e1; border-top:1px solid #cbd5e1;`;
+            if(isGiven){
+              wrap.style.background = '#e6fffa';
+              wrap.style.color = 'var(--teal-dark)';
+              wrap.style.display = 'flex';
+              wrap.style.alignItems = 'center';
+              wrap.style.justifyContent = 'center';
+              wrap.style.fontWeight = 'bold';
+              wrap.style.fontSize = '1.15em';
+              wrap.textContent = val;
+            } else {
+              const inp = document.createElement('input');
+              inp.type = 'text';
+              inp.maxLength = 1;
+              inp.id = `${containerId}-${r}-${c}`;
+              inp.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:none; box-sizing:border-box; text-align:center; font-weight:bold; font-size:1.15em; font-family:inherit; padding:0; background:white;';
+              inp.addEventListener('input', ()=>{
+                inp.value = inp.value.replace(new RegExp('[^1-'+size+']','g'), '').slice(0,1);
+              });
+              wrap.appendChild(inp);
+            }
+            container.appendChild(wrap);
+          }
+        }
+        return function checkSudoku(fbId){
+          let allOk = true;
+          for(let r=0;r<size;r++){
+            for(let c=0;c<size;c++){
+              if(puzzle[r][c]===0){
+                const cell = document.getElementById(`${containerId}-${r}-${c}`);
+                const wrap = cell.parentElement;
+                const ok = cell.value.trim() === String(solution[r][c]);
+                wrap.style.background = ok ? '#eafff1' : '#fff1f1';
+                let mark = wrap.querySelector('.sudoku-mark');
+                if(!mark){
+                  mark = document.createElement('span');
+                  mark.className = 'sudoku-mark';
+                  mark.setAttribute('aria-hidden', 'true');
+                  mark.style.cssText = 'position:absolute; top:0px; right:2px; font-size:.65em; line-height:1; pointer-events:none; font-weight:bold;';
+                  wrap.appendChild(mark);
+                }
+                mark.textContent = ok ? '✓' : '✗';
+                mark.style.color = ok ? 'var(--green-dark)' : '#b91c1c';
+                if(!ok) allOk = false;
+              }
+            }
+          }
+          const fb = document.getElementById(fbId);
+          total++;
+          if(allOk){ score++; fb.textContent="✅ Well done — Sudoku solved correctly!"; fb.className="feedback correct"; }
+          else{ fb.textContent="❌ Some numbers aren't right yet — check the highlighted boxes."; fb.className="feedback incorrect"; }
+          updateScore();
+        };
+      }
+
+      const sudoku4Puzzle = [
+        [0,4,3,2],
+        [3,0,0,4],
+        [0,0,4,0],
+        [0,1,0,0]
+      ];
+      const sudoku4Solution = [
+        [1,4,3,2],
+        [3,2,1,4],
+        [2,3,4,1],
+        [4,1,2,3]
+      ];
+      const check4 = buildSudoku('sudoku4', 4, 2, 2, sudoku4Puzzle, sudoku4Solution);
+      document.getElementById('sudoku4btn').addEventListener('click', ()=> check4('sudoku4fb'));
+
+      const sudoku6Puzzle = [
+        [0,0,0,6,5,1],
+        [0,6,5,0,4,0],
+        [0,0,0,4,0,6],
+        [0,0,4,5,0,2],
+        [4,0,6,0,2,0],
+        [0,5,0,3,0,0]
+      ];
+      const sudoku6Solution = [
+        [3,4,2,6,5,1],
+        [1,6,5,2,4,3],
+        [5,2,3,4,1,6],
+        [6,1,4,5,3,2],
+        [4,3,6,1,2,5],
+        [2,5,1,3,6,4]
+      ];
+      const check6 = buildSudoku('sudoku6', 6, 3, 2, sudoku6Puzzle, sudoku6Solution);
+      document.getElementById('sudoku6btn').addEventListener('click', ()=> check6('sudoku6fb'));
+    </script>
+
+    <div class="q" style="margin-top:24px;">
+      <label>New puzzle: another 4×4 Sudoku</label>
+      <div id="sudoku4b"></div>
+      <button class="btn small" id="sudoku4bbtn" style="display:block; margin:10px auto 0;">Check</button>
+      <div class="feedback" id="sudoku4bfb" style="text-align:center;"></div>
+    </div>
+    <div class="q" style="margin-top:24px;">
+      <label>New puzzle: another 6×6 Sudoku</label>
+      <div id="sudoku6b"></div>
+      <button class="btn small" id="sudoku6bbtn" style="display:block; margin:10px auto 0;">Check</button>
+      <div class="feedback" id="sudoku6bfb" style="text-align:center;"></div>
+    </div>
+    <script>
+      const sudoku4bPuzzle = [
+        [1,0,0,2],
+        [0,3,0,1],
+        [3,0,0,4],
+        [0,0,1,0]
+      ];
+      const sudoku4bSolution = [
+        [1,4,3,2],
+        [2,3,4,1],
+        [3,1,2,4],
+        [4,2,1,3]
+      ];
+      const check4b = buildSudoku('sudoku4b', 4, 2, 2, sudoku4bPuzzle, sudoku4bSolution);
+      document.getElementById('sudoku4bbtn').addEventListener('click', ()=> check4b('sudoku4bfb'));
+
+      const sudoku6bPuzzle = [
+        [2,0,0,1,0,0],
+        [5,0,0,3,4,0],
+        [0,0,0,0,5,0],
+        [3,0,0,0,1,0],
+        [4,0,6,5,3,1],
+        [0,3,5,0,0,6]
+      ];
+      const sudoku6bSolution = [
+        [2,4,3,1,6,5],
+        [5,6,1,3,4,2],
+        [6,1,4,2,5,3],
+        [3,5,2,6,1,4],
+        [4,2,6,5,3,1],
+        [1,3,5,4,2,6]
+      ];
+      const check6b = buildSudoku('sudoku6b', 6, 3, 2, sudoku6bPuzzle, sudoku6bSolution);
+      document.getElementById('sudoku6bbtn').addEventListener('click', ()=> check6b('sudoku6bfb'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-8b">
+    <h3>Mini Crossword</h3>
+    <p class="hint">Read each clue, then type one letter per box. Numbers show where each word starts.</p>
+    <div id="crosswordGrid"></div>
+    <div id="crosswordClues" style="margin-top:14px;"></div>
+    <button class="btn small" id="crosswordBtn" style="display:block; margin:14px auto 0;">Check</button>
+    <div class="feedback" id="crosswordfb" style="text-align:center;"></div>
+    <script>
+      const crosswordSolution = [
+        [null,'A',null,'P',null],
+        [null,'D',null,'R',null],
+        ['R','A','T','I','O'],
+        [null,'P',null,'M',null],
+        [null,'T',null,'E',null]
+      ];
+      const crosswordNumbers = {"2,0":1, "0,1":2, "0,3":3};
+      const crosswordClues = [
+        {num:1, dir:'Across', text:'A way of comparing two quantities, such as 3 : 1'},
+        {num:2, dir:'Down', text:'To change over time to suit your surroundings'},
+        {num:3, dir:'Down', text:'A number whose only factors are 1 and itself'}
+      ];
+
+      function buildCrossword(){
+        const grid = document.getElementById('crosswordGrid');
+        const size = crosswordSolution.length;
+        grid.style.display = 'grid';
+        grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        grid.style.gap = '2px';
+        grid.style.maxWidth = (size*46)+'px';
+        grid.style.margin = '10px auto';
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crosswordSolution[r][c];
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'position:relative; width:100%; aspect-ratio:1; box-sizing:border-box;';
+            if(letter === null){
+              wrap.style.background = '#1f2937';
+              wrap.style.borderRadius = '4px';
+            } else {
+              wrap.style.border = '2px solid var(--teal)';
+              wrap.style.borderRadius = '4px';
+              const key = `${r},${c}`;
+              if(crosswordNumbers[key]){
+                const num = document.createElement('span');
+                num.textContent = crosswordNumbers[key];
+                num.style.cssText = 'position:absolute; top:1px; left:2px; font-size:.6em; font-weight:bold; color:var(--teal-dark); pointer-events:none;';
+                wrap.appendChild(num);
+              }
+              const inp = document.createElement('input');
+              inp.type = 'text';
+              inp.maxLength = 1;
+              inp.id = `cw-${r}-${c}`;
+              inp.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:none; box-sizing:border-box; text-align:center; text-transform:uppercase; font-weight:bold; font-size:1.1em; font-family:inherit; padding:0; background:white;';
+              inp.addEventListener('input', ()=>{
+                inp.value = inp.value.replace(/[^a-zA-Z]/g,'').slice(0,1).toUpperCase();
+              });
+              wrap.appendChild(inp);
+            }
+            grid.appendChild(wrap);
+          }
+        }
+        const cluesEl = document.getElementById('crosswordClues');
+        const across = crosswordClues.filter(c=>c.dir==='Across');
+        const down = crosswordClues.filter(c=>c.dir==='Down');
+        function clueListHtml(list){
+          return list.map(c=>`<div>${c.num}. ${c.text}</div>`).join('');
+        }
+        cluesEl.innerHTML = `
+          <div style="display:flex; gap:24px; flex-wrap:wrap;">
+            <div><strong>Across</strong>${clueListHtml(across)}</div>
+            <div><strong>Down</strong>${clueListHtml(down)}</div>
+          </div>`;
+      }
+      buildCrossword();
+
+      function checkCrossword(){
+        let allOk = true;
+        const size = crosswordSolution.length;
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crosswordSolution[r][c];
+            if(letter !== null){
+              const cell = document.getElementById(`cw-${r}-${c}`);
+              const wrap = cell.parentElement;
+              const ok = cell.value.trim().toUpperCase() === letter;
+              wrap.style.background = ok ? '#eafff1' : '#fff1f1';
+              let mark = wrap.querySelector('.cw-mark');
+              if(!mark){
+                mark = document.createElement('span');
+                mark.className = 'cw-mark';
+                mark.setAttribute('aria-hidden','true');
+                mark.style.cssText = 'position:absolute; bottom:0px; right:1px; font-size:.6em; line-height:1; pointer-events:none; font-weight:bold;';
+                wrap.appendChild(mark);
+              }
+              mark.textContent = ok ? '✓' : '✗';
+              mark.style.color = ok ? 'var(--green-dark)' : '#b91c1c';
+              if(!ok) allOk = false;
+            }
+          }
+        }
+        const fb = document.getElementById('crosswordfb');
+        total++;
+        if(allOk){ score++; fb.textContent="✅ Well done — crossword complete!"; fb.className="feedback correct"; }
+        else{ fb.textContent="❌ Some letters aren't right yet — check the highlighted boxes."; fb.className="feedback incorrect"; }
+        updateScore();
+      }
+      document.getElementById('crosswordBtn').addEventListener('click', checkCrossword);
+    </script>
+
+    <h3 style="margin-top:28px;">Challenge Crossword</h3>
+    <p class="hint">A bigger one — three words, two crossing points.</p>
+    <div id="crossword2Grid"></div>
+    <div id="crossword2Clues" style="margin-top:14px;"></div>
+    <button class="btn small" id="crossword2Btn" style="display:block; margin:14px auto 0;">Check</button>
+    <div class="feedback" id="crossword2fb" style="text-align:center;"></div>
+    <script>
+      const crossword2Solution = [
+        [null,'V',null,null,null,null,null],
+        [null,'O',null,null,null,null,null],
+        ['A','L','G','E','B','R','A'],
+        [null,'T',null,null,null,null,'X'],
+        [null,'A',null,null,null,null,'I'],
+        [null,'G',null,null,null,null,'S'],
+        [null,'E',null,null,null,null,null]
+      ];
+      const crossword2Numbers = {"2,0":1, "0,1":2, "2,6":3};
+      const crossword2Clues = [
+        {num:1, dir:'Across', text:'The branch of maths that uses letters to stand for unknown numbers'},
+        {num:2, dir:'Down', text:'The strength of the push given to an electric current, measured in volts'},
+        {num:3, dir:'Down', text:'A fixed reference line used for plotting coordinates on a graph'}
+      ];
+      function buildCrossword2(){
+        const grid = document.getElementById('crossword2Grid');
+        const size = crossword2Solution.length;
+        grid.style.display = 'grid';
+        grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        grid.style.gap = '2px';
+        grid.style.maxWidth = (size*42)+'px';
+        grid.style.margin = '10px auto';
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crossword2Solution[r][c];
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'position:relative; width:100%; aspect-ratio:1; box-sizing:border-box;';
+            if(letter === null){
+              wrap.style.background = '#1f2937';
+              wrap.style.borderRadius = '4px';
+            } else {
+              wrap.style.border = '2px solid var(--teal)';
+              wrap.style.borderRadius = '4px';
+              const key = `${r},${c}`;
+              if(crossword2Numbers[key]){
+                const num = document.createElement('span');
+                num.textContent = crossword2Numbers[key];
+                num.style.cssText = 'position:absolute; top:1px; left:2px; font-size:.6em; font-weight:bold; color:var(--teal-dark); pointer-events:none;';
+                wrap.appendChild(num);
+              }
+              const inp = document.createElement('input');
+              inp.type = 'text';
+              inp.maxLength = 1;
+              inp.id = `cw2-${r}-${c}`;
+              inp.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:none; box-sizing:border-box; text-align:center; text-transform:uppercase; font-weight:bold; font-size:1.1em; font-family:inherit; padding:0; background:white;';
+              inp.addEventListener('input', ()=>{
+                inp.value = inp.value.replace(/[^a-zA-Z]/g,'').slice(0,1).toUpperCase();
+              });
+              wrap.appendChild(inp);
+            }
+            grid.appendChild(wrap);
+          }
+        }
+        const cluesEl = document.getElementById('crossword2Clues');
+        const across = crossword2Clues.filter(c=>c.dir==='Across');
+        const down = crossword2Clues.filter(c=>c.dir==='Down');
+        function clueListHtml(list){ return list.map(c=>`<div>${c.num}. ${c.text}</div>`).join(''); }
+        cluesEl.innerHTML = `
+          <div style="display:flex; gap:24px; flex-wrap:wrap;">
+            <div><strong>Across</strong>${clueListHtml(across)}</div>
+            <div><strong>Down</strong>${clueListHtml(down)}</div>
+          </div>`;
+      }
+      buildCrossword2();
+      function checkCrossword2(){
+        let allOk = true;
+        const size = crossword2Solution.length;
+        for(let r=0;r<size;r++){
+          for(let c=0;c<size;c++){
+            const letter = crossword2Solution[r][c];
+            if(letter !== null){
+              const cell = document.getElementById(`cw2-${r}-${c}`);
+              const wrap = cell.parentElement;
+              const ok = cell.value.trim().toUpperCase() === letter;
+              wrap.style.background = ok ? '#eafff1' : '#fff1f1';
+              let mark = wrap.querySelector('.cw2-mark');
+              if(!mark){
+                mark = document.createElement('span');
+                mark.className = 'cw2-mark';
+                mark.setAttribute('aria-hidden','true');
+                mark.style.cssText = 'position:absolute; bottom:0px; right:1px; font-size:.6em; line-height:1; pointer-events:none; font-weight:bold;';
+                wrap.appendChild(mark);
+              }
+              mark.textContent = ok ? '✓' : '✗';
+              mark.style.color = ok ? 'var(--green-dark)' : '#b91c1c';
+              if(!ok) allOk = false;
+            }
+          }
+        }
+        const fb = document.getElementById('crossword2fb');
+        total++;
+        if(allOk){ score++; fb.textContent="✅ Well done — challenge crossword complete!"; fb.className="feedback correct"; }
+        else{ fb.textContent="❌ Some letters aren't right yet — check the highlighted boxes."; fb.className="feedback incorrect"; }
+        updateScore();
+      }
+      document.getElementById('crossword2Btn').addEventListener('click', checkCrossword2);
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-8c">
+    <h3>Word Search</h3>
+    <p class="hint">Click the first letter of a word, then click its last letter (words can go across, down, or diagonally). Find all 6 words!</p>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; justify-content:center;">
+      <div id="wordsearchGrid"></div>
+      <ul id="wordsearchList" style="list-style:none; padding:0; font-weight:bold; font-size:1.05em; line-height:1.9;"></ul>
+    </div>
+    <div class="feedback" id="wordsearchfb" style="text-align:center; margin-top:10px;"></div>
+    <script>
+      const wsGrid = [
+        ["O","F","A","C","T","O","R","E","S","P"],
+        ["S","E","M","F","U","E","J","H","T","H"],
+        ["X","G","T","I","U","C","R","I","C","F"],
+        ["N","X","U","R","G","V","M","P","T","C"],
+        ["N","O","B","D","D","B","Q","I","H","X"],
+        ["W","M","G","E","V","O","L","V","E","R"],
+        ["I","A","D","A","P","T","N","T","A","P"],
+        ["J","Q","F","X","X","C","E","T","H","P"],
+        ["R","U","T","T","C","E","I","I","G","G"],
+        ["X","A","C","I","N","O","H","O","H","B"]
+      ];
+      const wsWords = ["CIRCUIT","EVOLVE","ADAPT","FACTOR","HEXAGON","RATIO"];
+
+      function buildWordSearch(){
+        const container = document.getElementById('wordsearchGrid');
+        const size = wsGrid.length;
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        container.style.gap = '2px';
+        container.style.maxWidth = (size*32)+'px';
+
+        const listEl = document.getElementById('wordsearchList');
+        wsWords.forEach(w=>{
+          const li = document.createElement('li');
+          li.id = `wsword-${w}`;
+          li.textContent = w;
+          listEl.appendChild(li);
+        });
+
+        const cells = [];
+        for(let r=0;r<size;r++){
+          cells.push([]);
+          for(let c=0;c<size;c++){
+            const cell = document.createElement('div');
+            cell.textContent = wsGrid[r][c];
+            cell.style.cssText = 'aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-weight:bold; border:1px solid #cbd5e1; border-radius:4px; background:white; cursor:pointer; user-select:none; font-size:.8em;';
+            cell.addEventListener('click', ()=> onWsCellClick(r,c,cell));
+            container.appendChild(cell);
+            cells[r].push(cell);
+          }
+        }
+
+        const foundWords = new Set();
+        let firstSel = null;
+
+        function onWsCellClick(r,c,cellEl){
+          if(!firstSel){
+            firstSel = {r,c,el:cellEl};
+            cellEl.style.background = '#fef9c3';
+            return;
+          }
+          const rDiff = r - firstSel.r, cDiff = c - firstSel.c;
+          const dr = Math.sign(rDiff), dc = Math.sign(cDiff);
+          let valid = (dr!==0 || dc!==0) && (rDiff===0 || cDiff===0 || Math.abs(rDiff)===Math.abs(cDiff));
+          let matchedWord = null;
+          let matchedCells = [];
+          if(valid){
+            const lineLen = Math.max(Math.abs(rDiff), Math.abs(cDiff)) + 1;
+            let letters = '';
+            for(let i=0;i<lineLen;i++){
+              const rr = firstSel.r + dr*i, cc = firstSel.c + dc*i;
+              letters += wsGrid[rr][cc];
+              matchedCells.push([rr,cc]);
+            }
+            const rev = letters.split('').reverse().join('');
+            for(const w of wsWords){
+              if(foundWords.has(w)) continue;
+              if(letters === w || rev === w){ matchedWord = w; break; }
+            }
+          }
+          const fb = document.getElementById('wordsearchfb');
+          if(matchedWord){
+            foundWords.add(matchedWord);
+            matchedCells.forEach(([rr,cc])=>{
+              cells[rr][cc].style.background = '#bbf7d0';
+              cells[rr][cc].style.color = 'var(--green-dark)';
+            });
+            const li = document.getElementById(`wsword-${matchedWord}`);
+            li.style.textDecoration = 'line-through';
+            li.style.opacity = '.5';
+            const check = document.createElement('span');
+            check.textContent = ' ✓';
+            check.setAttribute('aria-hidden','true');
+            li.appendChild(check);
+            firstSel.el.style.background = 'white';
+            firstSel = null;
+            if(foundWords.size === wsWords.length){
+              total++; score++;
+              fb.textContent = "✅ Amazing — you found all the words!";
+              fb.className = "feedback correct";
+              updateScore();
+            } else {
+              fb.textContent = `Found ${foundWords.size} of ${wsWords.length} words — keep going!`;
+              fb.className = "feedback";
+            }
+          } else {
+            firstSel.el.style.background = '#fecaca';
+            cellEl.style.background = '#fecaca';
+            const prevFirst = firstSel;
+            setTimeout(()=>{
+              prevFirst.el.style.background = 'white';
+              cellEl.style.background = 'white';
+            }, 400);
+            firstSel = null;
+          }
+        }
+      }
+      buildWordSearch();
+    </script>
+
+    <h3 style="margin-top:28px;">Challenge Word Search</h3>
+    <p class="hint">A bigger 10×10 grid — find all 6 words!</p>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; justify-content:center;">
+      <div id="wordsearch2Grid"></div>
+      <ul id="wordsearch2List" style="list-style:none; padding:0; font-weight:bold; font-size:1.05em; line-height:1.9;"></ul>
+    </div>
+    <div class="feedback" id="wordsearch2fb" style="text-align:center; margin-top:10px;"></div>
+    <script>
+      const ws2Grid = [
+        ["L","V","Z","A","L","G","E","B","R","A"],
+        ["Q","P","O","W","P","V","E","R","G","P"],
+        ["M","C","K","L","I","Y","C","M","V","U"],
+        ["Q","G","L","S","T","W","F","C","B","M"],
+        ["K","H","S","A","B","A","Q","Q","F","E"],
+        ["G","A","R","L","S","T","G","O","A","Q"],
+        ["P","K","Y","Y","A","S","S","E","D","Q"],
+        ["V","B","Z","U","C","S","I","D","S","C"],
+        ["F","I","P","R","I","M","E","F","Q","J"],
+        ["K","N","S","L","T","Q","X","R","Y","K"]
+      ];
+      const ws2Words = ["CLASSIFY","PASSIVE","VOLTAGE","PRIME","FOSSIL","ALGEBRA"];
+
+      function buildWordSearch2(){
+        const container = document.getElementById('wordsearch2Grid');
+        const size = ws2Grid.length;
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        container.style.gap = '2px';
+        container.style.maxWidth = (size*32)+'px';
+
+        const listEl = document.getElementById('wordsearch2List');
+        ws2Words.forEach(w=>{
+          const li = document.createElement('li');
+          li.id = `ws2word-${w}`;
+          li.textContent = w;
+          listEl.appendChild(li);
+        });
+
+        const cells = [];
+        for(let r=0;r<size;r++){
+          cells.push([]);
+          for(let c=0;c<size;c++){
+            const cell = document.createElement('div');
+            cell.textContent = ws2Grid[r][c];
+            cell.style.cssText = 'aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-weight:bold; border:1px solid #cbd5e1; border-radius:4px; background:white; cursor:pointer; user-select:none; font-size:.8em;';
+            cell.addEventListener('click', ()=> onWs2CellClick(r,c,cell));
+            container.appendChild(cell);
+            cells[r].push(cell);
+          }
+        }
+
+        const foundWords = new Set();
+        let firstSel = null;
+
+        function onWs2CellClick(r,c,cellEl){
+          if(!firstSel){
+            firstSel = {r,c,el:cellEl};
+            cellEl.style.background = '#fef9c3';
+            return;
+          }
+          const rDiff = r - firstSel.r, cDiff = c - firstSel.c;
+          const dr = Math.sign(rDiff), dc = Math.sign(cDiff);
+          let valid = (dr!==0 || dc!==0) && (rDiff===0 || cDiff===0 || Math.abs(rDiff)===Math.abs(cDiff));
+          let matchedWord = null;
+          let matchedCells = [];
+          if(valid){
+            const lineLen = Math.max(Math.abs(rDiff), Math.abs(cDiff)) + 1;
+            let letters = '';
+            for(let i=0;i<lineLen;i++){
+              const rr = firstSel.r + dr*i, cc = firstSel.c + dc*i;
+              letters += ws2Grid[rr][cc];
+              matchedCells.push([rr,cc]);
+            }
+            const rev = letters.split('').reverse().join('');
+            for(const w of ws2Words){
+              if(foundWords.has(w)) continue;
+              if(letters === w || rev === w){ matchedWord = w; break; }
+            }
+          }
+          const fb = document.getElementById('wordsearch2fb');
+          if(matchedWord){
+            foundWords.add(matchedWord);
+            matchedCells.forEach(([rr,cc])=>{
+              cells[rr][cc].style.background = '#bbf7d0';
+              cells[rr][cc].style.color = 'var(--green-dark)';
+            });
+            const li = document.getElementById(`ws2word-${matchedWord}`);
+            li.style.textDecoration = 'line-through';
+            li.style.opacity = '.5';
+            const check = document.createElement('span');
+            check.textContent = ' ✓';
+            check.setAttribute('aria-hidden','true');
+            li.appendChild(check);
+            firstSel.el.style.background = 'white';
+            firstSel = null;
+            if(foundWords.size === ws2Words.length){
+              total++; score++;
+              fb.textContent = "✅ Amazing — you found all the words!";
+              fb.className = "feedback correct";
+              updateScore();
+            } else {
+              fb.textContent = `Found ${foundWords.size} of ${ws2Words.length} words — keep going!`;
+              fb.className = "feedback";
+            }
+          } else {
+            firstSel.el.style.background = '#fecaca';
+            cellEl.style.background = '#fecaca';
+            const prevFirst = firstSel;
+            setTimeout(()=>{
+              prevFirst.el.style.background = 'white';
+              cellEl.style.background = 'white';
+            }, 400);
+            firstSel = null;
+          }
+        }
+      }
+      buildWordSearch2();
+    </script>
+  </div>
+
+</div>
+
+<div id="s6" class="section">
+  <div class="card">
+    <h3>📊 Your Progress</h3>
+    <p class="hint">See how much of each section has been completed.</p>
+    <div id="progressDashboard"></div>
+  </div>
+
+  <div class="card" id="certificateCard" style="display:none;">
+    <h3>🏆 Certificate of Achievement</h3>
+    <div id="certificateBox" style="border:4px double var(--teal); border-radius:16px; padding:24px; text-align:center; background:linear-gradient(135deg,#f0fdfa,#fff7ed);">
+      <p style="font-size:1.4em; margin:0;">🌟🎉🌟</p>
+      <h3 style="border:none; margin:10px 0 4px; font-size:1.5em; color:var(--teal-dark);">Certificate of Achievement</h3>
+      <p style="margin:4px 0;">This certifies that</p>
+      <p id="certName" style="font-size:1.6em; font-weight:bold; color:var(--blue-dark); margin:6px 0;">___________</p>
+      <p style="margin:4px 0;">has completed every exercise in the</p>
+      <p style="font-weight:bold; margin:4px 0;">Year 6 Learning Hub!</p>
+      <p class="hint" id="certDate" style="margin-top:10px;"></p>
+    </div>
+    <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+      <label style="font-weight:normal;">Name for certificate: <input type="text" id="certNameInput" placeholder="Type your name" style="width:180px;"></label>
+      <button class="btn small" onclick="updateCertName()">Save name</button>
+      <button class="btn small reveal" onclick="window.print()">🖨️ Print certificate</button>
+    </div>
+  </div>
+</div>
+
+<div id="s5" class="section">
+  <div class="card">
+    <h3>💬 Suggestions for Parents</h3>
+    <p class="hint">Do you have ideas to improve this, requests, or spotted a mistake? Write it below and send it by email.</p>
+    <textarea id="parentSuggestion" placeholder="Write your suggestion or request here..."></textarea>
+    <button class="btn small" onclick="sendSuggestionEmail()">📧 Send by email</button>
+    <button class="btn small reveal" onclick="saveSuggestion()">💾 Save here only</button>
+    <div class="feedback" id="suggestionfb"></div>
+    <div id="suggestionList" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔒 Privacy — in plain English</h3>
+    <p>This app does not create an account for your child, does not track them, and does not send anything to us automatically.</p>
+    <ul style="line-height:1.8;">
+      <li>Everything your child types (answers, score, their first name) is saved only on this device, in the browser's local storage — never sent anywhere.</li>
+      <li>There are no analytics, no advertising, and no cookies.</li>
+      <li>The only time anything leaves this device is if <em>you</em> choose to press "📧 Send by email" above — that just opens your own email app with the message ready to send.</li>
+      <li>The app loads its font from a file bundled with it, not from an external service — so nothing is requested from anywhere else on the internet while it's open.</li>
+      <li>You can erase all saved progress at any time with the "Start over" link at the bottom of the screen.</li>
+    </ul>
+    <p class="hint">This is a plain-language summary, not a formal legal policy — happy to expand it if you need something more formal.</p>
+  </div>
+</div>
+
+<script>
+  function sendSuggestionEmail(){
+    const input = document.getElementById('parentSuggestion');
+    const val = input.value.trim();
+    const fb = document.getElementById('suggestionfb');
+    if(!val){
+      fb.textContent = "✏️ Write something before sending.";
+      fb.className = "feedback incorrect";
+      return;
+    }
+    const subject = encodeURIComponent("Suggestion for the Year 6 Learning Hub");
+    const body = encodeURIComponent(val);
+    const contactEmail = 'feedback@yearworkbooks.co.uk';
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    saveSuggestion();
+    fb.textContent = "📧 Email app opened — press Send there to finish. (Also saved here as a backup.)";
+    fb.className = "feedback correct";
+  }
+
+  function saveSuggestion(){
+    const input = document.getElementById('parentSuggestion');
+    const val = input.value.trim();
+    const fb = document.getElementById('suggestionfb');
+    if(!val){
+      fb.textContent = "✏️ Write something before saving.";
+      fb.className = "feedback incorrect";
+      return;
+    }
+    const list = JSON.parse(localStorage.getItem('y6ParentSuggestions') || '[]');
+    list.push({text: val, date: new Date().toLocaleDateString('en-GB')});
+    localStorage.setItem('y6ParentSuggestions', JSON.stringify(list));
+    input.value = '';
+    fb.textContent = "✅ Suggestion saved, thank you!";
+    fb.className = "feedback correct";
+    renderSuggestions();
+  }
+  function renderSuggestions(){
+    const list = JSON.parse(localStorage.getItem('y6ParentSuggestions') || '[]');
+    const el = document.getElementById('suggestionList');
+    if(list.length === 0){ el.innerHTML = ''; return; }
+    el.innerHTML = '<p class="hint" style="margin-bottom:6px;">Saved suggestions:</p>' +
+      list.map(s => `<div class="q" style="background:#f8fafc;"><span class="hint">${escapeHtml(s.date)}</span><p style="margin:4px 0 0; font-weight:normal;">${escapeHtml(s.text)}</p></div>`).join('');
+  }
+  renderSuggestions();
+
+  const whatsNew = {
+    "1.0": [
+      "Welcome to the Year 6 Learning Hub — a brand new app to use all year round!",
+      "Spelling: statutory Year 5/6 word list, -cial/-tial words, -ant/-ance & -ent/-ence suffixes, homophones, hyphens for clarity, dictation",
+      "Maths: place value to 10,000,000, order of operations (BODMAS), factors/multiples/primes, fractions, ratio & proportion, algebra, decimals & percentages, area/perimeter/volume, angles & shape, position/direction & statistics",
+      "Grammar: the passive voice, the subjunctive form, semi-colons/colons/dashes, synonyms & antonyms, cohesion across paragraphs, and word sort",
+      "Reading: vocabulary in context, a fiction passage, a non-fiction passage, and a quick quiz",
+      "Progress dashboard, certificate of achievement, celebration popups, text size controls, and automatic local saving",
+      "Dyslexia-friendly font, colourblind-friendly ✓/✗ marks, and full keyboard support built in from day one",
+      "Nothing is loaded from the internet once the page is open, and nothing is sent anywhere — everything stays on this device"
+    ],
+    "1.1": [
+      "New Science section: Living Things & Their Habitats, Animals Including Humans (the circulatory system), Evolution & Inheritance, Light, and Electricity",
+      "New Games section: Sudoku (4×4 and 6×6, two puzzles each), a Mini Crossword plus a Challenge Crossword, and a Word Search plus a Challenge Word Search"
+    ]
+  };
+  function openWhatsNew(){
+    const html = Object.keys(whatsNew).map(v =>
+      `<p style="font-weight:bold; color:var(--teal-dark); margin:14px 0 4px;">Version ${escapeHtml(v)}</p>` +
+      `<ul style="margin-top:0;">${whatsNew[v].map(i=>`<li>${escapeHtml(i)}</li>`).join('')}</ul>`
+    ).join('');
+    document.getElementById('whatsNewList').innerHTML = html;
+    document.getElementById('whatsNewModal').classList.add('active');
+  }
+  function closeWhatsNew(){
+    document.getElementById('whatsNewModal').classList.remove('active');
+    localStorage.setItem('y6SeenVersion', APP_VERSION);
+  }
+  function closeWelcomeScreen(){
+    const nameInput = document.getElementById('welcomeNameInput');
+    const name = nameInput ? nameInput.value.trim() : '';
+    if(name){
+      localStorage.setItem('y6CertName', name);
+      initCertName();
+    }
+    localStorage.setItem('y6WelcomeSeen', '1');
+    localStorage.setItem('y6SeenVersion', APP_VERSION);
+    document.getElementById('welcomeModal').classList.remove('active');
+  }
+  function checkFirstRun(){
+    if(!localStorage.getItem('y6WelcomeSeen')){
+      document.getElementById('welcomeModal').classList.add('active');
+    } else {
+      localStorage.setItem('y6SeenVersion', APP_VERSION);
+    }
+  }
+  initTextSize();
+  initCertName();
+  restoreProgress();
+  checkFirstRun();
+</script>
+
+</body>
+</html>
