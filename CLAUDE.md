@@ -6,6 +6,7 @@ Repo unico con un sito/app per fascia d'età più una landing page:
 - `year3/` — workbook Year 3
 - `year4/` — workbook Year 4
 - `year5/` — workbook Year 5
+- `year6/` — workbook Year 6
 - `landing/` — landing page pubblica del progetto
 
 Ogni sottocartella è pensata come lavoro isolato di un thread dedicato a quella fascia
@@ -52,6 +53,7 @@ per errore:
 - `webapp-compiti-year3/` — worktree dedicato, branch `work-year3` (da creare quando riattivato)
 - `webapp-compiti-year4/` — worktree dedicato, branch `work-year4` (da creare quando riattivato)
 - `webapp-compiti-year5/` — worktree dedicato, branch `work-year5`
+- `webapp-compiti-year6/` — worktree dedicato, branch `work-year6` (da creare quando riattivato)
 - `webapp-compiti-landing/` — worktree dedicato, branch `work-landing` (da creare quando riattivato)
 
 Un thread per-anno lavora **dentro il proprio worktree**, nella propria sottocartella

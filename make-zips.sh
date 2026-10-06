@@ -6,7 +6,7 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DIST_DIR="$(dirname "$REPO_DIR")/webapp-compiti-dist"
 
-SITES=(year2 year3 year4 year5 landing)
+SITES=(year2 year3 year4 year5 year6 landing)
 
 mkdir -p "$DIST_DIR"
 
