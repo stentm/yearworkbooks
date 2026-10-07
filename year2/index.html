@@ -141,6 +141,19 @@
     background:linear-gradient(135deg,var(--teal),var(--blue)); color:white; border-color:transparent;
     box-shadow:0 4px 10px rgba(37,99,235,.4);
   }
+  .setnav{ display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 14px; }
+  .setnav button{
+    background:#fff; border:2px solid var(--teal); color:var(--teal-dark); border-radius:14px;
+    padding:7px 14px; font-weight:bold; font-family:inherit; font-size:.9em; cursor:pointer; transition:.15s;
+  }
+  .setnav button:hover{ transform:translateY(-1px); box-shadow:0 3px 8px rgba(13,148,136,.25); }
+  .setnav button.active{ background:linear-gradient(135deg,var(--teal),var(--blue)); color:white; border-color:transparent; }
+  .listen-q{
+    display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; margin-right:8px;
+    vertical-align:middle; background:#e6fffa; border:2px solid var(--teal); border-radius:50%;
+    cursor:pointer; font-size:1em; line-height:1; padding:0; transition:.15s;
+  }
+  .listen-q:hover{ transform:scale(1.08); background:#ccfbf1; }
   .q{margin-bottom:16px; padding:12px 14px; border-radius:var(--radius-sm); background:#fbfdfd; border:1px solid #eef4f2;}
   .q:hover{background:#f5fbfa;}
   .q label{display:block; margin-bottom:8px; font-weight:bold;}
@@ -318,7 +331,7 @@
       <ul>
         <li>Adjustable text size (A / A+ / A++)</li>
         <li>Icons as well as colour for feedback (not colour alone)</li>
-        <li>Dyslexia-friendly Lexend font, chosen for young readers</li>
+        <li>Lexend font, designed to be easy to read for young readers</li>
         <li>Softer, encouraging colours for "try again" feedback</li>
         <li>Stronger text contrast throughout</li>
         <li>Your device's reduced-motion setting, and animations that settle down on their own</li>
@@ -346,7 +359,7 @@
 </div>
 
 <script>
-const APP_VERSION = "1.0";
+const APP_VERSION = "1.2";
 document.getElementById('versionTag').textContent = "v" + APP_VERSION;
 
 let score = 0, total = 0;
@@ -442,7 +455,7 @@ function checkText(inputId, correctAnswers, fbId, caseSensitive=false){
     fb.textContent = "✅ Correct! Well done!";
     fb.className = "feedback correct";
   } else {
-    fb.textContent = "❌ Not quite — try again! (Hint: check the answer key)";
+    fb.textContent = "❌ Not quite. Have another go!";
     fb.className = "feedback incorrect";
   }
   updateScore();
@@ -784,7 +797,9 @@ function updateCertName(){
       <div class="score-track" style="margin:0; flex:1;"><div class="score-fill" id="wordListProgressFill"></div></div>
       <span id="wordListProgressText" style="font-weight:bold; white-space:nowrap; font-size:.9em;"></span>
     </div>
+    <div class="setnav" id="wordSetNav" role="group" aria-label="Choose a set of words"></div>
     <div id="wordChecklist"></div>
+    <div id="wordNextSet" style="text-align:center; margin-top:8px;"></div>
     <script>
       const words1a = ["because","should","would","could","people","water","again","every",
         "everybody","beautiful","children","floor","door","poor","find","kind","behind","climb",
@@ -793,6 +808,7 @@ function updateCertName(){
       words1a.forEach((w,i)=>{
         const div = document.createElement('div');
         div.className = "q";
+        div.dataset.set = Math.floor(i / 10);
         div.innerHTML = `
           <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:6px;">
             <button class="btn small" onclick="peekWord('word1a-${i}','${w}')">👁️ Show word</button>
@@ -807,18 +823,61 @@ function updateCertName(){
         `;
         wc.appendChild(div);
       });
+      // The 30 words are shown in sets of 10, so a young child practises a little at a time.
+      const WORD_SET_SIZE = 10;
+      const wordSetCount = Math.ceil(words1a.length / WORD_SET_SIZE);
+      function wordsInSet(n){ return Math.min((n+1)*WORD_SET_SIZE, words1a.length) - n*WORD_SET_SIZE; }
+      function wordSetDoneCounts(){
+        const counts = new Array(wordSetCount).fill(0);
+        words1a.forEach((w,i)=>{
+          const n = Math.floor(i / WORD_SET_SIZE);
+          if(document.getElementById(`w1afb-${i}`).classList.contains('correct')) counts[n]++;
+          if(document.getElementById(`w1asfb-${i}`).classList.contains('correct')) counts[n]++;
+        });
+        return counts;
+      }
+      function firstIncompleteWordSet(){
+        const counts = wordSetDoneCounts();
+        const idx = counts.findIndex((d,n)=> d < wordsInSet(n) * 2);
+        return idx < 0 ? 0 : idx;
+      }
+      function showWordSet(n){
+        document.querySelectorAll('#wordChecklist > .q').forEach(q=>{
+          q.style.display = (Number(q.dataset.set) === n) ? '' : 'none';
+        });
+        document.querySelectorAll('#wordSetNav button').forEach((b,i)=> b.classList.toggle('active', i === n));
+        const next = document.getElementById('wordNextSet');
+        next.innerHTML = '';
+        if(n < wordSetCount - 1){
+          const b = document.createElement('button'); b.className = 'btn'; b.type = 'button';
+          b.textContent = `Next: Set ${n+2} →`;
+          b.addEventListener('click', ()=>{
+            showWordSet(n+1);
+            document.getElementById('wordSetNav').scrollIntoView({behavior:'smooth', block:'center'});
+          });
+          next.appendChild(b);
+        }
+      }
+      const wordSetNav = document.getElementById('wordSetNav');
+      for(let n=0; n<wordSetCount; n++){
+        const b = document.createElement('button'); b.type = 'button';
+        b.dataset.label = `Set ${n+1} (words ${n*WORD_SET_SIZE+1}–${n*WORD_SET_SIZE+wordsInSet(n)})`;
+        b.textContent = b.dataset.label;
+        b.addEventListener('click', ()=> showWordSet(n));
+        wordSetNav.appendChild(b);
+      }
       function updateWordListProgress(){
         const fill = document.getElementById('wordListProgressFill');
         const text = document.getElementById('wordListProgressText');
         if(!fill) return;
         const totalItems = words1a.length * 2;
-        let done = 0;
-        words1a.forEach((w,i)=>{
-          if(document.getElementById(`w1afb-${i}`).classList.contains('correct')) done++;
-          if(document.getElementById(`w1asfb-${i}`).classList.contains('correct')) done++;
-        });
+        const counts = wordSetDoneCounts();
+        const done = counts.reduce((a,b)=>a+b, 0);
         fill.style.width = Math.round(done/totalItems*100) + '%';
         text.textContent = `${done}/${totalItems}`;
+        document.querySelectorAll('#wordSetNav button').forEach((b,n)=>{
+          b.textContent = b.dataset.label + (counts[n] === wordsInSet(n) * 2 ? ' ✓' : '');
+        });
       }
       function checkSentenceWord(inputId, word, fbId){
         const val = document.getElementById(inputId).value.trim();
@@ -861,6 +920,7 @@ function updateCertName(){
         updateWordListProgress();
       }
       updateWordListProgress();
+      showWordSet(0);
     </script>
   </div>
 
@@ -1088,6 +1148,43 @@ function updateCertName(){
 
 <div id="s2" class="section">
 
+  <script>
+    // Builds a list of questions from data. Each item is one of:
+    //   {q, ans}                    -> typed answer (ans = string or array of accepted strings)
+    //   {q, options:[...], ans}     -> multiple choice (radio buttons)
+    //   {q, contains:[...]}         -> typed answer that must contain one of the listed words
+    // Uses addEventListener (no inline onclick) so quotes/symbols in the data can't break the HTML.
+    function buildQuestions(containerId, prefix, items){
+      const box = document.getElementById(containerId);
+      items.forEach((it,i)=>{
+        const div = document.createElement('div'); div.className = 'q';
+        const label = document.createElement('label');
+        label.textContent = `${i+1}. ${it.q}`;
+        div.appendChild(label);
+        const btn = document.createElement('button'); btn.className = 'btn small'; btn.textContent = 'Check';
+        const fb = document.createElement('div'); fb.className = 'feedback'; fb.id = `${prefix}fb-${i}`;
+        if(it.options){
+          const opts = document.createElement('div'); opts.className = 'options';
+          it.options.forEach(o=>{
+            const l = document.createElement('label');
+            const r = document.createElement('input'); r.type = 'radio'; r.name = `${prefix}${i}`; r.value = o;
+            l.appendChild(r); l.appendChild(document.createTextNode(' ' + o));
+            opts.appendChild(l);
+          });
+          div.appendChild(opts);
+          btn.addEventListener('click', ()=> checkRadio(`${prefix}${i}`, it.ans, fb.id));
+        } else {
+          const inp = document.createElement('input'); inp.type = 'text'; inp.id = `${prefix}-${i}`;
+          inp.style.width = it.width || '120px';
+          label.appendChild(document.createTextNode(' ')); label.appendChild(inp);
+          btn.addEventListener('click', ()=> it.contains ? checkContainsWord(inp.id, it.contains, fb.id) : checkText(inp.id, it.ans, fb.id));
+        }
+        div.appendChild(btn); div.appendChild(fb);
+        box.appendChild(div);
+      });
+    }
+  </script>
+
   <div class="subnav">
     <button class="active" onclick="showSub('s2','card-2a', this)">🔢 Place Value</button>
     <button onclick="showSub('s2','card-2b', this)">✖️ Times Tables</button>
@@ -1097,6 +1194,10 @@ function updateCertName(){
     <button onclick="showSub('s2','card-2f', this)">📐 Shapes</button>
     <button onclick="showSub('s2','card-2g', this)">📊 Statistics</button>
     <button onclick="showSub('s2','card-2h', this)">🧮 Word Problems</button>
+    <button onclick="showSub('s2','card-2i', this)">🤝 Number Bonds</button>
+    <button onclick="showSub('s2','card-2j', this)">👣 Counting, Odd &amp; Even</button>
+    <button onclick="showSub('s2','card-2k', this)">⚖️ Compare Numbers</button>
+    <button onclick="showSub('s2','card-2l', this)">📏 Measures</button>
   </div>
 
   <div class="card subsection active" id="card-2a">
@@ -1202,6 +1303,16 @@ function updateCertName(){
       <button class="btn small" onclick="checkText('fr6','1/2','frfb6')">Check</button>
       <div class="feedback" id="frfb6"></div>
     </div>
+    <div class="q">
+      <label>7. What is 1/3 of 9? <input type="text" id="fr7" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('fr7','3','frfb7')">Check</button>
+      <div class="feedback" id="frfb7"></div>
+    </div>
+    <div class="q">
+      <label>8. What is 1/3 of 6? <input type="text" id="fr8" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('fr8','2','frfb8')">Check</button>
+      <div class="feedback" id="frfb8"></div>
+    </div>
   </div>
 
   <div class="card subsection" id="card-2e">
@@ -1269,6 +1380,26 @@ function updateCertName(){
       <button class="btn small" onclick="checkText('st2','4','stfb2')">Check</button>
       <div class="feedback" id="stfb2"></div>
     </div>
+    <div class="q">
+      <label>3. A block graph shows that 7 children chose cats and 4 children chose dogs. How many more children chose cats than dogs? <input type="text" id="st3" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('st3','3','stfb3')">Check</button>
+      <div class="feedback" id="stfb3"></div>
+    </div>
+    <div class="q">
+      <label>4. Each ⭐ stands for 5 children. There are 3 ⭐⭐⭐ for football. How many children chose football? <input type="text" id="st4" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('st4','15','stfb4')">Check</button>
+      <div class="feedback" id="stfb4"></div>
+    </div>
+    <div class="q">
+      <label>5. A table shows: red 6, blue 9, green 3. Which colour is the most popular? <input type="text" id="st5" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('st5','blue','stfb5')">Check</button>
+      <div class="feedback" id="stfb5"></div>
+    </div>
+    <div class="q">
+      <label>6. Using the same table (red 6, blue 9, green 3), how many children chose a colour in total? <input type="text" id="st6" style="width:100px"></label>
+      <button class="btn small" onclick="checkText('st6','18','stfb6')">Check</button>
+      <div class="feedback" id="stfb6"></div>
+    </div>
   </div>
 
   <div class="card subsection" id="card-2h">
@@ -1295,6 +1426,72 @@ function updateCertName(){
     </div>
   </div>
 
+  <div class="card subsection" id="card-2i">
+    <h3>Number Bonds</h3>
+    <p class="hint">Number bonds are pairs of numbers that make a total. Work out the missing number.</p>
+    <div id="nbQs"></div>
+    <script>
+      buildQuestions('nbQs','nb',[
+        {q:'6 + ___ = 10', ans:'4'},
+        {q:'13 + ___ = 20', ans:'7'},
+        {q:'___ + 8 = 20', ans:'12'},
+        {q:'20 − 6 = ___', ans:'14'},
+        {q:'30 + ___ = 100', ans:'70'},
+        {q:'100 − 40 = ___', ans:'60'}
+      ]);
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2j">
+    <h3>Counting in Steps, Odd &amp; Even</h3>
+    <p class="hint">Even numbers end in 0, 2, 4, 6 or 8. Odd numbers end in 1, 3, 5, 7 or 9.</p>
+    <div id="csQs"></div>
+    <script>
+      buildQuestions('csQs','cs',[
+        {q:'Count in 2s: 2, 4, 6, ___, 10', ans:'8'},
+        {q:'Count in 5s: 5, 10, 15, ___, 25', ans:'20'},
+        {q:'Count in 10s: 30, 40, ___, 60', ans:'50'},
+        {q:'Count in 3s: 3, 6, 9, ___, 15', ans:'12'},
+        {q:'Count back in 10s: 90, 80, ___, 60', ans:'70'},
+        {q:'Is 17 odd or even?', options:['Odd','Even'], ans:'Odd'},
+        {q:'Is 24 odd or even?', options:['Odd','Even'], ans:'Even'},
+        {q:'Which of these numbers is even?', options:['13','18','21'], ans:'18'}
+      ]);
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2k">
+    <h3>Comparing &amp; Ordering Numbers</h3>
+    <p class="hint">&lt; means "is less than", &gt; means "is greater than", and = means "is the same as". The open mouth of &lt; or &gt; always faces the bigger number.</p>
+    <div id="cmpQs"></div>
+    <script>
+      buildQuestions('cmpQs','cmp',[
+        {q:'Which symbol goes in the gap?   45 ___ 54', options:['<','>','='], ans:'<'},
+        {q:'Which symbol goes in the gap?   62 ___ 26', options:['<','>','='], ans:'>'},
+        {q:'Which symbol goes in the gap?   38 ___ 38', options:['<','>','='], ans:'='},
+        {q:'Which symbol goes in the gap?   80 ___ 8', options:['<','>','='], ans:'>'},
+        {q:'Put these numbers in order, smallest first: 42, 24, 33', ans:['24, 33, 42','24,33,42','24 33 42'], width:'200px'},
+        {q:'Which is the biggest number: 71, 17 or 70?', options:['71','17','70'], ans:'71'}
+      ]);
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-2l">
+    <h3>Measures</h3>
+    <p class="hint">We measure length in centimetres (cm) and metres (m), weight in grams (g) and kilograms (kg), and liquids in litres (l).</p>
+    <div id="msrQs"></div>
+    <script>
+      buildQuestions('msrQs','msr',[
+        {q:'How many centimetres (cm) are there in 1 metre (m)?', ans:'100'},
+        {q:'Which unit would you use to measure the length of a pencil?', options:['centimetres (cm)','litres (l)','kilograms (kg)'], ans:'centimetres (cm)'},
+        {q:'Which unit would you use to measure how heavy a bag of potatoes is?', options:['centimetres (cm)','litres (l)','kilograms (kg)'], ans:'kilograms (kg)'},
+        {q:'Which unit would you use to measure how much juice is in a jug?', options:['centimetres (cm)','litres (l)','kilograms (kg)'], ans:'litres (l)'},
+        {q:'Which is hotter: 5°C or 25°C?', options:['5°C','25°C'], ans:'25°C'},
+        {q:'A pencil starts at 0 on a ruler and ends at 14 cm. How long is the pencil?', ans:['14','14cm','14 cm']}
+      ]);
+    </script>
+  </div>
+
 </div>
 
 <div id="s3" class="section">
@@ -1306,6 +1503,7 @@ function updateCertName(){
     <button onclick="showSub('s3','card-3d', this)">🔗 Conjunctions</button>
     <button onclick="showSub('s3','card-3e', this)">🏷️ Word Sort</button>
     <button onclick="showSub('s3','card-3f', this)">❓ Punctuation</button>
+    <button onclick="showSub('s3','card-3g', this)">⏳ Past &amp; Present</button>
   </div>
 
   <div class="card subsection active" id="card-3a">
@@ -1496,6 +1694,24 @@ function updateCertName(){
     </script>
   </div>
 
+  <div class="card subsection" id="card-3g">
+    <h3>Past &amp; Present Tense</h3>
+    <p class="hint">Past tense tells us what already happened. Present tense tells us what is happening now.</p>
+    <div id="tnQs"></div>
+    <script>
+      buildQuestions('tnQs','tn',[
+        {q:'Yesterday, we ___ to the zoo.', options:['go','went'], ans:'went'},
+        {q:'Every day, she ___ her lunch at school.', options:['eats','ate'], ans:'eats'},
+        {q:'Right now, Tom is ___ his bike.', options:['ride','riding','rode'], ans:'riding'},
+        {q:'Last week, Mum ___ a big cake.', options:['bake','baked'], ans:'baked'},
+        {q:'"The cat sat on the mat." Is this past or present tense?', options:['Past','Present'], ans:'Past'},
+        {q:'"The birds are singing." Is this past or present tense?', options:['Past','Present'], ans:'Present'},
+        {q:'Write the past tense of "jump":', ans:'jumped'},
+        {q:'Write the past tense of "run":', ans:'ran'}
+      ]);
+    </script>
+  </div>
+
 </div>
 
 <div id="s4" class="section">
@@ -1505,6 +1721,7 @@ function updateCertName(){
     <button onclick="showSub('s4','card-4b', this)">🔎 Vocabulary in Context</button>
     <button onclick="showSub('s4','card-4c', this)">✅ True or False</button>
     <button onclick="showSub('s4','card-4d', this)">🗝️ Fiction Story</button>
+    <button onclick="showSub('s4','card-4e', this)">🎵 Poem</button>
   </div>
 
   <div class="card subsection active" id="card-4a">
@@ -1692,6 +1909,26 @@ function updateCertName(){
     </div>
   </div>
 
+  <div class="card subsection" id="card-4e">
+    <h3>Poem: Rainy Day</h3>
+    <div class="q" style="background:#f8fafc;">
+      <button class="btn small" id="listenPoemBtn" style="margin-bottom:10px;">🔊 Listen to this poem</button>
+      <p style="line-height:1.9; font-weight:normal;">Drip, drop, drip, drop,<br>Rain is falling down.<br>Splash, splash, in my boots,<br>I jump around the town.<br><br>Puddles big and puddles small,<br>I jump in every one.<br>The sky is grey, but I don't mind,<br>For rainy days are fun!</p>
+    </div>
+    <div id="poQs"></div>
+    <script>
+      buildQuestions('poQs','po',[
+        {q:'What is falling down in the poem?', ans:['rain']},
+        {q:'Which word rhymes with "town"?', options:['down','boots','sky'], ans:'down'},
+        {q:'Which word rhymes with "one"?', options:['fun','small','grey'], ans:'fun'},
+        {q:'What colour is the sky in the poem?', ans:['grey','gray']},
+        {q:'How does the child feel about rainy days?', options:['Happy','Sad','Frightened'], ans:'Happy'},
+        {q:'Write a word that rhymes with "small":', contains:['ball','tall','wall','fall','call','hall']}
+      ]);
+      document.getElementById('listenPoemBtn').addEventListener('click', ()=> speakText(document.getElementById('listenPoemBtn').nextElementSibling.innerText));
+    </script>
+  </div>
+
   <script>
     document.getElementById('listenSeasideBtn').addEventListener('click', ()=> speakText(document.getElementById('listenSeasideBtn').nextElementSibling.textContent));
     document.getElementById('listenLadybirdBtn').addEventListener('click', ()=> speakText(document.getElementById('listenLadybirdBtn').nextElementSibling.textContent));
@@ -1712,6 +1949,8 @@ function updateCertName(){
     <button onclick="showSub('s7','card-7b', this)">🐾 Animals</button>
     <button onclick="showSub('s7','card-7c', this)">🌱 Plants</button>
     <button onclick="showSub('s7','card-7d', this)">🍂 Seasons &amp; Weather</button>
+    <button onclick="showSub('s7','card-7e', this)">🏞️ Habitats &amp; Food Chains</button>
+    <button onclick="showSub('s7','card-7f', this)">💪 Humans &amp; Health</button>
   </div>
 
   <div class="card subsection active" id="card-7a">
@@ -1850,6 +2089,66 @@ function updateCertName(){
     <script>
       const weatherWords = ["sunny","rainy","rain","windy","snowy","snow","cloudy","stormy","foggy","icy","frosty"];
       document.getElementById('sebtn4').addEventListener('click', ()=> checkContainsWord('se4', weatherWords, 'sefb4'));
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7e">
+    <h3>Habitats &amp; Food Chains</h3>
+    <p class="hint">A habitat is the place where a plant or animal lives. A food chain shows what eats what.</p>
+    <div class="q">
+      <label>Where does each animal live?</label>
+      <div id="habSortQs"></div>
+    </div>
+    <div id="hbQs"></div>
+    <script>
+      const habSort = {"camel":"Desert","whale":"Ocean","squirrel":"Woodland","dolphin":"Ocean"};
+      const habBox = document.getElementById('habSortQs');
+      const habIds = [];
+      Object.keys(habSort).forEach((w,i)=>{
+        const id = `hab-${i}`;
+        habIds.push(id);
+        const d = document.createElement('div'); d.className = 'q'; d.style.background = 'transparent';
+        d.innerHTML = `
+          <label style="display:inline-block; width:110px;">${w}</label>
+          <select id="${id}">
+            <option value="">-- choose --</option>
+            <option value="Desert">Desert</option>
+            <option value="Ocean">Ocean</option>
+            <option value="Woodland">Woodland</option>
+          </select>`;
+        habBox.appendChild(d);
+      });
+      const habMap = {};
+      Object.keys(habSort).forEach((w,i)=> habMap[`hab-${i}`] = habSort[w]);
+      const habBtnDiv = document.createElement('div');
+      habBtnDiv.innerHTML = `<button class="btn small" id="habCheckBtn">Check all</button>
+        <div class="feedback" id="habfb"></div>`;
+      habBox.appendChild(habBtnDiv);
+      document.getElementById('habCheckBtn').addEventListener('click', ()=> checkSelects(habIds, habMap, 'habfb'));
+
+      buildQuestions('hbQs','hb',[
+        {q:'A habitat is the place where a plant or animal ___.', ans:['lives']},
+        {q:'In the food chain grass → rabbit → fox, what does the rabbit eat?', ans:['grass','the grass']},
+        {q:'In the same food chain, what does the fox eat?', options:['Grass','Rabbits','Fish'], ans:'Rabbits'},
+        {q:'Food chains usually start with a ___.', options:['plant','animal','rock'], ans:'plant'},
+        {q:'Which of these is a micro-habitat (a very small habitat)?', options:['Under a log','The Sahara Desert','The Pacific Ocean'], ans:'Under a log'}
+      ]);
+    </script>
+  </div>
+
+  <div class="card subsection" id="card-7f">
+    <h3>Humans &amp; Staying Healthy</h3>
+    <div id="huQs"></div>
+    <script>
+      buildQuestions('huQs','hu',[
+        {q:'What do we need to breathe to stay alive?', ans:['air','oxygen']},
+        {q:'Which is the healthiest drink?', options:['Water','A fizzy drink','Cola'], ans:'Water'},
+        {q:'Which is a healthy snack?', options:['An apple','A bag of sweets','A chocolate bar'], ans:'An apple'},
+        {q:'Why do we wash our hands before we eat?', options:['To get rid of germs','To make them cold','To make them bigger'], ans:'To get rid of germs'},
+        {q:'How many times a day should we brush our teeth?', options:['Twice a day','Once a week','Never'], ans:'Twice a day'},
+        {q:'True or False: exercise helps keep our hearts and bodies strong.', options:['True','False'], ans:'True'},
+        {q:'Put these in order as a person grows up: baby, adult, child', ans:['baby, child, adult','baby child adult','baby,child,adult'], width:'220px'}
+      ]);
     </script>
   </div>
 
@@ -2482,6 +2781,72 @@ function updateCertName(){
 </div>
 
 <script>
+  // ---------- Read-aloud buttons next to questions ----------
+  // Turns a question (or answer choice) into text that sounds natural when spoken.
+  function speechify(t){
+    const nums = ['zero','one','two','three','four'];
+    t = t.replace(/^\s*\d+\.\s*/, '');
+    t = t.replace(/_{2,}/g, ' blank ');
+    t = t.replace(/\|+/g, ' this tally ');
+    t = t.replace(/→/g, ', then ');
+    t = t.replace(/×/g, ' times ').replace(/÷/g, ' divided by ').replace(/−/g, ' minus ');
+    t = t.replace(/\+/g, ' plus ').replace(/=/g, ' equals ');
+    t = t.replace(/\b(\d+)\/(\d+)\b/g, (m,a,b)=>{
+      const na = Number(a);
+      const word = {2:['half','halves'], 3:['third','thirds'], 4:['quarter','quarters']}[b];
+      if(!word) return `${a} over ${b}`;
+      const nw = nums[na] !== undefined ? nums[na] : a;
+      if(b === '2') return na === 1 ? 'one half' : `${nw} halves`;
+      return `${nw} ${na === 1 ? word[0] : word[1]}`;
+    });
+    t = t.replace(/°C/g, ' degrees Celsius');
+    t = t.replace(/\((?:cm|m|kg|g|l)\)/g, '');
+    t = t.replace(/(\d)\s?cm\b/g, '$1 centimetres').replace(/(\d)p\b/g, '$1 pence');
+    return t.replace(/\s+([.,?!:;])/g, '$1').replace(/\s+/g, ' ').trim();
+  }
+  function speechifyOption(o){
+    const map = {'<':'less than', '>':'greater than', '=':'equal to'};
+    return map[o.trim()] || speechify(o);
+  }
+  function questionStemText(label, skipBtn){
+    return [...label.childNodes]
+      .filter(n=> n !== skipBtn && !(n.nodeType === 1 && /^(INPUT|SELECT|TEXTAREA|BUTTON)$/.test(n.tagName)))
+      .map(n=> n.textContent).join(' ');
+  }
+  // Named speakText... on purpose: the Enter-key handler skips buttons whose onclick starts with "speakText".
+  function speakTextOf(btn){
+    const label = btn.closest('label');
+    const q = btn.closest('.q');
+    let text = speechify(questionStemText(label, btn));
+    if(!/[.?!:]$/.test(text)) text += '.';
+    const opts = [...q.querySelectorAll('.options label')].map(l=> speechifyOption(l.textContent));
+    if(opts.length){
+      text += opts.length === 1 ? ` The choice is: ${opts[0]}.`
+        : ` The choices are: ${opts.slice(0,-1).join(', ')} or ${opts[opts.length-1]}.`;
+    }
+    speakText(text);
+  }
+  function addQuestionSpeakers(){
+    // Not worth reading aloud: underlined-digit place value, word sort, and the punctuation sentences.
+    const skipCards = new Set(['card-2a','card-3e','card-3f']);
+    ['s1','s2','s3','s4','s7'].forEach(secId=>{
+      document.querySelectorAll(`#${secId} .card.subsection`).forEach(card=>{
+        if(skipCards.has(card.id)) return;
+        if(secId === 's1' && card.id !== 'card-1b') return;   // Spelling: only the homophone sentences
+        card.querySelectorAll('.q > label').forEach(label=>{
+          if(label.querySelector('.listen-q')) return;
+          const stem = questionStemText(label, null).trim();
+          if(stem.split(/\s+/).length < 3) return;           // e.g. single-word row labels
+          const b = document.createElement('button');
+          b.type = 'button'; b.className = 'listen-q'; b.textContent = '🔊';
+          b.title = 'Read this question aloud'; b.setAttribute('aria-label', 'Read this question aloud');
+          b.setAttribute('onclick', 'speakTextOf(this)');
+          label.insertBefore(b, label.firstChild);
+        });
+      });
+    });
+  }
+
   function sendSuggestionEmail(){
     const input = document.getElementById('parentSuggestion');
     const val = input.value.trim();
@@ -2536,6 +2901,17 @@ function updateCertName(){
       "Science: everyday materials, animals, plants, and seasons & weather",
       "Games: Sudoku, Crossword, and Word Search, sized for Year 2",
       "Progress dashboard, certificate of achievement, celebration popups, text size controls, and automatic local saving — all with no account, no tracking, and nothing sent off this device"
+    ],
+    "1.1": [
+      "Grammar: new Past & Present Tense section",
+      "Maths: new sections on number bonds, counting in steps (with odd and even numbers), comparing and ordering numbers, and measures — plus more questions on fractions (thirds) and statistics",
+      "Science: new sections on habitats & food chains, and on humans & staying healthy",
+      "Reading: a new poem, 'Rainy Day', with rhyming questions"
+    ],
+    "1.2": [
+      "Spelling: the Word List is now split into 3 sets of 10 words, so it's easier to practise a little at a time",
+      "New 🔊 buttons next to the questions in Maths, Grammar, Reading, Science and Homophones — tap one to hear the question and its answer choices read aloud",
+      "The Word List progress bar now remembers how far you got when you come back"
     ]
   };
   function openWhatsNew(){
@@ -2568,9 +2944,13 @@ function updateCertName(){
       localStorage.setItem('y2SeenVersion', APP_VERSION);
     }
   }
+  addQuestionSpeakers();
   initTextSize();
   initCertName();
   restoreProgress();
+  // The saved answers are back on the page now: refresh the Word List bar and open the first unfinished set.
+  updateWordListProgress();
+  showWordSet(firstIncompleteWordSet());
   checkFirstRun();
 </script>
 
