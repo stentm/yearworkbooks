@@ -313,7 +313,7 @@
       <ul>
         <li>Adjustable text size (A / A+ / A++)</li>
         <li>Icons as well as colour for feedback (not colour alone)</li>
-        <li>Dyslexia-friendly Lexend font, chosen for young readers</li>
+        <li>Lexend font, designed to be easy to read for young readers</li>
         <li>Softer, encouraging colours for "try again" feedback</li>
         <li>Stronger text contrast throughout</li>
         <li>Your device's reduced-motion setting, and animations that settle down on their own</li>
@@ -437,7 +437,7 @@ function checkText(inputId, correctAnswers, fbId, caseSensitive=false){
     fb.textContent = "✅ Correct! Well done!";
     fb.className = "feedback correct";
   } else {
-    fb.textContent = "❌ Not quite — try again! (Hint: check the answer key)";
+    fb.textContent = "❌ Not quite. Have another go!";
     fb.className = "feedback incorrect";
   }
   updateScore();
@@ -2800,7 +2800,7 @@ function updateCertName(){
       "The accessibility badge is now clearly a label, not a button, and shows its details when you hover or tap it"
     ],
     "2.0": [
-      "New dyslexia-friendly font (Lexend) throughout the app, designed for young readers",
+      "New Lexend font throughout the app, designed to be easy to read for young readers",
       "Stronger text contrast for hints and instructions",
       "Softer, more encouraging colours when an answer isn't quite right yet",
       "The header's colourful animation now settles down after a moment instead of looping forever",
